@@ -356,7 +356,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -367,8 +367,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -381,9 +381,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PAINT/</code> <span
@@ -406,21 +406,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -511,15 +508,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree2d863483e57f245ae882a4cefeeff3459d8d1ed9targetblank2d86348a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeb2f5585b32c2ffa949a0ba700a50539bafa95deatargetblankb2f5585a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/2d863483e57f245ae882a4cefeeff3459d8d1ed9" target="_blank">2d86348</a>
+<a href="https://github.com/lilyheald/PAINT/tree/b2f5585b32c2ffa949a0ba700a50539bafa95dea" target="_blank">b2f5585</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree2d863483e57f245ae882a4cefeeff3459d8d1ed9targetblank2d86348a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeb2f5585b32c2ffa949a0ba700a50539bafa95deatargetblankb2f5585a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -529,7 +526,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/2d863483e57f245ae882a4cefeeff3459d8d1ed9" target="_blank">2d86348</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/b2f5585b32c2ffa949a0ba700a50539bafa95dea" target="_blank">b2f5585</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -547,14 +544,6 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    data/neo_uvi.csv
 
-Untracked files:
-    Untracked:  analysis/figure/
-    Untracked:  analysis/introduction.Rmd
-
-Unstaged changes:
-    Modified:   analysis/index.Rmd
-    Deleted:    introduction.Rmd
-
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not
@@ -569,9 +558,89 @@ have uncommitted changes.
 </div>
 <div id="versions" class="tab-pane fade">
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/introduction.Rmd</code>) and HTML
+(<code>docs/introduction.html</code>) files. If you’ve configured a
+remote Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/b2f5585b32c2ffa949a0ba700a50539bafa95dea/analysis/introduction.Rmd" target="_blank">b2f5585</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-06
+</td>
+<td>
+Update introduction.Rmd
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/13755f1e060b5dfc018433d93cf662132922e547/docs/introduction.html" target="_blank">13755f1</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-06
+</td>
+<td>
+workflowr
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/46a091351fc02b256f992110c866a0ebd382bf5d/analysis/introduction.Rmd" target="_blank">46a0913</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-06
+</td>
+<td>
+start workflowr
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -611,6 +680,14 @@ Attaching package: &#39;reshape2&#39;
 The following object is masked from &#39;package:tidyr&#39;:
 
     smiths</code></pre>
+<pre class="r"><code>library(showtext)</code></pre>
+<pre><code>Loading required package: sysfonts
+Loading required package: showtextdb</code></pre>
+<pre class="r"><code>library(sysfonts)
+
+font_add_google(&quot;Lato&quot;, &quot;lato&quot;)
+
+showtext_auto()</code></pre>
 <pre class="r"><code>world &lt;- ne_countries(scale = &quot;medium&quot;, returnclass = &quot;sf&quot;)
 
 uv_matrix &lt;- as.matrix(read.csv(&quot;data/neo_uvi.csv&quot;, header = F))
@@ -642,6 +719,43 @@ head(uv_df)</code></pre>
   labs(title = &quot;NASA AURA UV Index Climatology (0.5° resolution)&quot;,
        subtitle = &quot;December 2010 dataset&quot;)</code></pre>
 <p><img src="figure/introduction.Rmd/init-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-init-1">
+Past versions of init-1.png
+</button>
+</p>
+<div id="fig-init-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/13755f1e060b5dfc018433d93cf662132922e547/docs/figure/introduction.Rmd/init-1.png" target="_blank">13755f1</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>uv_raster &lt;- rasterFromXYZ(uv_df[, c(&quot;lon&quot;, &quot;lat&quot;, &quot;UVIndex&quot;)], crs = &quot;+proj=longlat +datum=WGS84&quot;)
 
 world_sp &lt;- as(world, &quot;Spatial&quot;)
@@ -697,659 +811,44 @@ sites_sf &lt;- st_as_sf(sites, coords = c(&quot;lon&quot;,&quot;lat&quot;), crs 
     title = &quot;Ancient DNA Discovery Sites and UV Radiation&quot;,
     subtitle = &quot;UV Index climatology (NASA AURA, 2010)&quot;
   )</code></pre>
-<pre><code>Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;
-Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): no font could
-be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
-<pre><code>Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-Unable to calculate text width/height (using zero)</code></pre>
-<pre><code>Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;
-Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : no
-font could be found for family &quot;lato&quot;</code></pre>
 <p><img src="figure/introduction.Rmd/plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-1">
+Past versions of plot-1.png
+</button>
+</p>
+<div id="fig-plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/13755f1e060b5dfc018433d93cf662132922e547/docs/figure/introduction.Rmd/plot-1.png" target="_blank">13755f1</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1377,31 +876,33 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] reshape2_1.4.4          lubridate_1.9.4         forcats_1.0.0          
- [4] stringr_1.5.2           dplyr_1.1.4             purrr_1.0.4            
- [7] readr_2.1.5             tidyr_1.3.1             tibble_3.3.0           
-[10] tidyverse_2.0.0         ggrepel_0.9.6           viridis_0.6.5          
-[13] viridisLite_0.4.2       ggspatial_1.1.10        raster_3.6-32          
-[16] sp_2.2-0                sf_1.0-21               rnaturalearthdata_1.0.0
-[19] rnaturalearth_1.1.0     ggplot2_4.0.0           workflowr_1.7.1        
+ [1] showtext_0.9-7          showtextdb_3.0          sysfonts_0.8.9         
+ [4] reshape2_1.4.4          lubridate_1.9.4         forcats_1.0.0          
+ [7] stringr_1.5.2           dplyr_1.1.4             purrr_1.0.4            
+[10] readr_2.1.5             tidyr_1.3.1             tibble_3.3.0           
+[13] tidyverse_2.0.0         ggrepel_0.9.6           viridis_0.6.5          
+[16] viridisLite_0.4.2       ggspatial_1.1.10        raster_3.6-32          
+[19] sp_2.2-0                sf_1.0-21               rnaturalearthdata_1.0.0
+[22] rnaturalearth_1.1.0     ggplot2_4.0.0           workflowr_1.7.1        
 
 loaded via a namespace (and not attached):
  [1] gtable_0.3.6       xfun_0.53          bslib_0.9.0        processx_3.8.6    
  [5] lattice_0.22-6     tzdb_0.5.0         callr_3.7.6        vctrs_0.6.5       
- [9] tools_4.4.2        ps_1.9.1           generics_0.1.4     proxy_0.4-27      
-[13] pkgconfig_2.0.3    KernSmooth_2.23-26 RColorBrewer_1.1-3 S7_0.2.0          
-[17] lifecycle_1.0.4    compiler_4.4.2     farver_2.1.2       git2r_0.35.0      
-[21] terra_1.8-70       getPass_0.2-4      codetools_0.2-20   httpuv_1.6.15     
-[25] htmltools_0.5.8.1  class_7.3-23       sass_0.4.10        yaml_2.3.10       
-[29] later_1.4.4        pillar_1.11.1      jquerylib_0.1.4    whisker_0.4.1     
-[33] classInt_0.4-11    cachem_1.1.0       tidyselect_1.2.1   digest_0.6.37     
-[37] stringi_1.8.7      labeling_0.4.3     rprojroot_2.0.4    fastmap_1.2.0     
-[41] grid_4.4.2         cli_3.6.5          magrittr_2.0.4     e1071_1.7-16      
-[45] withr_3.0.2        scales_1.4.0       promises_1.3.3     timechange_0.3.0  
-[49] rmarkdown_2.29     httr_1.4.7         gridExtra_2.3      hms_1.1.3         
-[53] evaluate_1.0.5     knitr_1.50         rlang_1.1.6        Rcpp_1.1.0        
-[57] glue_1.8.0         DBI_1.2.3          rstudioapi_0.17.1  jsonlite_2.0.0    
-[61] plyr_1.8.9         R6_2.6.1           fs_1.6.6           units_1.0-0       </code></pre>
+ [9] tools_4.4.2        ps_1.9.1           generics_0.1.4     curl_7.0.0        
+[13] proxy_0.4-27       pkgconfig_2.0.3    KernSmooth_2.23-26 RColorBrewer_1.1-3
+[17] S7_0.2.0           lifecycle_1.0.4    compiler_4.4.2     farver_2.1.2      
+[21] git2r_0.35.0       terra_1.8-70       getPass_0.2-4      codetools_0.2-20  
+[25] httpuv_1.6.15      htmltools_0.5.8.1  class_7.3-23       sass_0.4.10       
+[29] yaml_2.3.10        later_1.4.4        pillar_1.11.1      jquerylib_0.1.4   
+[33] whisker_0.4.1      classInt_0.4-11    cachem_1.1.0       tidyselect_1.2.1  
+[37] digest_0.6.37      stringi_1.8.7      labeling_0.4.3     rprojroot_2.0.4   
+[41] fastmap_1.2.0      grid_4.4.2         cli_3.6.5          magrittr_2.0.4    
+[45] e1071_1.7-16       withr_3.0.2        scales_1.4.0       promises_1.3.3    
+[49] timechange_0.3.0   rmarkdown_2.29     httr_1.4.7         gridExtra_2.3     
+[53] hms_1.1.3          evaluate_1.0.5     knitr_1.50         rlang_1.1.6       
+[57] Rcpp_1.1.0         glue_1.8.0         DBI_1.2.3          rstudioapi_0.17.1 
+[61] jsonlite_2.0.0     plyr_1.8.9         R6_2.6.1           fs_1.6.6          
+[65] units_1.0-0       </code></pre>
 </div>
 </div>
 </div>
