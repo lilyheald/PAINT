@@ -1,0 +1,109 @@
+```{r setup}
+library(ggplot2)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(sf)
+library(raster)
+library(ggspatial)
+library(viridis)
+library(ggrepel)
+library(tidyverse)
+library(reshape2)
+```
+
+
+```{r map}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+uv_matrix <- as.matrix(read.csv("neo_uvi.csv", header = F))
+
+lon <- seq(-179.75, 179.75, by = 0.5)
+lat <- seq(89.75, -89.75, by = -0.5)
+
+rownames(uv_matrix) <- lat
+colnames(uv_matrix) <- lon
+
+uv_df <- melt(uv_matrix, varnames = c("lat", "lon"), value.name = "UVIndex")
+
+uv_df$lat <- as.numeric(as.character(uv_df$lat))
+uv_df$lon <- as.numeric(as.character(uv_df$lon))
+head(uv_df)
+```
+
+```{r init}
+ggplot() +
+  geom_raster(data = uv_df, aes(x = lon, y = lat, fill = UVIndex)) +
+  scale_fill_viridis_c(option = "C", name = "UV Index", na.value = "white") +
+  geom_sf(data = world, fill = NA, color = "grey40", size = 0.2) +
+  coord_sf(expand = FALSE) +
+  theme_minimal() +
+  labs(title = "NASA AURA UV Index Climatology (0.5° resolution)",
+       subtitle = "December 2010 dataset")
+```
+
+```{r mask}
+uv_raster <- rasterFromXYZ(uv_df[, c("lon", "lat", "UVIndex")], crs = "+proj=longlat +datum=WGS84")
+
+world_sp <- as(world, "Spatial")
+
+uv_land <- mask(uv_raster, world_sp)
+
+uv_land_df <- as.data.frame(uv_land, xy = TRUE)
+names(uv_land_df) <- c("lon", "lat", "UVIndex")
+```
+
+```{r sites}
+sites <- data.frame(
+  name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", "Buran-Kaya III", "El Sidron"),
+  lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3), #E (+) W (-)
+  lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4) #N (+) S (-)
+)
+sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
+```
+
+```{r plot}
+library(showtext)
+font_add_google("Lato", "lato")
+showtext_auto()
+
+ggplot() +
+  geom_raster(data = uv_land_df, aes(x = lon, y = lat, fill = UVIndex)) +
+  scale_fill_viridis_c(option = "C", name = "UV Index",
+                       direction = -1,
+                       na.value = "white") +
+  geom_sf(data = world, fill = NA, color = "grey60", size = 0.2) +
+  geom_point(data = sites, aes(x = lon, y = lat),
+             color = "#001C57", shape = 8, size = 3, stroke = 1.2) +
+  geom_text_repel(
+    data = sites,
+    aes(x = lon, y = lat, label = name),
+    size = 3.5,
+    color = "black",
+    bg.color = "white", bg.r = 0.15,
+    box.padding = 0.4,
+    point.padding = 0.3,
+    segment.color = "grey70",
+    segment.size = 0.3,
+    family = "lato"
+  ) +
+  coord_sf(expand = FALSE, xlim = c(-20, 150), ylim = c(20, 70)) +
+  theme_minimal(base_family = "lato") +
+  theme(
+    legend.position = c(0.9, 0.3),
+    legend.background = element_blank(),
+    legend.key.height = unit(0.5, "cm"),
+    legend.title = element_text(size = 10, face = "bold"),
+    legend.text = element_text(size = 9),
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_blank(),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5)
+  ) +
+  labs(
+    title = "Global UV Radiation and Ancient DNA Discovery Sites",
+    subtitle = "UV Index climatology (NASA AURA, 2010)"
+  ) 
+```
