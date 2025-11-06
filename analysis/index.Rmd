@@ -1,11 +1,16 @@
 ---
-title: "Home"
-site: workflowr::wflow_site
+title: "Distribution of Variation in Pigmentation-Related SNPs in the Hominin Lineage"
+author: "Lily Heald"
+date: "`r Sys.Date()`"
 output:
   workflowr::wflow_html:
-    toc: false
-editor_options:
-  chunk_output_type: console
+    toc: true  
+    toc_depth: 2 
+    code_folding: hide  
+    theme: flatly      
+site: workflowr::wflow_site
 ---
 
-Welcome to my research website.
+# Project Overview
+
+This project explores the relationship between ultraviolet (UV) radiation and ancient human DNA discovery sites.
