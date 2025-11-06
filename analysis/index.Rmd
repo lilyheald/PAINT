@@ -12,5 +12,11 @@ site: workflowr::wflow_site
 ---
 
 # Project Overview
+This project explores the temporal and spatial distribution of pigmentation-related SNPs in the hominin lineage. 
 
-This project explores the relationship between ultraviolet (UV) radiation and ancient human DNA discovery sites.
+# Key Results
+Background on the samples analyzed is available on the **Introduction** analysis page:
+- [View UV map and aDNA sites](introduction.html)
+
+# Data Sources
+- NASA Earth Observations: [AURA_UVI_CLIM_M](https://neo.gsfc.nasa.gov/view.php?datasetId=AURA_UVI_CLIM_M)
