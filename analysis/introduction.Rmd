@@ -9,6 +9,12 @@ library(viridis)
 library(ggrepel)
 library(tidyverse)
 library(reshape2)
+library(showtext)
+library(sysfonts)
+
+font_add_google("Lato", "lato")
+
+showtext_auto()
 ```
 
 
