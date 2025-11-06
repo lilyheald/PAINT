@@ -55,6 +55,10 @@ names(uv_land_df) <- c("lon", "lat", "UVIndex")
 ```{r sites}
 sites <- data.frame(
   name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", "Buran-Kaya III", "El Sidron"),
+  samples = c("Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)",
+    "Chagyrskaya 8 (Neandertal)",
+    "Vindija 33.19 (Neandertal)",
+    "Mezmaiskaya 1, Mezmaiskaya 2 (Neandertal)", "Buran-Kaya", "El Sidron"),
   lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3), #E (+) W (-)
   lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4) #N (+) S (-)
 )
@@ -62,39 +66,31 @@ sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 ```
 
 ```{r plot}
-library(showtext)
-font_add_google("Lato", "lato")
-showtext_auto()
-
 ggplot() +
   geom_raster(data = uv_land_df, aes(x = lon, y = lat, fill = UVIndex)) +
-  scale_fill_viridis_c(option = "C", name = "UV Index",
-                       direction = -1,
-                       na.value = "white") +
+  scale_fill_viridis_c(option = "C", name = "UV Index", direction = -1, na.value = "white") +
   geom_sf(data = world, fill = NA, color = "grey60", size = 0.2) +
-  geom_point(data = sites, aes(x = lon, y = lat),
-             color = "#001C57", shape = 8, size = 3, stroke = 1.2) +
-  geom_text_repel(
+  geom_point(data = sites, aes(x = lon, y = lat), 
+             color = "#00008B", fill = "#00008B", shape = 21, size = 3, stroke = 1) +
+  geom_label_repel(
     data = sites,
-    aes(x = lon, y = lat, label = name),
-    size = 3.5,
-    color = "black",
-    bg.color = "white", bg.r = 0.15,
-    box.padding = 0.4,
+    aes(x = lon, y = lat, label = samples),
+    box.padding = 0.7,
     point.padding = 0.3,
-    segment.color = "grey70",
-    segment.size = 0.3,
-    family = "lato"
+    segment.color = "grey60",
+    segment.size = 0.4,
+    fill = "white",
+    color = "black",
+    size = 3,
+    label.size = 0.3,
+    family = "lato",
+    min.segment.length = 0
   ) +
   coord_sf(expand = FALSE, xlim = c(-20, 150), ylim = c(20, 70)) +
   theme_minimal(base_family = "lato") +
   theme(
     legend.position = c(0.9, 0.3),
     legend.background = element_blank(),
-    legend.key.height = unit(0.5, "cm"),
-    legend.title = element_text(size = 10, face = "bold"),
-    legend.text = element_text(size = 9),
-    plot.background = element_rect(fill = "white", color = NA),
     panel.grid = element_blank(),
     axis.text = element_blank(),
     axis.ticks = element_blank(),
@@ -103,7 +99,8 @@ ggplot() +
     plot.subtitle = element_text(size = 10, hjust = 0.5)
   ) +
   labs(
-    title = "Global UV Radiation and Ancient DNA Discovery Sites",
+    title = "Ancient DNA Discovery Sites and UV Radiation",
     subtitle = "UV Index climatology (NASA AURA, 2010)"
-  ) 
+  )
+
 ```
