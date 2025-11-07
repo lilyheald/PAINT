@@ -12,6 +12,8 @@ library(reshape2)
 library(showtext)
 library(sysfonts)
 library(workflowr)
+library(readr)
+library(wesanderson)
 
 font_add_google("Lato", "lato")
 
@@ -63,9 +65,9 @@ names(uv_land_df) <- c("lon", "lat", "UVIndex")
 sites <- data.frame(
   name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", "Buran-Kaya III", "El Sidron"),
   samples = c("Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)",
-    "Chagyrskaya 8 (Neandertal)",
-    "Vindija 33.19 (Neandertal)",
-    "Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neandertal)", 
+    "Chagyrskaya 8 (Neanderthal)",
+    "Vindija 33.19 (Neanderthal)",
+    "Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neanderthal)", 
     "Buran-Kaya", 
     "El Sidron"),
   lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3), #E (+) W (-)
@@ -74,10 +76,14 @@ sites <- data.frame(
 sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 ```
 
+# Genome availability
+
 ```{r plot}
+wes_cols <- wes_palette("Zissou1", 100, type = "continuous")
+
 ggplot() +
   geom_raster(data = uv_land_df, aes(x = lon, y = lat, fill = UVIndex)) +
-  scale_fill_viridis_c(option = "C", name = "UV Index", direction = -1, na.value = "white") +
+  scale_fill_gradientn(colours = wes_cols, name = "UV Index", na.value = "white") +
   geom_sf(data = world, fill = NA, color = "grey60", size = 0.2) +
   geom_point(data = sites, aes(x = lon, y = lat), 
              color = "#00008B", fill = "#00008B", shape = 21, size = 3, stroke = 1) +
@@ -114,3 +120,60 @@ ggplot() +
   )
 
 ```
+
+# Sequencing coverage
+
+```{r depth}
+scladina <- read.table("data/Sclad_depth.txt", header = F) 
+denny <- read.table("data/denny_depth.txt", header = F) 
+mez1 <- read.table("data/mez1_depth.txt", header = F) 
+hstadel <- read.table("data/hst_depth.txt", header = F) 
+
+colnames(hstadel) <- c("Chromosome", "Position", "Depth")
+colnames(scladina) <- c("Chromosome", "Position", "Depth")
+colnames(denny) <- c("Chromosome", "Position", "Depth")
+colnames(mez1) <- c("Chromosome", "Position", "Depth")
+```
+
+```{r depth_viz}
+scladina$Sample <- "Scladina"
+denny$Sample <- "Denny"
+mez1$Sample <- "Mez1"
+hstadel$Sample <- "HST"
+
+depth_all <- bind_rows(scladina, denny, mez1)
+
+depth_all <- depth_all %>%
+  mutate(
+    Chromosome = factor(Chromosome, levels = unique(Chromosome)),
+    Sample = factor(Sample, levels = c("Scladina", "Denny", "Mez1", "HST"))
+  )
+
+wes_samples <- wes_palette("Darjeeling1", 4, type = "discrete")
+
+ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
+  geom_point(size = 2, alpha = 0.9) +
+  scale_color_manual(values = wes_samples) +
+  labs(
+    title = "Sequencing Depth",
+    subtitle = "EBI pigmentation-related loci",
+    x = "Genomic Position",
+    y = "Depth (coverage)",
+    color = "Sample"
+  ) +
+  theme_bw(base_size = 14) +
+  theme_minimal(base_family = "lato") +
+  theme(
+    legend.position = "top",
+    legend.background = element_blank(),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_blank(),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5)
+  )
+```
+
+
+
