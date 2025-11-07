@@ -356,7 +356,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -367,8 +367,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -377,13 +377,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2025-11-06
+<strong>Last updated:</strong> 2025-11-07
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PAINT/</code> <span
@@ -406,18 +406,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -508,15 +511,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeb2f5585b32c2ffa949a0ba700a50539bafa95deatargetblankb2f5585a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreec064b55067b1efd1b1eac5f56c5fba104ddfeb87targetblankc064b55a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/b2f5585b32c2ffa949a0ba700a50539bafa95dea" target="_blank">b2f5585</a>
+<a href="https://github.com/lilyheald/PAINT/tree/c064b55067b1efd1b1eac5f56c5fba104ddfeb87" target="_blank">c064b55</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeb2f5585b32c2ffa949a0ba700a50539bafa95deatargetblankb2f5585a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreec064b55067b1efd1b1eac5f56c5fba104ddfeb87targetblankc064b55a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -526,7 +529,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/b2f5585b32c2ffa949a0ba700a50539bafa95dea" target="_blank">b2f5585</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/c064b55067b1efd1b1eac5f56c5fba104ddfeb87" target="_blank">c064b55</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -541,8 +544,12 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    data/neo_uvi.csv
+
+Unstaged changes:
+    Modified:   analysis/introduction.Rmd
 
 </code></pre>
 <p>
@@ -587,6 +594,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/cc7d1340bf0be2ac622464a1d0e61034511d650c/docs/introduction.html" target="_blank">cc7d134</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-06
+</td>
+<td>
+updated figures
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -684,6 +708,7 @@ The following object is masked from &#39;package:tidyr&#39;:
 <pre><code>Loading required package: sysfonts
 Loading required package: showtextdb</code></pre>
 <pre class="r"><code>library(sysfonts)
+library(workflowr)
 
 font_add_google(&quot;Lato&quot;, &quot;lato&quot;)
 
@@ -743,6 +768,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/cc7d1340bf0be2ac622464a1d0e61034511d650c/docs/figure/introduction.Rmd/init-1.png" target="_blank">cc7d134</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/13755f1e060b5dfc018433d93cf662132922e547/docs/figure/introduction.Rmd/init-1.png" target="_blank">13755f1</a>
 </td>
 <td>
@@ -769,7 +805,9 @@ names(uv_land_df) &lt;- c(&quot;lon&quot;, &quot;lat&quot;, &quot;UVIndex&quot;)
   samples = c(&quot;Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)&quot;,
     &quot;Chagyrskaya 8 (Neandertal)&quot;,
     &quot;Vindija 33.19 (Neandertal)&quot;,
-    &quot;Mezmaiskaya 1, Mezmaiskaya 2 (Neandertal)&quot;, &quot;Buran-Kaya&quot;, &quot;El Sidron&quot;),
+    &quot;Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neandertal)&quot;, 
+    &quot;Buran-Kaya&quot;, 
+    &quot;El Sidron&quot;),
   lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3), #E (+) W (-)
   lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4) #N (+) S (-)
 )
@@ -834,6 +872,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/cc7d1340bf0be2ac622464a1d0e61034511d650c/docs/figure/introduction.Rmd/plot-1.png" target="_blank">cc7d134</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-06
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/lilyheald/PAINT/blob/13755f1e060b5dfc018433d93cf662132922e547/docs/figure/introduction.Rmd/plot-1.png" target="_blank">13755f1</a>

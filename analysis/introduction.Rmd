@@ -11,6 +11,7 @@ library(tidyverse)
 library(reshape2)
 library(showtext)
 library(sysfonts)
+library(workflowr)
 
 font_add_google("Lato", "lato")
 
@@ -64,7 +65,9 @@ sites <- data.frame(
   samples = c("Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)",
     "Chagyrskaya 8 (Neandertal)",
     "Vindija 33.19 (Neandertal)",
-    "Mezmaiskaya 1, Mezmaiskaya 2 (Neandertal)", "Buran-Kaya", "El Sidron"),
+    "Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neandertal)", 
+    "Buran-Kaya", 
+    "El Sidron"),
   lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3), #E (+) W (-)
   lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4) #N (+) S (-)
 )
