@@ -1,4 +1,4 @@
-```{r setup}
+```{r setup, include = FALSE, message = FALSE, warning = FALSE}
 library(ggplot2)
 library(rnaturalearth)
 library(rnaturalearthdata)
@@ -21,7 +21,7 @@ showtext_auto()
 ```
 
 
-```{r map}
+```{r map, message = FALSE, warning = FALSE}
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
 uv_matrix <- as.matrix(read.csv("data/neo_uvi.csv", header = F))
@@ -36,21 +36,9 @@ uv_df <- melt(uv_matrix, varnames = c("lat", "lon"), value.name = "UVIndex")
 
 uv_df$lat <- as.numeric(as.character(uv_df$lat))
 uv_df$lon <- as.numeric(as.character(uv_df$lon))
-head(uv_df)
 ```
 
-```{r init}
-ggplot() +
-  geom_raster(data = uv_df, aes(x = lon, y = lat, fill = UVIndex)) +
-  scale_fill_viridis_c(option = "C", name = "UV Index", na.value = "white") +
-  geom_sf(data = world, fill = NA, color = "grey40", size = 0.2) +
-  coord_sf(expand = FALSE) +
-  theme_minimal() +
-  labs(title = "NASA AURA UV Index Climatology (0.5° resolution)",
-       subtitle = "December 2010 dataset")
-```
-
-```{r mask}
+```{r mask, message = FALSE, warning = FALSE}
 uv_raster <- rasterFromXYZ(uv_df[, c("lon", "lat", "UVIndex")], crs = "+proj=longlat +datum=WGS84")
 
 world_sp <- as(world, "Spatial")
@@ -124,7 +112,7 @@ ggplot() +
 
 # Sequencing coverage
 
-```{r depth}
+```{r depth, include = FALSE, message = FALSE, warning = FALSE}
 scladina <- read.table("data/Sclad_depth.txt", header = F) 
 denny <- read.table("data/denny_depth.txt", header = F) 
 mez1 <- read.table("data/mez1_depth.txt", header = F) 
@@ -136,9 +124,7 @@ colnames(scladina) <- c("Chromosome", "Position", "Depth")
 colnames(denny) <- c("Chromosome", "Position", "Depth")
 colnames(mez1) <- c("Chromosome", "Position", "Depth")
 colnames(spy) <- c("Chromosome", "Position", "Depth")
-```
 
-```{r depth_viz}
 scladina$Sample <- "Scladina"
 denny$Sample <- "Denny"
 mez1$Sample <- "Mez1"
@@ -152,7 +138,9 @@ depth_all <- depth_all %>%
     Chromosome = factor(Chromosome, levels = unique(Chromosome)),
     Sample = factor(Sample, levels = c("Scladina", "Denny", "Mez1", "HST", "Spy"))
   )
+```
 
+```{r depth_viz}
 wes_samples <- wes_palette("Darjeeling1", 5, type = "discrete")
 
 ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
