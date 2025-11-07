@@ -356,7 +356,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -367,8 +367,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -381,9 +381,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PAINT/</code> <span
@@ -406,21 +406,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -511,15 +508,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreec064b55067b1efd1b1eac5f56c5fba104ddfeb87targetblankc064b55a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreea3aacd7097562b1e21f217a529a7c0dde5c0b900targetblanka3aacd7a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/c064b55067b1efd1b1eac5f56c5fba104ddfeb87" target="_blank">c064b55</a>
+<a href="https://github.com/lilyheald/PAINT/tree/a3aacd7097562b1e21f217a529a7c0dde5c0b900" target="_blank">a3aacd7</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreec064b55067b1efd1b1eac5f56c5fba104ddfeb87targetblankc064b55a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreea3aacd7097562b1e21f217a529a7c0dde5c0b900targetblanka3aacd7a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -529,7 +526,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/c064b55067b1efd1b1eac5f56c5fba104ddfeb87" target="_blank">c064b55</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/a3aacd7097562b1e21f217a529a7c0dde5c0b900" target="_blank">a3aacd7</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -547,9 +544,6 @@ Ignored files:
     Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    data/neo_uvi.csv
-
-Unstaged changes:
-    Modified:   analysis/introduction.Rmd
 
 </code></pre>
 <p>
@@ -594,6 +588,91 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/50940c0711363e1f41ef08c8a18b9cdb5dfae279/analysis/introduction.Rmd" target="_blank">50940c0</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-07
+</td>
+<td>
+Update introduction.Rmd
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/f1b70cbdb207c242843a183ce0a2092ad70b3e19/analysis/introduction.Rmd" target="_blank">f1b70cb</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-07
+</td>
+<td>
+add Hstadel depth
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/7beeddddffafa2e80312f84a07de3a3797adb11f/analysis/introduction.Rmd" target="_blank">7beeddd</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-07
+</td>
+<td>
+add depth figure
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/967f438035c88954fcd7a83dc5364310bd1ebcd4/analysis/introduction.Rmd" target="_blank">967f438</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-07
+</td>
+<td>
+update callout
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/967f438035c88954fcd7a83dc5364310bd1ebcd4/docs/introduction.html" target="_blank">967f438</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-07
+</td>
+<td>
+update callout
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -709,6 +788,8 @@ The following object is masked from &#39;package:tidyr&#39;:
 Loading required package: showtextdb</code></pre>
 <pre class="r"><code>library(sysfonts)
 library(workflowr)
+library(readr)
+library(wesanderson)
 
 font_add_google(&quot;Lato&quot;, &quot;lato&quot;)
 
@@ -801,20 +882,25 @@ uv_land &lt;- mask(uv_raster, world_sp)
 uv_land_df &lt;- as.data.frame(uv_land, xy = TRUE)
 names(uv_land_df) &lt;- c(&quot;lon&quot;, &quot;lat&quot;, &quot;UVIndex&quot;)</code></pre>
 <pre class="r"><code>sites &lt;- data.frame(
-  name = c(&quot;Denisova&quot;,&quot;Chagyrskaya&quot;,&quot;Vindija&quot;, &quot;Mezmaiskaya&quot;, &quot;Buran-Kaya III&quot;, &quot;El Sidron&quot;),
+  name = c(&quot;Denisova&quot;,&quot;Chagyrskaya&quot;,&quot;Vindija&quot;, &quot;Mezmaiskaya&quot;, &quot;Buran-Kaya III&quot;, &quot;El Sidron&quot;, &quot;Spy&quot;),
   samples = c(&quot;Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)&quot;,
-    &quot;Chagyrskaya 8 (Neandertal)&quot;,
-    &quot;Vindija 33.19 (Neandertal)&quot;,
-    &quot;Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neandertal)&quot;, 
+    &quot;Chagyrskaya 8 (Neanderthal)&quot;,
+    &quot;Vindija 33.19 (Neanderthal)&quot;,
+    &quot;Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neanderthal)&quot;, 
     &quot;Buran-Kaya&quot;, 
-    &quot;El Sidron&quot;),
-  lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3), #E (+) W (-)
-  lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4) #N (+) S (-)
+    &quot;El Sidron&quot;,
+    &quot;Spy 94-a&quot;),
+  lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3, 4.7), #E (+) W (-)
+  lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4, 50.5) #N (+) S (-)
 )
 sites_sf &lt;- st_as_sf(sites, coords = c(&quot;lon&quot;,&quot;lat&quot;), crs = 4326)</code></pre>
-<pre class="r"><code>ggplot() +
+<div id="genome-availability" class="section level1">
+<h1>Genome availability</h1>
+<pre class="r"><code>wes_cols &lt;- wes_palette(&quot;Zissou1&quot;, 100, type = &quot;continuous&quot;)
+
+ggplot() +
   geom_raster(data = uv_land_df, aes(x = lon, y = lat, fill = UVIndex)) +
-  scale_fill_viridis_c(option = &quot;C&quot;, name = &quot;UV Index&quot;, direction = -1, na.value = &quot;white&quot;) +
+  scale_fill_gradientn(colours = wes_cols, name = &quot;UV Index&quot;, na.value = &quot;white&quot;) +
   geom_sf(data = world, fill = NA, color = &quot;grey60&quot;, size = 0.2) +
   geom_point(data = sites, aes(x = lon, y = lat), 
              color = &quot;#00008B&quot;, fill = &quot;#00008B&quot;, shape = 21, size = 3, stroke = 1) +
@@ -874,6 +960,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/967f438035c88954fcd7a83dc5364310bd1ebcd4/docs/figure/introduction.Rmd/plot-1.png" target="_blank">967f438</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-07
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/cc7d1340bf0be2ac622464a1d0e61034511d650c/docs/figure/introduction.Rmd/plot-1.png" target="_blank">cc7d134</a>
 </td>
 <td>
@@ -898,6 +995,58 @@ Lily Heald
 </table>
 </div>
 </div>
+</div>
+<div id="sequencing-coverage" class="section level1">
+<h1>Sequencing coverage</h1>
+<pre class="r"><code>scladina &lt;- read.table(&quot;data/Sclad_depth.txt&quot;, header = F) 
+denny &lt;- read.table(&quot;data/denny_depth.txt&quot;, header = F) 
+mez1 &lt;- read.table(&quot;data/mez1_depth.txt&quot;, header = F) 
+hstadel &lt;- read.table(&quot;data/hst_depth.txt&quot;, header = F) 
+spy &lt;- read.table(&quot;data/spy_depth.txt&quot;, header = F) 
+
+colnames(hstadel) &lt;- c(&quot;Chromosome&quot;, &quot;Position&quot;, &quot;Depth&quot;)
+colnames(scladina) &lt;- c(&quot;Chromosome&quot;, &quot;Position&quot;, &quot;Depth&quot;)
+colnames(denny) &lt;- c(&quot;Chromosome&quot;, &quot;Position&quot;, &quot;Depth&quot;)
+colnames(mez1) &lt;- c(&quot;Chromosome&quot;, &quot;Position&quot;, &quot;Depth&quot;)
+colnames(spy) &lt;- c(&quot;Chromosome&quot;, &quot;Position&quot;, &quot;Depth&quot;)</code></pre>
+<pre class="r"><code>scladina$Sample &lt;- &quot;Scladina&quot;
+denny$Sample &lt;- &quot;Denny&quot;
+mez1$Sample &lt;- &quot;Mez1&quot;
+hstadel$Sample &lt;- &quot;HST&quot;
+spy$Sample &lt;- &quot;Spy&quot;
+
+depth_all &lt;- bind_rows(scladina, denny, mez1, hstadel, spy)
+
+depth_all &lt;- depth_all %&gt;%
+  mutate(
+    Chromosome = factor(Chromosome, levels = unique(Chromosome)),
+    Sample = factor(Sample, levels = c(&quot;Scladina&quot;, &quot;Denny&quot;, &quot;Mez1&quot;, &quot;HST&quot;, &quot;Spy&quot;))
+  )
+
+wes_samples &lt;- wes_palette(&quot;Darjeeling1&quot;, 5, type = &quot;discrete&quot;)
+
+ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
+  geom_point(size = 2, alpha = 0.6) +
+  scale_color_manual(values = wes_samples) +
+  labs(
+    title = &quot;Sequencing Depth&quot;,
+    subtitle = &quot;EBI pigmentation-related loci&quot;,
+    x = &quot;Genomic Position&quot;,
+    y = &quot;Depth (coverage)&quot;,
+    color = &quot;Sample&quot;
+  ) +
+  theme_bw(base_size = 14) +
+  theme_minimal(base_family = &quot;lato&quot;) +
+  theme(
+    legend.position = &quot;top&quot;,
+    legend.background = element_blank(),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    plot.title = element_text(size = 14, face = &quot;bold&quot;, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5)
+  )</code></pre>
+<p><img src="figure/introduction.Rmd/depth_viz-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -925,14 +1074,15 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] showtext_0.9-7          showtextdb_3.0          sysfonts_0.8.9         
- [4] reshape2_1.4.4          lubridate_1.9.4         forcats_1.0.0          
- [7] stringr_1.5.2           dplyr_1.1.4             purrr_1.0.4            
-[10] readr_2.1.5             tidyr_1.3.1             tibble_3.3.0           
-[13] tidyverse_2.0.0         ggrepel_0.9.6           viridis_0.6.5          
-[16] viridisLite_0.4.2       ggspatial_1.1.10        raster_3.6-32          
-[19] sp_2.2-0                sf_1.0-21               rnaturalearthdata_1.0.0
-[22] rnaturalearth_1.1.0     ggplot2_4.0.0           workflowr_1.7.1        
+ [1] wesanderson_0.3.7       showtext_0.9-7          showtextdb_3.0         
+ [4] sysfonts_0.8.9          reshape2_1.4.4          lubridate_1.9.4        
+ [7] forcats_1.0.0           stringr_1.5.2           dplyr_1.1.4            
+[10] purrr_1.0.4             readr_2.1.5             tidyr_1.3.1            
+[13] tibble_3.3.0            tidyverse_2.0.0         ggrepel_0.9.6          
+[16] viridis_0.6.5           viridisLite_0.4.2       ggspatial_1.1.10       
+[19] raster_3.6-32           sp_2.2-0                sf_1.0-21              
+[22] rnaturalearthdata_1.0.0 rnaturalearth_1.1.0     ggplot2_4.0.0          
+[25] workflowr_1.7.1        
 
 loaded via a namespace (and not attached):
  [1] gtable_0.3.6       xfun_0.53          bslib_0.9.0        processx_3.8.6    
@@ -952,6 +1102,7 @@ loaded via a namespace (and not attached):
 [57] Rcpp_1.1.0         glue_1.8.0         DBI_1.2.3          rstudioapi_0.17.1 
 [61] jsonlite_2.0.0     plyr_1.8.9         R6_2.6.1           fs_1.6.6          
 [65] units_1.0-0       </code></pre>
+</div>
 </div>
 </div>
 </div>
