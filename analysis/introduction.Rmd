@@ -63,15 +63,16 @@ names(uv_land_df) <- c("lon", "lat", "UVIndex")
 
 ```{r sites}
 sites <- data.frame(
-  name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", "Buran-Kaya III", "El Sidron"),
+  name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", "Buran-Kaya III", "El Sidron", "Spy"),
   samples = c("Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)",
     "Chagyrskaya 8 (Neanderthal)",
     "Vindija 33.19 (Neanderthal)",
     "Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neanderthal)", 
     "Buran-Kaya", 
-    "El Sidron"),
-  lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3), #E (+) W (-)
-  lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4) #N (+) S (-)
+    "El Sidron",
+    "Spy 94-a"),
+  lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3, 4.7), #E (+) W (-)
+  lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4, 50.5) #N (+) S (-)
 )
 sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 ```
@@ -128,11 +129,13 @@ scladina <- read.table("data/Sclad_depth.txt", header = F)
 denny <- read.table("data/denny_depth.txt", header = F) 
 mez1 <- read.table("data/mez1_depth.txt", header = F) 
 hstadel <- read.table("data/hst_depth.txt", header = F) 
+spy <- read.table("data/spy_depth.txt", header = F) 
 
 colnames(hstadel) <- c("Chromosome", "Position", "Depth")
 colnames(scladina) <- c("Chromosome", "Position", "Depth")
 colnames(denny) <- c("Chromosome", "Position", "Depth")
 colnames(mez1) <- c("Chromosome", "Position", "Depth")
+colnames(spy) <- c("Chromosome", "Position", "Depth")
 ```
 
 ```{r depth_viz}
@@ -140,19 +143,20 @@ scladina$Sample <- "Scladina"
 denny$Sample <- "Denny"
 mez1$Sample <- "Mez1"
 hstadel$Sample <- "HST"
+spy$Sample <- "Spy"
 
-depth_all <- bind_rows(scladina, denny, mez1, hstadel)
+depth_all <- bind_rows(scladina, denny, mez1, hstadel, spy)
 
 depth_all <- depth_all %>%
   mutate(
     Chromosome = factor(Chromosome, levels = unique(Chromosome)),
-    Sample = factor(Sample, levels = c("Scladina", "Denny", "Mez1", "HST"))
+    Sample = factor(Sample, levels = c("Scladina", "Denny", "Mez1", "HST", "Spy"))
   )
 
-wes_samples <- wes_palette("Darjeeling1", 4, type = "discrete")
+wes_samples <- wes_palette("Darjeeling1", 5, type = "discrete")
 
 ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
-  geom_point(size = 2, alpha = 0.9) +
+  geom_point(size = 2, alpha = 0.6) +
   scale_color_manual(values = wes_samples) +
   labs(
     title = "Sequencing Depth",
@@ -169,7 +173,6 @@ ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
     panel.grid = element_blank(),
     axis.text = element_blank(),
     axis.ticks = element_blank(),
-    axis.title = element_blank(),
     plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
     plot.subtitle = element_text(size = 10, hjust = 0.5)
   )
