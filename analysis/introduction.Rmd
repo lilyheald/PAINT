@@ -141,7 +141,7 @@ denny$Sample <- "Denny"
 mez1$Sample <- "Mez1"
 hstadel$Sample <- "HST"
 
-depth_all <- bind_rows(scladina, denny, mez1)
+depth_all <- bind_rows(scladina, denny, mez1, hstadel)
 
 depth_all <- depth_all %>%
   mutate(
