@@ -51,16 +51,18 @@ names(uv_land_df) <- c("lon", "lat", "UVIndex")
 
 ```{r sites}
 sites <- data.frame(
-  name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", "Buran-Kaya III", "El Sidron", "Spy"),
+  name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", "Buran-Kaya III", 
+           "El Sidron", "Spy","Les Cottés"),
   samples = c("Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)",
     "Chagyrskaya 8 (Neanderthal)",
     "Vindija 33.19 (Neanderthal)",
     "Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neanderthal)", 
     "Buran-Kaya", 
     "El Sidron",
-    "Spy 94-a"),
-  lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3, 4.7), #E (+) W (-)
-  lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4, 50.5) #N (+) S (-)
+    "Spy 94-a",
+    "Les Cottés Z4-1415"),
+  lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3, 4.7, 2.5), #E (+) W (-)
+  lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4, 50.5, 46.2) #N (+) S (-)
 )
 sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 ```
@@ -81,7 +83,7 @@ ggplot() +
     aes(x = lon, y = lat, label = samples),
     box.padding = 0.7,
     point.padding = 0.3,
-    segment.color = "grey60",
+    segment.color = "#00008B",
     segment.size = 0.4,
     fill = alpha("white", 0.8),
     label.r = unit(0.2, "lines"),
@@ -159,8 +161,6 @@ ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
     legend.position = "top",
     legend.background = element_blank(),
     panel.grid = element_blank(),
-    axis.text = element_blank(),
-    axis.ticks = element_blank(),
     plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
     plot.subtitle = element_text(size = 10, hjust = 0.5)
   )
