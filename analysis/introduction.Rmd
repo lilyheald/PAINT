@@ -51,18 +51,17 @@ names(uv_land_df) <- c("lon", "lat", "UVIndex")
 
 ```{r sites}
 sites <- data.frame(
-  name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", "Buran-Kaya III", 
+  name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", 
            "El Sidron", "Spy","Les Cottés"),
   samples = c("Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)",
     "Chagyrskaya 8 (Neanderthal)",
     "Vindija 33.19 (Neanderthal)",
     "Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neanderthal)", 
-    "Buran-Kaya", 
     "El Sidron",
     "Spy 94-a",
     "Les Cottés Z4-1415"),
-  lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3, 4.7, 2.5), #E (+) W (-)
-  lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4, 50.5, 46.2) #N (+) S (-)
+  lon  = c(84.7, 83.1, 16.8, 40, -5.3, 4.7, 2.5), #E (+) W (-)
+  lat  = c(51.4, 51.3, 46.3, 44.1, 43.4, 50.5, 46.2) #N (+) S (-)
 )
 sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 ```
@@ -165,6 +164,34 @@ ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
     plot.subtitle = element_text(size = 10, hjust = 0.5)
   )
 ```
+
+
+```{r depth_viz_log}
+wes_samples <- wes_palette("Darjeeling1", 5, type = "discrete")
+
+ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
+  geom_point(size = 2, alpha = 0.6) +
+  scale_color_manual(values = wes_samples) +
+  labs(
+    title = "Sequencing Depth",
+    subtitle = "EBI pigmentation-related loci",
+    x = "Genomic Position",
+    y = "Depth (coverage)",
+    color = "Sample"
+  ) +
+  theme_bw(base_size = 14) +
+  theme_minimal(base_family = "lato") +
+  theme(
+    legend.position = "top",
+    legend.background = element_blank(),
+    panel.grid = element_blank(),
+    axis.text.x = element_blank(),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5)
+  )
+```
+
+
 
 
 
