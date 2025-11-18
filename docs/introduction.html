@@ -364,7 +364,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -375,8 +375,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -385,13 +385,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2025-11-13
+<strong>Last updated:</strong> 2025-11-18
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PAINT/</code> <span
@@ -414,18 +414,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -516,15 +519,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree0236dabfdb673764b4d5610f0ae4d7c4102e7d83targetblank0236daba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreec8573bb7ce3842fd1aa82e05ced5e0306e57538atargetblankc8573bba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/0236dabfdb673764b4d5610f0ae4d7c4102e7d83" target="_blank">0236dab</a>
+<a href="https://github.com/lilyheald/PAINT/tree/c8573bb7ce3842fd1aa82e05ced5e0306e57538a" target="_blank">c8573bb</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree0236dabfdb673764b4d5610f0ae4d7c4102e7d83targetblank0236daba"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreec8573bb7ce3842fd1aa82e05ced5e0306e57538atargetblankc8573bba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -534,7 +537,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/0236dabfdb673764b4d5610f0ae4d7c4102e7d83" target="_blank">0236dab</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/c8573bb7ce3842fd1aa82e05ced5e0306e57538a" target="_blank">c8573bb</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -551,7 +554,11 @@ were generated:
 Ignored files:
     Ignored:    .RData
     Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
     Ignored:    data/neo_uvi.csv
+
+Unstaged changes:
+    Modified:   analysis/introduction.Rmd
 
 </code></pre>
 <p>
@@ -596,6 +603,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/c8573bb7ce3842fd1aa82e05ced5e0306e57538a/analysis/introduction.Rmd" target="_blank">c8573bb</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-18
+</td>
+<td>
+add les Cottes
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/c8573bb7ce3842fd1aa82e05ced5e0306e57538a/docs/introduction.html" target="_blank">c8573bb</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-18
+</td>
+<td>
+add les Cottes
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -859,7 +900,6 @@ start workflowr
 </div>
 </div>
 <pre class="r"><code>world &lt;- ne_countries(scale = &quot;medium&quot;, returnclass = &quot;sf&quot;)
-
 uv_matrix &lt;- as.matrix(read.csv(&quot;data/neo_uvi.csv&quot;, header = F))
 
 lon &lt;- seq(-179.75, 179.75, by = 0.5)
@@ -960,6 +1000,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/c8573bb7ce3842fd1aa82e05ced5e0306e57538a/docs/figure/introduction.Rmd/plot-1.png" target="_blank">c8573bb</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-18
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/08dda7e578a0dd45f8a61f09a4e596a69cf5b041/docs/figure/introduction.Rmd/plot-1.png" target="_blank">08dda7e</a>
 </td>
 <td>
@@ -1020,7 +1071,7 @@ Lily Heald
 </div>
 <div id="sequencing-coverage" class="section level1">
 <h1>Sequencing coverage</h1>
-<pre class="r"><code>wes_samples &lt;- wes_palette(&quot;Darjeeling1&quot;, 5, type = &quot;discrete&quot;)
+<pre class="r"><code>wes_samples &lt;- wes_palette(&quot;Zissou1&quot;, 6, type = &quot;continuous&quot;)
 
 ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
   geom_point(size = 2, alpha = 0.6) +
@@ -1090,13 +1141,11 @@ Lily Heald
 </table>
 </div>
 </div>
-<pre class="r"><code>wes_samples &lt;- wes_palette(&quot;Darjeeling1&quot;, 5, type = &quot;discrete&quot;)
-
-ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
+<pre class="r"><code>ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
   geom_point(size = 2, alpha = 0.6) +
   scale_color_manual(values = wes_samples) +
   labs(
-    title = &quot;Sequencing Depth&quot;,
+    title = &quot;Sequencing Depth (log-transformed)&quot;,
     subtitle = &quot;EBI pigmentation-related loci&quot;,
     x = &quot;Genomic Position&quot;,
     y = &quot;Depth (coverage)&quot;,
@@ -1113,6 +1162,43 @@ ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
     plot.subtitle = element_text(size = 10, hjust = 0.5)
   )</code></pre>
 <p><img src="figure/introduction.Rmd/depth_viz_log-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-depth_viz_log-1">
+Past versions of depth_viz_log-1.png
+</button>
+</p>
+<div id="fig-depth_viz_log-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/c8573bb7ce3842fd1aa82e05ced5e0306e57538a/docs/figure/introduction.Rmd/depth_viz_log-1.png" target="_blank">c8573bb</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

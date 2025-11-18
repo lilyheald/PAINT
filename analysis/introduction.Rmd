@@ -134,7 +134,7 @@ hstadel$Sample <- "HST"
 spy$Sample <- "Spy"
 lescottes$Sample <- "lesCottes"
 
-depth_all <- bind_rows(scladina, denny, mez1, hstadel, spy, lesCottes)
+depth_all <- bind_rows(scladina, denny, mez1, hstadel, spy, lescottes)
 
 depth_all <- depth_all %>%
   mutate(
@@ -144,7 +144,7 @@ depth_all <- depth_all %>%
 ```
 
 ```{r depth_viz}
-wes_samples <- wes_palette("Darjeeling1", 5, type = "discrete")
+wes_samples <- wes_palette("Zissou1", 6, type = "continuous")
 
 ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
   geom_point(size = 2, alpha = 0.6) +
@@ -169,8 +169,6 @@ ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
 
 
 ```{r depth_viz_log}
-wes_samples <- wes_palette("Darjeeling1", 5, type = "discrete")
-
 ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
   geom_point(size = 2, alpha = 0.6) +
   scale_color_manual(values = wes_samples) +
