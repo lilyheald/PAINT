@@ -153,7 +153,7 @@ ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
     title = "Sequencing Depth",
     subtitle = "EBI pigmentation-related loci",
     x = "Genomic Position",
-    y = "Depth (coverage)",
+    y = "Sequencing depth",
     color = "Sample"
   ) +
   theme_bw(base_size = 14) +
@@ -176,7 +176,7 @@ ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
     title = "Sequencing Depth (log-transformed)",
     subtitle = "EBI pigmentation-related loci",
     x = "Genomic Position",
-    y = "Depth (coverage)",
+    y = "Sequencing depth (log)",
     color = "Sample"
   ) +
   theme_bw(base_size = 14) +
