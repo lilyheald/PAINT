@@ -516,15 +516,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree1bfb83f5ba97ae4634301c4c3d697ba1fd56f3f2targetblank1bfb83fa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree0236dabfdb673764b4d5610f0ae4d7c4102e7d83targetblank0236daba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/1bfb83f5ba97ae4634301c4c3d697ba1fd56f3f2" target="_blank">1bfb83f</a>
+<a href="https://github.com/lilyheald/PAINT/tree/0236dabfdb673764b4d5610f0ae4d7c4102e7d83" target="_blank">0236dab</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree1bfb83f5ba97ae4634301c4c3d697ba1fd56f3f2targetblank1bfb83fa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree0236dabfdb673764b4d5610f0ae4d7c4102e7d83targetblank0236daba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -534,7 +534,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/1bfb83f5ba97ae4634301c4c3d697ba1fd56f3f2" target="_blank">1bfb83f</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/0236dabfdb673764b4d5610f0ae4d7c4102e7d83" target="_blank">0236dab</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -596,6 +596,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/0236dabfdb673764b4d5610f0ae4d7c4102e7d83/analysis/introduction.Rmd" target="_blank">0236dab</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-13
+</td>
+<td>
+log transformed depth
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/08dda7e578a0dd45f8a61f09a4e596a69cf5b041/docs/introduction.html" target="_blank">08dda7e</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-13
+</td>
+<td>
+update depth plot
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -847,18 +881,17 @@ uv_land &lt;- mask(uv_raster, world_sp)
 uv_land_df &lt;- as.data.frame(uv_land, xy = TRUE)
 names(uv_land_df) &lt;- c(&quot;lon&quot;, &quot;lat&quot;, &quot;UVIndex&quot;)</code></pre>
 <pre class="r"><code>sites &lt;- data.frame(
-  name = c(&quot;Denisova&quot;,&quot;Chagyrskaya&quot;,&quot;Vindija&quot;, &quot;Mezmaiskaya&quot;, &quot;Buran-Kaya III&quot;, 
+  name = c(&quot;Denisova&quot;,&quot;Chagyrskaya&quot;,&quot;Vindija&quot;, &quot;Mezmaiskaya&quot;, 
            &quot;El Sidron&quot;, &quot;Spy&quot;,&quot;Les Cottés&quot;),
   samples = c(&quot;Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)&quot;,
     &quot;Chagyrskaya 8 (Neanderthal)&quot;,
     &quot;Vindija 33.19 (Neanderthal)&quot;,
     &quot;Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neanderthal)&quot;, 
-    &quot;Buran-Kaya&quot;, 
     &quot;El Sidron&quot;,
     &quot;Spy 94-a&quot;,
     &quot;Les Cottés Z4-1415&quot;),
-  lon  = c(84.7, 83.1, 16.8, 40, 35.0, -5.3, 4.7, 2.5), #E (+) W (-)
-  lat  = c(51.4, 51.3, 46.3, 44.1, 45.0, 43.4, 50.5, 46.2) #N (+) S (-)
+  lon  = c(84.7, 83.1, 16.8, 40, -5.3, 4.7, 2.5), #E (+) W (-)
+  lat  = c(51.4, 51.3, 46.3, 44.1, 43.4, 50.5, 46.2) #N (+) S (-)
 )
 sites_sf &lt;- st_as_sf(sites, coords = c(&quot;lon&quot;,&quot;lat&quot;), crs = 4326)</code></pre>
 <div id="genome-availability" class="section level1">
@@ -925,6 +958,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/08dda7e578a0dd45f8a61f09a4e596a69cf5b041/docs/figure/introduction.Rmd/plot-1.png" target="_blank">08dda7e</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/lilyheald/PAINT/blob/735357b3ba4e026448b410336b6c9ede5f8aa0d6/docs/figure/introduction.Rmd/plot-1.png" target="_blank">735357b</a>
@@ -1022,6 +1066,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/08dda7e578a0dd45f8a61f09a4e596a69cf5b041/docs/figure/introduction.Rmd/depth_viz-1.png" target="_blank">08dda7e</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/735357b3ba4e026448b410336b6c9ede5f8aa0d6/docs/figure/introduction.Rmd/depth_viz-1.png" target="_blank">735357b</a>
 </td>
 <td>
@@ -1035,6 +1090,29 @@ Lily Heald
 </table>
 </div>
 </div>
+<pre class="r"><code>wes_samples &lt;- wes_palette(&quot;Darjeeling1&quot;, 5, type = &quot;discrete&quot;)
+
+ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
+  geom_point(size = 2, alpha = 0.6) +
+  scale_color_manual(values = wes_samples) +
+  labs(
+    title = &quot;Sequencing Depth&quot;,
+    subtitle = &quot;EBI pigmentation-related loci&quot;,
+    x = &quot;Genomic Position&quot;,
+    y = &quot;Depth (coverage)&quot;,
+    color = &quot;Sample&quot;
+  ) +
+  theme_bw(base_size = 14) +
+  theme_minimal(base_family = &quot;lato&quot;) +
+  theme(
+    legend.position = &quot;top&quot;,
+    legend.background = element_blank(),
+    panel.grid = element_blank(),
+    axis.text.x = element_blank(),
+    plot.title = element_text(size = 14, face = &quot;bold&quot;, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5)
+  )</code></pre>
+<p><img src="figure/introduction.Rmd/depth_viz_log-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

@@ -23,7 +23,6 @@ showtext_auto()
 
 ```{r map, message = FALSE, warning = FALSE}
 world <- ne_countries(scale = "medium", returnclass = "sf")
-
 uv_matrix <- as.matrix(read.csv("data/neo_uvi.csv", header = F))
 
 lon <- seq(-179.75, 179.75, by = 0.5)
@@ -119,7 +118,9 @@ denny <- read.table("data/denny_depth.txt", header = F)
 mez1 <- read.table("data/mez1_depth.txt", header = F) 
 hstadel <- read.table("data/hst_depth.txt", header = F) 
 spy <- read.table("data/spy_depth.txt", header = F) 
+lescottes <- read.table("data/lesCottes_depth.txt", header = F) 
 
+colnames(lescottes) <- c("Chromosome", "Position", "Depth")
 colnames(hstadel) <- c("Chromosome", "Position", "Depth")
 colnames(scladina) <- c("Chromosome", "Position", "Depth")
 colnames(denny) <- c("Chromosome", "Position", "Depth")
@@ -131,13 +132,14 @@ denny$Sample <- "Denny"
 mez1$Sample <- "Mez1"
 hstadel$Sample <- "HST"
 spy$Sample <- "Spy"
+lescottes$Sample <- "lesCottes"
 
-depth_all <- bind_rows(scladina, denny, mez1, hstadel, spy)
+depth_all <- bind_rows(scladina, denny, mez1, hstadel, spy, lesCottes)
 
 depth_all <- depth_all %>%
   mutate(
     Chromosome = factor(Chromosome, levels = unique(Chromosome)),
-    Sample = factor(Sample, levels = c("Scladina", "Denny", "Mez1", "HST", "Spy"))
+    Sample = factor(Sample, levels = c("Scladina", "Denny", "Mez1", "HST", "Spy", "lesCottes"))
   )
 ```
 
@@ -173,7 +175,7 @@ ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
   geom_point(size = 2, alpha = 0.6) +
   scale_color_manual(values = wes_samples) +
   labs(
-    title = "Sequencing Depth",
+    title = "Sequencing Depth (log-transformed)",
     subtitle = "EBI pigmentation-related loci",
     x = "Genomic Position",
     y = "Depth (coverage)",
