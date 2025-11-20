@@ -120,7 +120,9 @@ hstadel <- read.table("data/hst_depth.txt", header = F)
 spy <- read.table("data/spy_depth.txt", header = F) 
 lescottes <- read.table("data/lesCottes_depth.txt", header = F)
 den5 <- read.table("data/den5_depth.txt", header = F)
+mez2 <- read.table("data/mez2_depth.txt", header = F)
 
+colnames(mez2) <- c("Chromosome", "Position", "Depth")
 colnames(lescottes) <- c("Chromosome", "Position", "Depth")
 colnames(hstadel) <- c("Chromosome", "Position", "Depth")
 colnames(scladina) <- c("Chromosome", "Position", "Depth")
@@ -132,22 +134,23 @@ colnames(den5) <- c("Chromosome", "Position", "Depth")
 scladina$Sample <- "Scladina"
 denny$Sample <- "Denny"
 mez1$Sample <- "Mez1"
+mez2$Sample <- "Mez2"
 hstadel$Sample <- "HST"
 spy$Sample <- "Spy"
 lescottes$Sample <- "les Cottes"
 den5$Sample <- "Altai Neanderthal"
 
-depth_all <- bind_rows(scladina, denny, mez1, hstadel, spy, lescottes, den5)
+depth_all <- bind_rows(scladina, denny, mez1, mez2, hstadel, spy, lescottes, den5)
 
 depth_all <- depth_all %>%
   mutate(
     Chromosome = factor(Chromosome, levels = unique(Chromosome)),
-    Sample = factor(Sample, levels = c("Scladina", "Denny", "Mez1", "HST", "Spy", "les Cottes", "Altai Neanderthal"))
+    Sample = factor(Sample, levels = c("Scladina", "Denny", "Mez1", "Mez2", "HST", "Spy", "les Cottes", "Altai Neanderthal"))
   )
 ```
 
 ```{r depth_viz}
-wes_samples <- wes_palette("Zissou1", 8, type = "continuous")
+wes_samples <- wes_palette("Zissou1", 10, type = "continuous")
 
 ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
   geom_point(size = 2, alpha = 0.6) +
