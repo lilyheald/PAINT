@@ -364,7 +364,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -375,8 +375,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -389,9 +389,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>PAINT/</code> <span
@@ -414,21 +414,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -519,15 +516,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreec8573bb7ce3842fd1aa82e05ced5e0306e57538atargetblankc8573bba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree1f311d90686017221ca71fd2cd65ef4ab91892b0targetblank1f311d9a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/c8573bb7ce3842fd1aa82e05ced5e0306e57538a" target="_blank">c8573bb</a>
+<a href="https://github.com/lilyheald/PAINT/tree/1f311d90686017221ca71fd2cd65ef4ab91892b0" target="_blank">1f311d9</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreec8573bb7ce3842fd1aa82e05ced5e0306e57538atargetblankc8573bba"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree1f311d90686017221ca71fd2cd65ef4ab91892b0targetblank1f311d9a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -537,7 +534,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/c8573bb7ce3842fd1aa82e05ced5e0306e57538a" target="_blank">c8573bb</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/1f311d90686017221ca71fd2cd65ef4ab91892b0" target="_blank">1f311d9</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -556,9 +553,6 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    data/neo_uvi.csv
-
-Unstaged changes:
-    Modified:   analysis/introduction.Rmd
 
 </code></pre>
 <p>
@@ -603,6 +597,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/1f311d90686017221ca71fd2cd65ef4ab91892b0/analysis/introduction.Rmd" target="_blank">1f311d9</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-18
+</td>
+<td>
+update figures
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/4a652c1102912e0308bbd57f2217f1bca63f1526/analysis/introduction.Rmd" target="_blank">4a652c1</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-18
+</td>
+<td>
+fix paths
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/4a652c1102912e0308bbd57f2217f1bca63f1526/docs/introduction.html" target="_blank">4a652c1</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-18
+</td>
+<td>
+fix paths
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1080,7 +1125,7 @@ ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
     title = &quot;Sequencing Depth&quot;,
     subtitle = &quot;EBI pigmentation-related loci&quot;,
     x = &quot;Genomic Position&quot;,
-    y = &quot;Depth (coverage)&quot;,
+    y = &quot;Sequencing depth&quot;,
     color = &quot;Sample&quot;
   ) +
   theme_bw(base_size = 14) +
@@ -1117,6 +1162,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/4a652c1102912e0308bbd57f2217f1bca63f1526/docs/figure/introduction.Rmd/depth_viz-1.png" target="_blank">4a652c1</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-18
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/08dda7e578a0dd45f8a61f09a4e596a69cf5b041/docs/figure/introduction.Rmd/depth_viz-1.png" target="_blank">08dda7e</a>
 </td>
 <td>
@@ -1148,7 +1204,7 @@ Lily Heald
     title = &quot;Sequencing Depth (log-transformed)&quot;,
     subtitle = &quot;EBI pigmentation-related loci&quot;,
     x = &quot;Genomic Position&quot;,
-    y = &quot;Depth (coverage)&quot;,
+    y = &quot;Sequencing depth (log)&quot;,
     color = &quot;Sample&quot;
   ) +
   theme_bw(base_size = 14) +
@@ -1184,6 +1240,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/4a652c1102912e0308bbd57f2217f1bca63f1526/docs/figure/introduction.Rmd/depth_viz_log-1.png" target="_blank">4a652c1</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2025-11-18
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/lilyheald/PAINT/blob/c8573bb7ce3842fd1aa82e05ced5e0306e57538a/docs/figure/introduction.Rmd/depth_viz_log-1.png" target="_blank">c8573bb</a>
