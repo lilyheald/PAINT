@@ -56,9 +56,9 @@ sites <- data.frame(
     "Chagyrskaya 8 (Neanderthal)",
     "Vindija 33.19 (Neanderthal)",
     "Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neanderthal)", 
-    "El Sidron",
-    "Spy 94-a",
-    "Les Cottés Z4-1415"),
+    "Sid1253 (Neanderthal)",
+    "Spy 94-a (Neanderthal)",
+    "Les Cottés Z4-1415 (Neanderthal)"),
   lon  = c(84.7, 83.1, 16.8, 40, -5.3, 4.7, 2.5), #E (+) W (-)
   lat  = c(51.4, 51.3, 46.3, 44.1, 43.4, 50.5, 46.2) #N (+) S (-)
 )
