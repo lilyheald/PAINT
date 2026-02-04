@@ -1,0 +1,27 @@
+```{r setup, include = FALSE, message = FALSE, warning = FALSE}
+library(data.table)
+library(stringr)
+library(tidyverse)
+library(readr)
+```
+
+# Cleaning EBI SNP list
+
+```{r cleaning}
+snps_set <- read.csv("/Users/lilyheald/Documents/GitHub/PAINT/data/skin_pigmentation.tsv", sep = "\t")
+
+snps_set <- snps_set %>%
+  mutate(
+    riskAllele = str_trim(riskAllele),
+    riskAllele = if_else(
+      str_detect(riskAllele, "^rs\\d+"),
+      str_extract(riskAllele, "^rs\\d+"),
+      NA_character_
+    )
+  ) %>%
+  filter(!is.na(riskAllele))
+
+write.csv(snps_set, file = "/Users/lilyheald/Documents/GitHub/PAINT/data/pigmentation_snps.csv", row.names = FALSE)
+```
+
+

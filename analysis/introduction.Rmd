@@ -65,6 +65,44 @@ sites <- data.frame(
 sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 ```
 
+
+# Distribution of pigmentation snps
+
+```{r snps_dist}
+snps_set <- read.csv("data/pigmentation_snps.csv", header = T)
+
+snps_set <- snps_set %>%
+  mutate(Chromosome = sub("\\:.*", "", locations),
+         Chromosome = factor(Chromosome, 
+                             levels = sort(as.numeric(unique(Chromosome)))
+                             )
+         )
+
+
+ggplot(snps_set, aes(x = Chromosome)) +
+  geom_bar(
+    fill = wes_palette("Zissou1", 1),
+    color = "black",
+    linewidth = 0.3,
+    width = 0.8
+  ) +
+  labs(
+    x = "Chromosome",
+    y = "Number of SNPs"
+  ) +
+  theme_classic(base_family = "lato", base_size = 14) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    axis.line = element_line(color = "black", linewidth = 0.4),
+    panel.grid.major.y = element_line(
+      color = "grey85",
+      linewidth = 0.3
+    ),
+    panel.grid.minor = element_blank()
+  )
+```
+
 # Genome availability
 
 ```{r plot}
