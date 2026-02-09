@@ -169,7 +169,7 @@ ggplot() +
 
 # Distribution of pigmentation snps
 
-```{r snps_dist, echo = FALSE}
+```{r snps_dist, echo = FALSE, message = FALSE, warning = FALSE,}
 snps_set <- read.csv("data/pigmentation_snps.csv", header = T)
 
 snps_set <- snps_set %>%
