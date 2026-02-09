@@ -519,15 +519,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree4a52a41e04d43756ba5bbdc523eb2f54b3dfaca9targetblank4a52a41a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree790813f560b366876f071fe5cc70eccbe868fadbtargetblank790813fa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/4a52a41e04d43756ba5bbdc523eb2f54b3dfaca9" target="_blank">4a52a41</a>
+<a href="https://github.com/lilyheald/PAINT/tree/790813f560b366876f071fe5cc70eccbe868fadb" target="_blank">790813f</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree4a52a41e04d43756ba5bbdc523eb2f54b3dfaca9targetblank4a52a41a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree790813f560b366876f071fe5cc70eccbe868fadbtargetblank790813fa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -537,7 +537,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/4a52a41e04d43756ba5bbdc523eb2f54b3dfaca9" target="_blank">4a52a41</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/790813f560b366876f071fe5cc70eccbe868fadb" target="_blank">790813f</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -560,11 +560,7 @@ Ignored files:
     Ignored:    data/neo_uvi.csv
     Ignored:    data/pigmentation_snps.csv
 
-Untracked files:
-    Untracked:  analysis/figure/
-
 Unstaged changes:
-    Modified:   .DS_Store
     Modified:   analysis/introduction.Rmd
 
 </code></pre>
@@ -610,6 +606,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/790813f560b366876f071fe5cc70eccbe868fadb/analysis/introduction.Rmd" target="_blank">790813f</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-02-09
+</td>
+<td>
+add distribution of simons genomes
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/790813f560b366876f071fe5cc70eccbe868fadb/docs/introduction.html" target="_blank">790813f</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-02-09
+</td>
+<td>
+add distribution of simons genomes
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1212,82 +1242,8 @@ start workflowr
 </div>
 </div>
 </div>
-<pre class="r"><code>world &lt;- ne_countries(scale = &quot;medium&quot;, returnclass = &quot;sf&quot;)
-uv_matrix &lt;- as.matrix(read.csv(&quot;data/neo_uvi.csv&quot;, header = F))
-
-lon &lt;- seq(-179.75, 179.75, by = 0.5)
-lat &lt;- seq(89.75, -89.75, by = -0.5)
-
-rownames(uv_matrix) &lt;- lat
-colnames(uv_matrix) &lt;- lon
-
-uv_df &lt;- melt(uv_matrix, varnames = c(&quot;lat&quot;, &quot;lon&quot;), value.name = &quot;UVIndex&quot;)
-
-uv_df$lat &lt;- as.numeric(as.character(uv_df$lat))
-uv_df$lon &lt;- as.numeric(as.character(uv_df$lon))</code></pre>
-<pre class="r"><code>uv_raster &lt;- rasterFromXYZ(uv_df[, c(&quot;lon&quot;, &quot;lat&quot;, &quot;UVIndex&quot;)], crs = &quot;+proj=longlat +datum=WGS84&quot;)
-
-world_sp &lt;- as(world, &quot;Spatial&quot;)
-
-uv_land &lt;- mask(uv_raster, world_sp)
-
-uv_land_df &lt;- as.data.frame(uv_land, xy = TRUE)
-names(uv_land_df) &lt;- c(&quot;lon&quot;, &quot;lat&quot;, &quot;UVIndex&quot;)</code></pre>
-<pre class="r"><code>sites &lt;- data.frame(
-  name = c(&quot;Denisova&quot;,&quot;Chagyrskaya&quot;,&quot;Vindija&quot;, &quot;Mezmaiskaya&quot;, 
-           &quot;El Sidron&quot;, &quot;Spy&quot;,&quot;Les Cottés&quot;),
-  samples = c(&quot;Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)&quot;,
-    &quot;Chagyrskaya 8 (Neanderthal)&quot;,
-    &quot;Vindija 33.19 (Neanderthal)&quot;,
-    &quot;Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neanderthal)&quot;, 
-    &quot;Sid1253 (Neanderthal)&quot;,
-    &quot;Spy 94-a (Neanderthal)&quot;,
-    &quot;Les Cottés Z4-1415 (Neanderthal)&quot;),
-  lon  = c(84.7, 83.1, 16.8, 40, -5.3, 4.7, 2.5), #E (+) W (-)
-  lat  = c(51.4, 51.3, 46.3, 44.1, 43.4, 50.5, 46.2) #N (+) S (-)
-)
-sites_sf &lt;- st_as_sf(sites, coords = c(&quot;lon&quot;,&quot;lat&quot;), crs = 4326)</code></pre>
 <div id="genome-availability" class="section level1">
 <h1>Genome availability</h1>
-<pre class="r"><code>wes_cols &lt;- wes_palette(&quot;Zissou1&quot;, 100, type = &quot;continuous&quot;)
-
-ggplot() +
-  geom_raster(data = uv_land_df, aes(x = lon, y = lat, fill = UVIndex)) +
-  scale_fill_gradientn(colours = wes_cols, name = &quot;UV Index&quot;, na.value = &quot;white&quot;) +
-  geom_sf(data = world, fill = NA, color = &quot;grey60&quot;, size = 0.2) +
-  geom_point(data = sites, aes(x = lon, y = lat), 
-             color = &quot;#00008B&quot;, fill = &quot;#00008B&quot;, shape = 21, size = 3, stroke = 1) +
-  geom_label_repel(
-    data = sites,
-    aes(x = lon, y = lat, label = samples),
-    box.padding = 0.7,
-    point.padding = 0.3,
-    segment.color = &quot;#00008B&quot;,
-    segment.size = 0.4,
-    fill = alpha(&quot;white&quot;, 0.8),
-    label.r = unit(0.2, &quot;lines&quot;),
-    color = &quot;black&quot;,
-    size = 3,
-    label.size = 0.3,
-    family = &quot;lato&quot;,
-    min.segment.length = 0
-  ) +
-  coord_sf(expand = FALSE, xlim = c(-20, 150), ylim = c(20, 70)) +
-  theme_minimal(base_family = &quot;lato&quot;) +
-  theme(
-    legend.position = c(0.9, 0.3),
-    legend.background = element_blank(),
-    panel.grid = element_blank(),
-    axis.text = element_blank(),
-    axis.ticks = element_blank(),
-    axis.title = element_blank(),
-    plot.title = element_text(size = 14, face = &quot;bold&quot;, hjust = 0.5),
-    plot.subtitle = element_text(size = 10, hjust = 0.5)
-  ) +
-  labs(
-    title = &quot;Ancient DNA Discovery Sites and UV Radiation&quot;,
-    subtitle = &quot;UV Index climatology (NASA AURA, 2010)&quot;
-  )</code></pre>
 <p><img src="figure/introduction.Rmd/plot-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-1">
@@ -1311,6 +1267,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/790813f560b366876f071fe5cc70eccbe868fadb/docs/figure/introduction.Rmd/plot-1.png" target="_blank">790813f</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-02-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/lilyheald/PAINT/blob/c6f38f2d802b5f7eb7144108a7b8ca7c7fd2d1ea/docs/figure/introduction.Rmd/plot-1.png" target="_blank">c6f38f2</a>
@@ -1395,96 +1362,52 @@ Lily Heald
 </div>
 <div id="modern-reference-genomes" class="section level1">
 <h1>Modern reference genomes</h1>
-<pre class="r"><code>modern_samples &lt;- data.frame(
-  population = c(&quot;Yoruba&quot;, &quot;Bantu_Hetero&quot;, &quot;Khomani_San&quot;, &quot;Mongola&quot;, &quot;Tlingit&quot;,
-                 &quot;Eskimo_Sireniki&quot;, &quot;Dai&quot;, &quot;Cambodian&quot;, &quot;Han&quot;, &quot;Papuan&quot;, &quot;Maori&quot;,
-                 &quot;Australian&quot;, &quot;French&quot;, &quot;Hungarian&quot;, &quot;Greek&quot;),
-  lon  = c(3.9, 19.0, 20.8, 111.0, 158.65, 173.9, 100.0, 105.0, 114.0, 143.0, 
-           174.5, 143.0, 2.0, 9.1, 23.7), #E (+) W (-)
-  lat  = c(7.4, -22.0, -27.0, 45.0, 53, 64.4, 21.0, 12.0, 32.3, -4.0, -41.3,
-           -13.0, 46.0, 47.5, 38.0) #N (+) S (-)
-)
-
-modern_sf &lt;- st_as_sf(sites, coords = c(&quot;lon&quot;,&quot;lat&quot;), crs = 4326)
-
-wes_cols &lt;- wes_palette(&quot;Darjeeling1&quot;, 100, type = &quot;continuous&quot;)
-
-ggplot() +
-  geom_raster(data = uv_land_df, aes(x = lon, y = lat, fill = UVIndex)) +
-  scale_fill_gradientn(colours = wes_cols, name = &quot;UV Index&quot;, na.value = &quot;white&quot;) +
-  geom_sf(data = world, fill = NA, color = &quot;grey60&quot;, size = 0.2) +
-  geom_point(data = modern_samples, aes(x = lon, y = lat), 
-             color = &quot;#00008B&quot;, fill = &quot;#00008B&quot;, shape = 21, size = 3, stroke = 1) +
-  geom_label_repel(
-    data = modern_samples,
-    aes(x = lon, y = lat, label = population),
-    box.padding = 0.7,
-    point.padding = 0.3,
-    segment.color = &quot;#00008B&quot;,
-    segment.size = 0.4,
-    fill = alpha(&quot;white&quot;, 0.8),
-    label.r = unit(0.2, &quot;lines&quot;),
-    color = &quot;black&quot;,
-    size = 3,
-    label.size = 0.3,
-    family = &quot;lato&quot;,
-    min.segment.length = 0
-  ) +
-  coord_sf(expand = FALSE, xlim = c(-20, 200), ylim = c(-50, 80)) +
-  theme_minimal(base_family = &quot;lato&quot;) +
-  theme(
-    legend.position = c(0.9, 0.3),
-    legend.background = element_blank(),
-    panel.grid = element_blank(),
-    axis.text = element_blank(),
-    axis.ticks = element_blank(),
-    axis.title = element_blank(),
-    plot.title = element_text(size = 14, face = &quot;bold&quot;, hjust = 0.5),
-    plot.subtitle = element_text(size = 10, hjust = 0.5)
-  ) +
-  labs(
-    title = &quot;Modern Samples and UV Radiation&quot;,
-    subtitle = &quot;UV Index climatology (NASA AURA, 2010)&quot;
-  )</code></pre>
 <p><img src="figure/introduction.Rmd/modern_samples-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-modern_samples-1">
+Past versions of modern_samples-1.png
+</button>
+</p>
+<div id="fig-modern_samples-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/790813f560b366876f071fe5cc70eccbe868fadb/docs/figure/introduction.Rmd/modern_samples-1.png" target="_blank">790813f</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-02-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="distribution-of-pigmentation-snps" class="section level1">
 <h1>Distribution of pigmentation snps</h1>
-<pre class="r"><code>snps_set &lt;- read.csv(&quot;data/pigmentation_snps.csv&quot;, header = T)
-
-snps_set &lt;- snps_set %&gt;%
-  mutate(Chromosome = sub(&quot;\\:.*&quot;, &quot;&quot;, locations),
-         Chromosome = factor(Chromosome, 
-                             levels = sort(as.numeric(unique(Chromosome)))
-                             )
-         )</code></pre>
 <pre><code>Warning: There was 1 warning in `mutate()`.
 ℹ In argument: `Chromosome = factor(Chromosome, levels =
   sort(as.numeric(unique(Chromosome))))`.
 Caused by warning in `sort()`:
 ! NAs introduced by coercion</code></pre>
-<pre class="r"><code>ggplot(snps_set, aes(x = Chromosome)) +
-  geom_bar(
-    fill = wes_palette(&quot;Zissou1&quot;, 1),
-    color = &quot;black&quot;,
-    linewidth = 0.3,
-    width = 0.8
-  ) +
-  labs(
-    x = &quot;Chromosome&quot;,
-    y = &quot;Number of SNPs&quot;
-  ) +
-  theme_classic(base_family = &quot;lato&quot;, base_size = 14) +
-  theme(
-    axis.title = element_text(face = &quot;bold&quot;),
-    axis.text = element_text(color = &quot;black&quot;),
-    axis.line = element_line(color = &quot;black&quot;, linewidth = 0.4),
-    panel.grid.major.y = element_line(
-      color = &quot;grey85&quot;,
-      linewidth = 0.3
-    ),
-    panel.grid.minor = element_blank()
-  )</code></pre>
 <p><img src="figure/introduction.Rmd/snps_dist-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-snps_dist-1">
@@ -1526,27 +1449,6 @@ Lily Heald
 </div>
 <div id="sequencing-coverage" class="section level1">
 <h1>Sequencing coverage</h1>
-<pre class="r"><code>wes_samples &lt;- wes_palette(&quot;Zissou1&quot;, 12, type = &quot;continuous&quot;)
-
-ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
-  geom_point(size = 2, alpha = 0.6) +
-  scale_color_manual(values = wes_samples) +
-  labs(
-    title = &quot;Sequencing Depth&quot;,
-    subtitle = &quot;EBI pigmentation-related loci&quot;,
-    x = &quot;Genomic Position&quot;,
-    y = &quot;Sequencing depth&quot;,
-    color = &quot;Sample&quot;
-  ) +
-  theme_bw(base_size = 14) +
-  theme_minimal(base_family = &quot;lato&quot;) +
-  theme(
-    legend.position = &quot;top&quot;,
-    legend.background = element_blank(),
-    panel.grid = element_blank(),
-    plot.title = element_text(size = 14, face = &quot;bold&quot;, hjust = 0.5),
-    plot.subtitle = element_text(size = 10, hjust = 0.5)
-  )</code></pre>
 <p><img src="figure/introduction.Rmd/depth_viz-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-depth_viz-1">
@@ -1570,6 +1472,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/790813f560b366876f071fe5cc70eccbe868fadb/docs/figure/introduction.Rmd/depth_viz-1.png" target="_blank">790813f</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-02-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/lilyheald/PAINT/blob/289d9ed9b66c12c70ec1471cd4c4ca0e7aa30760/docs/figure/introduction.Rmd/depth_viz-1.png" target="_blank">289d9ed</a>
@@ -1673,26 +1586,6 @@ Lily Heald
 </table>
 </div>
 </div>
-<pre class="r"><code>ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
-  geom_point(size = 2, alpha = 0.6) +
-  scale_color_manual(values = wes_samples) +
-  labs(
-    title = &quot;Sequencing Depth (log-transformed)&quot;,
-    subtitle = &quot;EBI pigmentation-related loci&quot;,
-    x = &quot;Genomic Position&quot;,
-    y = &quot;Sequencing depth (log)&quot;,
-    color = &quot;Sample&quot;
-  ) +
-  theme_bw(base_size = 14) +
-  theme_minimal(base_family = &quot;lato&quot;) +
-  theme(
-    legend.position = &quot;top&quot;,
-    legend.background = element_blank(),
-    panel.grid = element_blank(),
-    axis.text.x = element_blank(),
-    plot.title = element_text(size = 14, face = &quot;bold&quot;, hjust = 0.5),
-    plot.subtitle = element_text(size = 10, hjust = 0.5)
-  )</code></pre>
 <p><img src="figure/introduction.Rmd/depth_viz_log-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-depth_viz_log-1">
@@ -1716,6 +1609,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/790813f560b366876f071fe5cc70eccbe868fadb/docs/figure/introduction.Rmd/depth_viz_log-1.png" target="_blank">790813f</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-02-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/lilyheald/PAINT/blob/289d9ed9b66c12c70ec1471cd4c4ca0e7aa30760/docs/figure/introduction.Rmd/depth_viz_log-1.png" target="_blank">289d9ed</a>

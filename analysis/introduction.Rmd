@@ -21,7 +21,7 @@ showtext_auto()
 ```
 
 
-```{r map, message = FALSE, warning = FALSE}
+```{r map, message = FALSE, warning = FALSE, echo = FALSE}
 world <- ne_countries(scale = "medium", returnclass = "sf")
 uv_matrix <- as.matrix(read.csv("data/neo_uvi.csv", header = F))
 
@@ -37,7 +37,7 @@ uv_df$lat <- as.numeric(as.character(uv_df$lat))
 uv_df$lon <- as.numeric(as.character(uv_df$lon))
 ```
 
-```{r mask, message = FALSE, warning = FALSE}
+```{r mask, message = FALSE, warning = FALSE, echo = FALSE}
 uv_raster <- rasterFromXYZ(uv_df[, c("lon", "lat", "UVIndex")], crs = "+proj=longlat +datum=WGS84")
 
 world_sp <- as(world, "Spatial")
@@ -48,7 +48,7 @@ uv_land_df <- as.data.frame(uv_land, xy = TRUE)
 names(uv_land_df) <- c("lon", "lat", "UVIndex")
 ```
 
-```{r sites}
+```{r sites, echo = FALSE}
 sites <- data.frame(
   name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", 
            "El Sidron", "Spy","Les Cottés"),
@@ -68,7 +68,7 @@ sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 
 # Genome availability
 
-```{r plot}
+```{r plot, echo = FALSE}
 wes_cols <- wes_palette("Zissou1", 100, type = "continuous")
 
 ggplot() +
@@ -113,7 +113,7 @@ ggplot() +
 
 # Modern reference genomes
 
-```{r modern_samples}
+```{r modern_samples, echo = FALSE}
 modern_samples <- data.frame(
   population = c("Yoruba", "Bantu_Hetero", "Khomani_San", "Mongola", "Tlingit",
                  "Eskimo_Sireniki", "Dai", "Cambodian", "Han", "Papuan", "Maori",
@@ -125,8 +125,6 @@ modern_samples <- data.frame(
 )
 
 modern_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
-
-wes_cols <- wes_palette("Darjeeling1", 100, type = "continuous")
 
 ggplot() +
   geom_raster(data = uv_land_df, aes(x = lon, y = lat, fill = UVIndex)) +
@@ -171,7 +169,7 @@ ggplot() +
 
 # Distribution of pigmentation snps
 
-```{r snps_dist}
+```{r snps_dist, echo = FALSE}
 snps_set <- read.csv("data/pigmentation_snps.csv", header = T)
 
 snps_set <- snps_set %>%
@@ -208,7 +206,7 @@ ggplot(snps_set, aes(x = Chromosome)) +
 
 # Sequencing coverage
 
-```{r depth, include = FALSE, message = FALSE, warning = FALSE}
+```{r depth, include = FALSE, message = FALSE, warning = FALSE, echo = FALSE}
 scladina <- read.table("data/Sclad_depth.txt", header = F) 
 denny <- read.table("data/denny_depth.txt", header = F) 
 mez1 <- read.table("data/mez1_depth.txt", header = F) 
@@ -262,7 +260,7 @@ depth_all <- depth_all %>%
   )
 ```
 
-```{r depth_viz}
+```{r depth_viz, echo = FALSE}
 wes_samples <- wes_palette("Zissou1", 12, type = "continuous")
 
 ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
@@ -287,7 +285,7 @@ ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
 ```
 
 
-```{r depth_viz_log}
+```{r depth_viz_log, echo = FALSE}
 ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
   geom_point(size = 2, alpha = 0.6) +
   scale_color_manual(values = wes_samples) +
