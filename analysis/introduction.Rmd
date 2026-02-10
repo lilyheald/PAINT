@@ -214,6 +214,8 @@ ggplot(aes(x = Chromosome)) +
 
 # Sequencing coverage
 
+Sequencing read alignments were processed using samtools. The input BAM file was first indexed, then coordinate-sorted and re-indexed to ensure compatibility with downstream analyses. Read depth was calculated for archaic samples at the specified pigmentation-related SNP panel using samtools depth including sites with zero coverage. 
+
 ```{r depth, include = FALSE, message = FALSE, warning = FALSE, echo = FALSE}
 scladina <- read.table("data/Sclad_depth.txt", header = F) 
 denny <- read.table("data/denny_depth.txt", header = F) 
