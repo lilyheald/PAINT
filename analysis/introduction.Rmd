@@ -66,7 +66,9 @@ sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 ```
 
 
-# Genome availability
+# Ancient genome availability
+
+DNA can persist for up to hundreds of thousands of years in skeletal remains, and can even be extracted from sediments. However, extracting such DNA poses a challenge. Ancient DNA is typically present in very small amounts, is highly fragmented, and contaminated with other endogenous organic molecules which inhibit enzymatic DNA manipulations which must be performed prior to sequencing, or exogenous DNA. There are high-quality genomic sequences available for two Denisovans and three Neanderthals. There are also low coverage sequences available from 14 Neanderthals, spanning spatially from Gibraltar to Siberia and temporally from 39 to 120ka. A total of eleven archaic genomic samples will be analysed in this study, including all five high coverage genomes.
 
 ```{r plot, echo = FALSE}
 wes_cols <- wes_palette("Zissou1", 100, type = "continuous")
@@ -112,6 +114,9 @@ ggplot() +
 ```
 
 # Modern reference genomes
+
+Modern human genomes were obtained from the Simons Genome Diversity Project (SGDP). A panel of 15 individuals representing broad global diversity (Africa, Europe, East Asia, Central Asia, and Oceania) to provide a stable reference frame for principal component analysis (PCA). Variant call files (VCFs) were downloaded as whole-genome SNP datasets aligned to the GRCh37/hg19 reference genome.
+
 
 ```{r modern_samples, echo = FALSE}
 modern_samples <- data.frame(
@@ -168,6 +173,8 @@ ggplot() +
 
 
 # Distribution of pigmentation SNPs
+
+In order to allow for comparison of genome-wide ancestry patterns with structure driven by a targeted functional SNP set. For pigmentation-specific analyses, a panel consisting of 395 SNPs previously associated with pigmentation phenotypes published on the NHGRI-EBI Catalog of human genome-wide association studies was used. The by-chromosome distribution of these SNPs is shown below.
 
 ```{r snps_dist, echo = FALSE, message = FALSE, warning = FALSE,}
 snps_set <- read.csv("data/pigmentation_snps.csv", header = T)
