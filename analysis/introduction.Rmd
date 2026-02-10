@@ -167,7 +167,7 @@ ggplot() +
 
 
 
-# Distribution of pigmentation snps
+# Distribution of pigmentation SNPs
 
 ```{r snps_dist, echo = FALSE, message = FALSE, warning = FALSE,}
 snps_set <- read.csv("data/pigmentation_snps.csv", header = T)
@@ -179,8 +179,9 @@ snps_set <- snps_set %>%
                              )
          )
 
-
-ggplot(snps_set, aes(x = Chromosome)) +
+snps_set %>%
+  drop_na(Chromosome) %>%
+ggplot(aes(x = Chromosome)) +
   geom_bar(
     fill = wes_palette("Zissou1", 1),
     color = "black",
