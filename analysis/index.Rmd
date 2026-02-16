@@ -18,6 +18,9 @@ This project explores the temporal and spatial distribution of pigmentation-rela
 Background on the samples analyzed is available on the **Introduction** analysis page:
 - [View UV map and aDNA sites](introduction.html)
 
+Population genetics analyses are available on the **Analysis** page:
+- [View genetic PCAs](analysis.html)
+
 # Data Sources
 - NASA Earth Observations: [AURA_UVI_CLIM_M](https://neo.gsfc.nasa.gov/view.php?datasetId=AURA_UVI_CLIM_M)
 - NHGRI-EBI Catalog of GWAS associated pigmentation variants: [NHGRI-EBI](https://www.ebi.ac.uk/gwas/efotraits/OBA_VT0002095)

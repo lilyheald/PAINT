@@ -1,0 +1,84 @@
+---
+title: "analysis"
+output: html_document
+---
+
+```{r setup, include = F}
+library(data.table)
+library(stringr)
+library(tidyverse)
+library(readr)
+library(dplyr)
+
+
+eigenvec_wg_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/sgdp.wg.pca.eigenvec"
+eigenval_wg_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/sgdp.wg.pca.eigenval"
+
+eigenvec_pig_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/pigmentation_snps_pca.eigenvec"
+eigenval_pig_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/pigmentation_snps_pca.eigenval"
+
+metadata_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/modern_metadata.csv"
+
+eigvec_wg <- fread(eigenvec_wg_file)
+eigval_wg <- scan(eigenval_wg_file)
+
+eigvec_pig <- fread(eigenvec_pig_file)
+eigval_pig <- scan(eigenval_pig_file)
+
+metadata <- read_csv(metadata_file, show_col_types = F)
+```
+
+
+```{r clean}
+# whole genome
+colnames(eigvec_wg)[1:2] <- c("FID", "IID")
+
+num_pcs_wg <- length(eigval_wg)
+pc_names_wg <- paste0("PC", 1:num_pcs_wg)
+colnames(eigvec_wg)[3:(2 + num_pcs_wg)] <- pc_names_wg
+
+variance_explained_wg <- eigval_wg / sum(eigval_wg) * 100
+
+pc1_label_wg <- sprintf("PC1 (%.2f%%)", variance_explained_wg[1])
+pc2_label_wg <- sprintf("PC2 (%.2f%%)", variance_explained_wg[2])
+
+# pigmentation
+colnames(eigvec_pig)[1:2] <- c("FID", "IID")
+
+num_pcs_pig <- length(eigval_pig)
+pc_names_pig <- paste0("PC", 1:num_pcs_pig)
+colnames(eigvec_pig)[3:(2 + num_pcs_pig)] <- pc_names_pig
+
+variance_explained_pig <- eigval_pig / sum(eigval_pig) * 100
+
+pc1_label_pig <- sprintf("PC1 (%.2f%%)", variance_explained_pig[1])
+pc2_label_pig <- sprintf("PC2 (%.2f%%)", variance_explained_pig[2])
+```
+
+```{r plot}
+pc_data_wg <- merge(eigvec_wg, metadata, by.x = "FID", by.y = "library_id")
+
+ggplot(pc_data_wg, aes(x = PC1, y = PC2, color = Region)) +
+  geom_point(size = 3) +
+  geom_text(aes(label = Population_ID), vjust = -0.7, size = 3) +
+  labs(
+    title = "PCA of whole genome SNPs",
+    x = pc1_label_wg,
+    y = pc2_label_wg
+  ) +
+  theme_classic(base_size = 14)
+
+pc_data_pig <- merge(eigvec_pig, metadata, by.x = "IID", by.y = "library_id")
+
+ggplot(pc_data_pig, aes(x = PC1, y = PC2, color = Region)) +
+  geom_point(size = 3) +
+  geom_text(aes(label = Population_ID), vjust = -0.7, size = 3) +
+  labs(
+    title = "PCA of pigmentation SNPs",
+    x = pc1_label_pig,
+    y = pc2_label_pig
+  ) +
+  theme_classic(base_size = 14)
+```
+
+
