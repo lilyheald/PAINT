@@ -181,47 +181,35 @@ In order to allow for comparison of genome-wide ancestry patterns with structure
 ```{r snps_dist, echo = FALSE, message = FALSE, warning = FALSE}
 snps_set <- read.csv("data/pigmentation_snps.csv", header = T)
 
-target_genes <- c("SLC24A5", "SLC45A2", "TYR", "OCA2", "HERC2", "MC1R")
+target_genes <- c("SLC24A5", "SLC45A2", "TYR", "OCA2", "HERC2", "MC1R", "ADAMTS12")
 
+# Count unique SNPs per chromosome and category
 snps_plot <- snps_set %>%
-  mutate(
-    Chromosome = sub("\\:.*", "", locations)
-  ) %>%
+  mutate(Chromosome = sub("\\:.*", "", locations)) %>%
   separate_rows(mappedGenes, sep = ",") %>%
   mutate(Gene = str_trim(mappedGenes)) %>%
-  mutate(
-    Category = ifelse(Gene %in% target_genes, Gene, "Other SNPs")
-  ) %>%
-  drop_na(Chromosome)
+  mutate(Category = ifelse(Gene %in% target_genes, Gene, "Other SNPs")) %>%
+  drop_na(Chromosome) %>%
+  group_by(Chromosome, Category) %>%
+  summarise(n = n_distinct(riskAllele), .groups = "drop")
 
-snps_plot <- snps_plot %>%
-  count(Chromosome, Category)
+# Ensure numeric chromosome order
+chrom_levels <- sort(as.numeric(unique(snps_plot$Chromosome)))
+snps_plot$Chromosome <- factor(snps_plot$Chromosome, levels = chrom_levels)
 
-snps_plot <- snps_plot %>%
-  mutate(
-    Chromosome = factor(
-      Chromosome,
-      levels = sort(as.numeric(unique(Chromosome)))
-    ),
-    Category = factor(
-      Category,
-      levels = c("Other SNPs", target_genes)
-    )
-  )
+# Put "Other SNPs" on top in stacked bars
+snps_plot$Category <- factor(snps_plot$Category, levels = c("Other SNPs", target_genes))
 
-wes_cols <-  wes_palette("Zissou1", 10, type = "continuous")
-
+# Colors
+wes_cols <- wes_palette("Zissou1", 7, type = "continuous")
 fill_colors <- c(
-  "Other SNPs" = "grey85",
-  setNames(wes_cols, target_genes)
+  setNames(wes_cols, target_genes),
+  "Other SNPs" = "grey85"
 )
 
+# Plot
 ggplot(snps_plot, aes(x = Chromosome, y = n, fill = Category)) +
-  geom_col(
-    width = 0.7,
-    color = "black",
-    linewidth = 0.2
-  ) +
+  geom_col(width = 0.7, color = "black", linewidth = 0.2) +
   scale_fill_manual(values = fill_colors) +
   labs(
     x = "Chromosome",
