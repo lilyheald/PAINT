@@ -137,7 +137,9 @@ ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
 
 # Missingness
 
-In order to examine patterns of missingness, I created a heatmap of where sequencing depth = 0. 
+Additional archaic genomes exist at low coverage, including the early Denisova 3 draft genome, the Denisova 11 (“Denny”) admixed individual, and several later Neanderthals sequenced at ~1-2.7x coverage (Hajdinjak et al., 2018; Reich et al., 2010; Sawyer et al., 2015; Slon et al., 2018). These genomes are important for population history, but they are less reliable due to high levels of missingness and uncertainty. For that reason, the archaeological availability of high-coverage genomes limits phenotype inference. The high-coverage record includes only five individuals, ranging from 200-50ka, and a narrow geographic range.
+
+Taken together, these genomes make direct archaic pigmentation analyses possible, but only in the manner of descriptions and comparisons. This limited dataset does not provide enough statistical power to make claims about the full pigmentation range of Neanderthals or Denisovans as groups. This motivates the aim of this study to provide a locus-level catalog of pigmentation-associated SNPs in available archaic genomes, and then compare those with variation in diverse modern humans. In order to examine patterns of missingness, I created a heatmap of where sequencing depth = 0. 
 
 
 ```{r missing_map, message = FALSE, warning = FALSE, echo = FALSE}
