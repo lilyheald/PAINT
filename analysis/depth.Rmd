@@ -76,12 +76,13 @@ depth_all <- bind_rows(scladina, denny, mez1, mez2, hstadel,
 depth_all <- depth_all %>%
   mutate(
     Chromosome = factor(Chromosome, levels = unique(Chromosome)),
-    Sample = factor(Sample, levels = c("Scladina", "Denisova 11 (Denny)", "Mez1", 
-                                       "Mez2", "HST", "Spy", "Les Cottés Z4-1415", 
-                                       "Denisova 5 (Altai Neanderthal)", 
-                                       "Chagyrskaya 8", "Vindija 87", "Denisova 25", 
-                                       "Denisova 3", "Vindija 33", 
-                                       "Goyet Q56-1"))
+    Sample = factor(Sample, levels = c("Chagyrskaya 8", "Vindija 33", 
+                                       "Denisova 5 (Altai Neanderthal)",
+                                       "Denisova 25", "Denisova 3",
+                                       "Goyet Q56-1", "Denisova 11 (Denny)",
+                                       "Mez1", "Mez2", "Scladina", "HST", "Spy", 
+                                       "Les Cottés Z4-1415", "Vindija 87" 
+                                       ))
   )
 ```
 
@@ -139,13 +140,13 @@ ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
 In order to examine patterns of missingness, I created a heatmap of where sequencing depth = 0. 
 
 
-```{r missing_map}
+```{r missing_map, message = FALSE, warning = FALSE, echo = FALSE}
 depth_all <- depth_all %>%
   mutate(
     Position = as.factor(Position),
     Depth = as.numeric(Depth),
     Position_bin = round(Position / 500000),
-    Depth_NA = ifelse(Depth > 0, log(Depth), NA)  # avoid -Inf
+    Depth_NA = ifelse(Depth > 0, log(Depth), NA) # avoid -Inf
   )
 
 ggplot(depth_all, aes(x = Position, y = Sample)) +
@@ -163,9 +164,8 @@ ggplot(depth_all, aes(x = Position, y = Sample)) +
   ) 
 ```
 
-Manhattan style plot 
 
-```{r manhattan_depth}
+```{r manhattan_depth, include = FALSE, message = FALSE, warning = FALSE, echo = FALSE}
 depth_all <- depth_all %>%
   mutate(
     Position = as.numeric(as.character(Position)),

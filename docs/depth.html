@@ -374,7 +374,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -385,8 +385,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -399,9 +399,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>~/Documents/GitHub/PAINT/</code>
@@ -424,18 +424,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -526,15 +529,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreed2701769a9b4139ca751844205ac5a23037d7f8dtargetblankd270176a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeb1060b3e8a1dbb693326273e35f91a06f643f13ftargetblankb1060b3a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/d2701769a9b4139ca751844205ac5a23037d7f8d" target="_blank">d270176</a>
+<a href="https://github.com/lilyheald/PAINT/tree/b1060b3e8a1dbb693326273e35f91a06f643f13f" target="_blank">b1060b3</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreed2701769a9b4139ca751844205ac5a23037d7f8dtargetblankd270176a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeb1060b3e8a1dbb693326273e35f91a06f643f13ftargetblankb1060b3a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -544,7 +547,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/d2701769a9b4139ca751844205ac5a23037d7f8d" target="_blank">d270176</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/b1060b3e8a1dbb693326273e35f91a06f643f13f" target="_blank">b1060b3</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -571,7 +574,7 @@ Ignored files:
     Ignored:    data/simons_whole.csv
 
 Unstaged changes:
-    Modified:   analysis/index.Rmd
+    Modified:   analysis/depth.Rmd
 
 </code></pre>
 <p>
@@ -615,6 +618,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/ce1571b7240540e92d7ff90a717adf7546c4bd9d/docs/depth.html" target="_blank">ce1571b</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -761,30 +781,6 @@ Lily Heald
 <h1>Missingness</h1>
 <p>In order to examine patterns of missingness, I created a heatmap of
 where sequencing depth = 0.</p>
-<pre class="r"><code>depth_all &lt;- depth_all %&gt;%
-  mutate(
-    Position = as.factor(Position),
-    Depth = as.numeric(Depth),
-    Position_bin = round(Position / 500000),
-    Depth_NA = ifelse(Depth &gt; 0, log(Depth), NA)  # avoid -Inf
-  )</code></pre>
-<pre><code>Warning: There was 1 warning in `mutate()`.
-ℹ In argument: `Position_bin = round(Position/5e+05)`.
-Caused by warning in `Ops.factor()`:
-! &#39;/&#39; not meaningful for factors</code></pre>
-<pre class="r"><code>ggplot(depth_all, aes(x = Position, y = Sample)) +
-  geom_raster(aes(fill = Depth_NA)) +
-  scale_fill_gradientn(
-    colors = wes_palette(&quot;Zissou1&quot;, 100, type = &quot;continuous&quot;),
-    na.value = &quot;grey70&quot;,
-    name = &quot;log(Depth)&quot;
-  ) +
-  theme_minimal(base_family = &quot;lato&quot;) +
-  theme(
-    axis.text.x = element_blank(),
-    axis.text.y = element_text(size = 8),
-    panel.spacing = unit(0.5, &quot;lines&quot;)
-  ) </code></pre>
 <p><img src="figure/depth.Rmd/missing_map-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-missing_map-1">
@@ -811,130 +807,6 @@ Date
 <tr>
 <td>
 <a href="https://github.com/lilyheald/PAINT/blob/05c4750a7b65c4523cadbcab6f74fdb99c0c598c/docs/figure/depth.Rmd/missing_map-1.png" target="_blank">05c4750</a>
-</td>
-<td>
-Lily Heald
-</td>
-<td>
-2026-03-26
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Manhattan style plot</p>
-<pre class="r"><code>depth_all &lt;- depth_all %&gt;%
-  mutate(
-    Position = as.numeric(as.character(Position)),
-    Depth = as.numeric(as.character(Depth))
-  )
-
-depth_all &lt;- depth_all %&gt;%
-  arrange(Chromosome, Position) %&gt;%
-  group_by(Chromosome) %&gt;%
-  mutate(chr_len = max(Position, na.rm = TRUE)) %&gt;%
-  ungroup() %&gt;%
-  mutate(
-    chr_offset = cumsum(lag(chr_len, default = 0)),
-    Position_cum = Position + chr_offset,
-    Depth_log = ifelse(Depth &gt; 0, log10(Depth), NA)
-  )
-
-ggplot(depth_all, aes(x = Position_cum, y = Depth_log, color = Chromosome)) +
-  geom_point(size = 0.8, alpha = 0.8) +
-  scale_color_manual(
-    values = rep(wes_palette(&quot;Zissou1&quot;, 5), length.out = length(unique(depth_all$Chromosome)))
-  ) +
-  theme_minimal(base_family = &quot;lato&quot;) +
-  labs(
-    x = &quot;Genomic Position&quot;,
-    y = &quot;log10(Depth)&quot;,
-    color = &quot;Chromosome&quot;
-  )</code></pre>
-<pre><code>Warning: Removed 1329 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-<p><img src="figure/depth.Rmd/manhattan_depth-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-manhattan_depth-1">
-Past versions of manhattan_depth-1.png
-</button>
-</p>
-<div id="fig-manhattan_depth-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/lilyheald/PAINT/blob/05c4750a7b65c4523cadbcab6f74fdb99c0c598c/docs/figure/depth.Rmd/manhattan_depth-1.png" target="_blank">05c4750</a>
-</td>
-<td>
-Lily Heald
-</td>
-<td>
-2026-03-26
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>ggplot(depth_all, aes(x = Position_cum, y = Depth_log, color = Chromosome)) +
-  geom_point(size = 0.6) +
-  facet_wrap(~ Sample, ncol = 3) +
-  scale_color_manual(
-    values = rep(wes_palette(&quot;Zissou1&quot;, 5), length.out = length(unique(depth_all$Chromosome)))
-  ) +
-  theme_minimal(base_family = &quot;lato&quot;) +
-  theme(
-    legend.position = &quot;none&quot;,
-    strip.text = element_text(face = &quot;bold&quot;)
-  ) +
-  labs(
-    x = &quot;Genomic Position&quot;,
-    y = &quot;log10(Depth)&quot;
-  )</code></pre>
-<pre><code>Warning: Removed 1329 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-<p><img src="figure/depth.Rmd/manhattan_depth-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-manhattan_depth-2">
-Past versions of manhattan_depth-2.png
-</button>
-</p>
-<div id="fig-manhattan_depth-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/lilyheald/PAINT/blob/05c4750a7b65c4523cadbcab6f74fdb99c0c598c/docs/figure/depth.Rmd/manhattan_depth-2.png" target="_blank">05c4750</a>
 </td>
 <td>
 Lily Heald
