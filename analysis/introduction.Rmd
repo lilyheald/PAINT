@@ -135,8 +135,7 @@ knitr::kable(arc_tab_df, caption = "Available high-coverage archaic genomes")
 
 Modern human genomes were obtained from the Simons Genome Diversity Project (SGDP). A panel of 15 individuals representing broad global diversity (Africa, Europe, East Asia, Central Asia, and Oceania) to provide a stable reference frame for principal component analysis (PCA). Variant call files (VCFs) were downloaded as whole-genome SNP datasets aligned to the GRCh37/hg19 reference genome.
 
-
-```{r modern_samples, echo = FALSE}
+```{r modern_samples, echo = FALSE, message = FALSE, warning = FALSE}
 metadata <- read.table(
   "https://sf-web-assets-prod.s3.amazonaws.com/wp-content/uploads/2023/05/05_02_2023_SGDP_metainformation_update.txt",
   header = TRUE,
@@ -170,8 +169,67 @@ ggplot() +
     subtitle = "UV Index climatology (NASA AURA, 2010)"
   )
 ```
+```{r geo_diversity, echo = FALSE, message = FALSE, warning = FALSE}
+pop_summary <- metadata %>%
+  filter(!is.na(Region), Region != "") %>%
+  group_by(Population_ID, Region, Latitude, Longitude) %>%
+  summarise(
+    mean_het = mean(HetRateAuto, na.rm = TRUE),
+    sd_het = sd(HetRateAuto, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  )
 
 
+wes_cols <- wes_palette("Zissou1", 8, type = "continuous")
+
+ggplot(pop_summary, aes(x = Region, y = mean_het, fill = Region)) +
+  
+  # boxplots
+  geom_boxplot(
+    width = 0.6,
+    outlier.shape = NA,
+    color = "black",
+    linewidth = 0.3,
+    alpha = 0.85
+  ) +
+  
+  # jittered points
+  geom_jitter(
+    width = 0.12,
+    size = 2,
+    shape = 21,
+    color = "black",
+    stroke = 0.2,
+    alpha = 0.9
+  ) +
+  
+  scale_fill_manual(values = wes_cols) +
+  
+  labs(
+    x = "",
+    y = "Mean autosomal heterozygosity",
+    fill = "Region"
+  ) +
+  
+  theme_classic(base_family = "lato", base_size = 14) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    
+    # subtle horizontal guides like your SNP plot
+    panel.grid.major.y = element_line(color = "grey90", linewidth = 0.3),
+    panel.grid.major.x = element_blank(),
+    
+    # cleaner categorical axis
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    
+    # keep legend consistent with your other figures
+    legend.position = "right"
+  )
+```
+
+Regional distributions of autosomal heterozygosity in SGDP regions. Boxplots show population-level means, with individual populations overlaid as points. African populations exhibit the highest levels of genetic diversity, with reduced heterozygosity observed in non-African regions, consistent with serial founder effects during human expansion out of Africa.
 
 # Distribution of pigmentation SNPs
 
