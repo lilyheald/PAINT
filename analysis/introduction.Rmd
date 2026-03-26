@@ -251,20 +251,22 @@ Current research also shows that the architecture of skin pigmentation is broade
 ```{r snp_table, echo = FALSE, message = FALSE, warning = FALSE}
 snp_tab <- data.frame(
   Locus = c("SLC24A5", "SLC45A2", "TYR", "OCA2/HERC2", "MC1R and ASIP", "ADAMTS12"),
-  `Typical role in pigmentation biology` = c("Melanosome associated ion transport and melanogenesis", 
+  Role = c("Melanosome associated ion transport and melanogenesis", 
                                              "Melanosomal transport and pH related effects on melanogenesis", 
                                              "Core melanogenic enzyme pathway", 
                                              "Pigment regulation with strong effects on eye color and broader pigment traits", 
                                              "Regulation of melanocytic signaling and balance of pigment outputs", 
                                              "ADAMTS12"),
-  `Evidence in modern human variation` = c("Major contributor to lighter skin in West Eurasia and beyond", 
+  Evidence = c("Major contributor to lighter skin in West Eurasia and beyond", 
                                            "Repeatedly associated with skin color variation, especially in Europeans", 
                                            "Associated with normal pigment variation and lighter pigmentation in some populations", 
                                            "Important in pigmentation architecture, especially in Eurasian datasets", 
                                            "Strong effects on pigment-related traits and sun sensitivity, with marked population specificity", 
                                            "ADAMTS12")
 )
-knitr::kable(snp_tab, caption = "Pigmentation-associated SNPs")
+knitr::kable(snp_tab, 
+             col.names = c("Locus", "Typical role in pigmentation biology", "Evidence in modern humans"),
+             caption = "Pigmentation-associated SNPs")
 ```
 
 
