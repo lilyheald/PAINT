@@ -118,7 +118,7 @@ ggplot() +
 
 High-coverage archaic nuclear genomes remain an exceptionally small record, currently including only five individuals. This narrow archaeological base limits the locus-level inference, as the archaic dataset includes a handful of individuals separated by large gaps in time rather than from a representative archaic sample. 
 
-```{r archaic_table}
+```{r archaic_table, echo = FALSE, message = FALSE, warning = FALSE}
 arc_tab_df <- data.frame(
   Specimen = c("Denisova 5", "Chagyrskaya 8", "Vindija 33.19", "Denisova 25", "Denisova 3"),
   Species = c(rep("Neanderthal", 3), rep("Denisovan", 2)),
@@ -248,7 +248,7 @@ ggplot(snps_plot, aes(x = Chromosome, y = n, fill = Category)) +
 
 Current research also shows that the architecture of skin pigmentation is broader and more population-specific than earlier Eurocentric models implied (Feng et al., 2021; E. E. Quillen et al., 2019). Studies in African and admixed populations have identified additional loci, including MFSD12 and DDB1, that were not prominent in early European-focused analyses (Crawford et al., 2017; Feng et al., 2021). The number of known pigmentation SNPs is now large, effect sizes vary across populations, and older predictive panels were built on samples that only capture a fraction of the global genetic landscape (E. E. Quillen et al., 2019).
 
-```{r snp_table}
+```{r snp_table, echo = FALSE, message = FALSE, warning = FALSE}
 snp_tab <- data.frame(
   Locus = c("SLC24A5", "SLC45A2", "TYR", "OCA2/HERC2", "MC1R and ASIP", "ADAMTS12"),
   `Typical role in pigmentation biology` = c("Melanosome associated ion transport and melanogenesis", 
