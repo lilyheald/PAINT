@@ -137,39 +137,22 @@ Modern human genomes were obtained from the Simons Genome Diversity Project (SGD
 
 
 ```{r modern_samples, echo = FALSE}
-modern_samples <- data.frame(
-  population = c("Yoruba", "Bantu_Hetero", "Khomani_San", "Mongola", "Tlingit",
-                 "Eskimo_Sireniki", "Dai", "Cambodian", "Han", "Papuan", "Maori",
-                 "Australian", "French", "Hungarian", "Greek"),
-  lon  = c(3.9, 19.0, 20.8, 111.0, 158.65, 173.9, 100.0, 105.0, 114.0, 143.0, 
-           174.5, 143.0, 2.0, 9.1, 23.7), #E (+) W (-)
-  lat  = c(7.4, -22.0, -27.0, 45.0, 53, 64.4, 21.0, 12.0, 32.3, -4.0, -41.3,
-           -13.0, 46.0, 47.5, 38.0) #N (+) S (-)
+metadata <- read.table(
+  "https://sf-web-assets-prod.s3.amazonaws.com/wp-content/uploads/2023/05/05_02_2023_SGDP_metainformation_update.txt",
+  header = TRUE,
+  sep = "\t",
+  fill = TRUE,
+  quote = "",
+  comment.char = "",
+  stringsAsFactors = FALSE
 )
-
-modern_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 
 ggplot() +
   geom_raster(data = uv_land_df, aes(x = lon, y = lat, fill = UVIndex)) +
   scale_fill_gradientn(colours = wes_cols, name = "UV Index", na.value = "white") +
   geom_sf(data = world, fill = NA, color = "grey60", size = 0.2) +
-  geom_point(data = modern_samples, aes(x = lon, y = lat), 
+  geom_point(data = metadata, aes(x = Longitude, y = Latitude), 
              color = "#00008B", fill = "#00008B", shape = 21, size = 3, stroke = 1) +
-  geom_label_repel(
-    data = modern_samples,
-    aes(x = lon, y = lat, label = population),
-    box.padding = 0.7,
-    point.padding = 0.3,
-    segment.color = "#00008B",
-    segment.size = 0.4,
-    fill = alpha("white", 0.8),
-    label.r = unit(0.2, "lines"),
-    color = "black",
-    size = 3,
-    label.size = 0.3,
-    family = "lato",
-    min.segment.length = 0
-  ) +
   coord_sf(expand = FALSE, xlim = c(-20, 200), ylim = c(-50, 80)) +
   theme_minimal(base_family = "lato") +
   theme(
