@@ -374,7 +374,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -385,8 +385,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -399,9 +399,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>~/Documents/GitHub/PAINT/</code>
@@ -424,21 +424,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -529,15 +526,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeb1060b3e8a1dbb693326273e35f91a06f643f13ftargetblankb1060b3a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeb98a9f1c8d9c049c06875060af412c6db26d7d8dtargetblankb98a9f1a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/b1060b3e8a1dbb693326273e35f91a06f643f13f" target="_blank">b1060b3</a>
+<a href="https://github.com/lilyheald/PAINT/tree/b98a9f1c8d9c049c06875060af412c6db26d7d8d" target="_blank">b98a9f1</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeb1060b3e8a1dbb693326273e35f91a06f643f13ftargetblankb1060b3a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeb98a9f1c8d9c049c06875060af412c6db26d7d8dtargetblankb98a9f1a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -547,7 +544,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/b1060b3e8a1dbb693326273e35f91a06f643f13f" target="_blank">b1060b3</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/b98a9f1c8d9c049c06875060af412c6db26d7d8d" target="_blank">b98a9f1</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -572,9 +569,6 @@ Ignored files:
     Ignored:    data/pigmentation_snps.csv
     Ignored:    data/simons_metadata.csv
     Ignored:    data/simons_whole.csv
-
-Unstaged changes:
-    Modified:   analysis/depth.Rmd
 
 </code></pre>
 <p>
@@ -618,6 +612,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/b98a9f1c8d9c049c06875060af412c6db26d7d8d/analysis/depth.Rmd" target="_blank">b98a9f1</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+<td>
+wflow_publish("analysis/depth.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/a713e79a4ffff3fb3b79da47f82561c6727b1f50/analysis/depth.Rmd" target="_blank">a713e79</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+<td>
+Create summary tables
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/a713e79a4ffff3fb3b79da47f82561c6727b1f50/docs/depth.html" target="_blank">a713e79</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+<td>
+Create summary tables
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -725,6 +770,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/a713e79a4ffff3fb3b79da47f82561c6727b1f50/docs/figure/depth.Rmd/depth_viz-1.png" target="_blank">a713e79</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/05c4750a7b65c4523cadbcab6f74fdb99c0c598c/docs/figure/depth.Rmd/depth_viz-1.png" target="_blank">05c4750</a>
 </td>
 <td>
@@ -763,6 +819,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/a713e79a4ffff3fb3b79da47f82561c6727b1f50/docs/figure/depth.Rmd/depth_viz_log-1.png" target="_blank">a713e79</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/05c4750a7b65c4523cadbcab6f74fdb99c0c598c/docs/figure/depth.Rmd/depth_viz_log-1.png" target="_blank">05c4750</a>
 </td>
 <td>
@@ -779,8 +846,24 @@ Lily Heald
 </div>
 <div id="missingness" class="section level1">
 <h1>Missingness</h1>
-<p>In order to examine patterns of missingness, I created a heatmap of
-where sequencing depth = 0.</p>
+<p>Additional archaic genomes exist at low coverage, including the early
+Denisova 3 draft genome, the Denisova 11 (“Denny”) admixed individual,
+and several later Neanderthals sequenced at ~1-2.7x coverage (Hajdinjak
+et al., 2018; Reich et al., 2010; Sawyer et al., 2015; Slon et al.,
+2018). These genomes are important for population history, but they are
+less reliable due to high levels of missingness and uncertainty. For
+that reason, the archaeological availability of high-coverage genomes
+limits phenotype inference. The high-coverage record includes only five
+individuals, ranging from 200-50ka, and a narrow geographic range.</p>
+<p>Taken together, these genomes make direct archaic pigmentation
+analyses possible, but only in the manner of descriptions and
+comparisons. This limited dataset does not provide enough statistical
+power to make claims about the full pigmentation range of Neanderthals
+or Denisovans as groups. This motivates the aim of this study to provide
+a locus-level catalog of pigmentation-associated SNPs in available
+archaic genomes, and then compare those with variation in diverse modern
+humans. In order to examine patterns of missingness, I created a heatmap
+of where sequencing depth = 0.</p>
 <p><img src="figure/depth.Rmd/missing_map-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-missing_map-1">
@@ -804,6 +887,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/a713e79a4ffff3fb3b79da47f82561c6727b1f50/docs/figure/depth.Rmd/missing_map-1.png" target="_blank">a713e79</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/lilyheald/PAINT/blob/05c4750a7b65c4523cadbcab6f74fdb99c0c598c/docs/figure/depth.Rmd/missing_map-1.png" target="_blank">05c4750</a>
