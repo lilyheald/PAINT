@@ -1,5 +1,5 @@
 ---
-title: "analysis"
+title: "PCA"
 output: html_document
 ---
 
@@ -41,6 +41,8 @@ variance_explained_wg <- eigval_wg / sum(eigval_wg) * 100
 
 pc1_label_wg <- sprintf("PC1 (%.2f%%)", variance_explained_wg[1])
 pc2_label_wg <- sprintf("PC2 (%.2f%%)", variance_explained_wg[2])
+pc3_label_wg <- sprintf("PC3 (%.2f%%)", variance_explained_wg[3])
+pc4_label_wg <- sprintf("PC4 (%.2f%%)", variance_explained_wg[4])
 
 # pigmentation
 colnames(eigvec_pig)[1:2] <- c("FID", "IID")
@@ -53,6 +55,8 @@ variance_explained_pig <- eigval_pig / sum(eigval_pig) * 100
 
 pc1_label_pig <- sprintf("PC1 (%.2f%%)", variance_explained_pig[1])
 pc2_label_pig <- sprintf("PC2 (%.2f%%)", variance_explained_pig[2])
+pc3_label_pig <- sprintf("PC3 (%.2f%%)", variance_explained_pig[3])
+pc4_label_pig <- sprintf("PC4 (%.2f%%)", variance_explained_pig[3])
 ```
 
 ```{r plot}

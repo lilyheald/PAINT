@@ -1,0 +1,217 @@
+---
+title: "Depth"
+output: html_document
+---
+
+```{r setup, include = FALSE, message = FALSE, warning = FALSE}
+library(ggplot2)
+library(tidyverse)
+library(showtext)
+library(sysfonts)
+library(workflowr)
+library(readr)
+library(wesanderson)
+
+font_add_google("Lato", "lato")
+
+showtext_auto()
+```
+
+# Sequencing coverage
+
+Sequencing read alignments were processed using samtools. The input BAM file was first indexed, then coordinate-sorted and re-indexed to ensure compatibility with downstream analyses. Read depth was calculated for archaic samples at the specified pigmentation-related SNP panel using samtools depth including sites with zero coverage. 
+
+```{r depth, include = FALSE, message = FALSE, warning = FALSE, echo = FALSE}
+scladina <- read.table("data/Sclad_depth.txt", header = F) 
+denny <- read.table("data/denny_depth.txt", header = F) 
+mez1 <- read.table("data/mez1_depth.txt", header = F) 
+hstadel <- read.table("data/hst_depth.txt", header = F) 
+spy <- read.table("data/spy_depth.txt", header = F) 
+lescottes <- read.table("data/lesCottes_depth.txt", header = F)
+den5 <- read.table("data/den5_depth.txt", header = F)
+mez2 <- read.table("data/mez2_depth.txt", header = F)
+vindija87 <- read.table("data/vindija87_depth.txt", header = F)
+chag8 <- read.table("data/Chagyrskaya8_depth.txt", header = F)
+den25 <- read.table("data/den25_depth.txt", header = F)
+den3 <- read.table("data/Denisova3_depth.txt", header = F)
+vindija33 <- read.table("data/vindija33_depth.txt", header = F)
+goyet <- read.table("data/goyet_depth.txt", header = F)
+
+colnames(mez2) <- c("Chromosome", "Position", "Depth")
+colnames(lescottes) <- c("Chromosome", "Position", "Depth")
+colnames(hstadel) <- c("Chromosome", "Position", "Depth")
+colnames(scladina) <- c("Chromosome", "Position", "Depth")
+colnames(denny) <- c("Chromosome", "Position", "Depth")
+colnames(mez1) <- c("Chromosome", "Position", "Depth")
+colnames(spy) <- c("Chromosome", "Position", "Depth")
+colnames(den5) <- c("Chromosome", "Position", "Depth")
+colnames(chag8) <- c("Chromosome", "Position", "Depth")
+colnames(vindija87) <- c("Chromosome", "Position", "Depth")
+colnames(den25) <- c("Chromosome", "Position", "Depth")
+colnames(den3) <- c("Chromosome", "Position", "Depth")
+den3 <- den3 %>%
+  mutate(Chromosome = as.numeric(substr(Chromosome, 3, nchar(Chromosome))))
+colnames(vindija33) <- c("Chromosome", "Position", "Depth")
+colnames(goyet) <- c("Chromosome", "Position", "Depth")
+
+scladina$Sample <- "Scladina"
+denny$Sample <- "Denisova 11 (Denny)"
+mez1$Sample <- "Mez1"
+mez2$Sample <- "Mez2"
+hstadel$Sample <- "HST"
+spy$Sample <- "Spy"
+lescottes$Sample <- "Les Cottés Z4-1415"
+den5$Sample <- "Denisova 5 (Altai Neanderthal)"
+chag8$Sample <- "Chagyrskaya 8"
+vindija87$Sample <- "Vindija 87"
+den25$Sample <- "Denisova 25"
+den3$Sample <- "Denisova 3"
+vindija33$Sample <- "Vindija 33"
+goyet$Sample <- "Goyet Q56-1"
+
+depth_all <- bind_rows(scladina, denny, mez1, mez2, hstadel, 
+                       spy, lescottes, den5, chag8, vindija87, 
+                       den25, den3, vindija33, goyet)
+
+depth_all <- depth_all %>%
+  mutate(
+    Chromosome = factor(Chromosome, levels = unique(Chromosome)),
+    Sample = factor(Sample, levels = c("Scladina", "Denisova 11 (Denny)", "Mez1", 
+                                       "Mez2", "HST", "Spy", "Les Cottés Z4-1415", 
+                                       "Denisova 5 (Altai Neanderthal)", 
+                                       "Chagyrskaya 8", "Vindija 87", "Denisova 25", 
+                                       "Denisova 3", "Vindija 33", 
+                                       "Goyet Q56-1"))
+  )
+```
+
+```{r depth_viz, echo = FALSE}
+wes_samples <- wes_palette("Zissou1", 14, type = "continuous")
+
+ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
+  geom_point(size = 2, alpha = 0.6) +
+  scale_color_manual(values = wes_samples) +
+  labs(
+    title = "Sequencing Depth",
+    subtitle = "EBI pigmentation-related loci",
+    x = "Genomic Position",
+    y = "Sequencing depth",
+    color = "Sample"
+  ) +
+  theme_bw(base_size = 14) +
+  theme_minimal(base_family = "lato") +
+  theme(
+    legend.position = "top",
+    legend.background = element_blank(),
+    panel.grid = element_blank(),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5)
+  )
+```
+
+
+```{r depth_viz_log, echo = FALSE}
+ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
+  geom_point(size = 2, alpha = 0.6) +
+  scale_color_manual(values = wes_samples) +
+  labs(
+    title = "Sequencing Depth (log-transformed)",
+    subtitle = "EBI pigmentation-related loci",
+    x = "Genomic Position",
+    y = "Sequencing depth (log)",
+    color = "Sample"
+  ) +
+  theme_bw(base_size = 14) +
+  theme_minimal(base_family = "lato") +
+  theme(
+    legend.position = "top",
+    legend.background = element_blank(),
+    panel.grid = element_blank(),
+    axis.text.x = element_blank(),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5)
+  )
+```
+
+
+# Missingness
+
+In order to examine patterns of missingness, I created a heatmap of where sequencing depth = 0. 
+
+
+```{r missing_map}
+depth_all <- depth_all %>%
+  mutate(
+    Position = as.factor(Position),
+    Depth = as.numeric(Depth),
+    Position_bin = round(Position / 500000),
+    Depth_NA = ifelse(Depth > 0, log(Depth), NA)  # avoid -Inf
+  )
+
+ggplot(depth_all, aes(x = Position, y = Sample)) +
+  geom_raster(aes(fill = Depth_NA)) +
+  scale_fill_gradientn(
+    colors = wes_palette("Zissou1", 100, type = "continuous"),
+    na.value = "grey70",
+    name = "log(Depth)"
+  ) +
+  theme_minimal(base_family = "lato") +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_text(size = 8),
+    panel.spacing = unit(0.5, "lines")
+  ) 
+```
+
+Manhattan style plot 
+
+```{r manhattan_depth}
+depth_all <- depth_all %>%
+  mutate(
+    Position = as.numeric(as.character(Position)),
+    Depth = as.numeric(as.character(Depth))
+  )
+
+depth_all <- depth_all %>%
+  arrange(Chromosome, Position) %>%
+  group_by(Chromosome) %>%
+  mutate(chr_len = max(Position, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(
+    chr_offset = cumsum(lag(chr_len, default = 0)),
+    Position_cum = Position + chr_offset,
+    Depth_log = ifelse(Depth > 0, log10(Depth), NA)
+  )
+
+ggplot(depth_all, aes(x = Position_cum, y = Depth_log, color = Chromosome)) +
+  geom_point(size = 0.8, alpha = 0.8) +
+  scale_color_manual(
+    values = rep(wes_palette("Zissou1", 5), length.out = length(unique(depth_all$Chromosome)))
+  ) +
+  theme_minimal(base_family = "lato") +
+  labs(
+    x = "Genomic Position",
+    y = "log10(Depth)",
+    color = "Chromosome"
+  )
+
+ggplot(depth_all, aes(x = Position_cum, y = Depth_log, color = Chromosome)) +
+  geom_point(size = 0.6) +
+  facet_wrap(~ Sample, ncol = 3) +
+  scale_color_manual(
+    values = rep(wes_palette("Zissou1", 5), length.out = length(unique(depth_all$Chromosome)))
+  ) +
+  theme_minimal(base_family = "lato") +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold")
+  ) +
+  labs(
+    x = "Genomic Position",
+    y = "log10(Depth)"
+  )
+```
+
+
+
+

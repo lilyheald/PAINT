@@ -14,6 +14,8 @@ library(sysfonts)
 library(workflowr)
 library(readr)
 library(wesanderson)
+library(dplyr)
+library(stringr)
 
 font_add_google("Lato", "lato")
 
@@ -176,149 +178,91 @@ ggplot() +
 
 In order to allow for comparison of genome-wide ancestry patterns with structure driven by a targeted functional SNP set. For pigmentation-specific analyses, a panel consisting of 395 SNPs previously associated with pigmentation phenotypes published on the NHGRI-EBI Catalog of human genome-wide association studies was used. The by-chromosome distribution of these SNPs is shown below.
 
-```{r snps_dist, echo = FALSE, message = FALSE, warning = FALSE,}
+```{r snps_dist, echo = FALSE, message = FALSE, warning = FALSE}
 snps_set <- read.csv("data/pigmentation_snps.csv", header = T)
 
-snps_set <- snps_set %>%
-  mutate(Chromosome = sub("\\:.*", "", locations),
-         Chromosome = factor(Chromosome, 
-                             levels = sort(as.numeric(unique(Chromosome)))
-                             )
-         )
+target_genes <- c("SLC24A5", "SLC45A2", "TYR", "OCA2", "HERC2", "MC1R")
 
-snps_set %>%
-  drop_na(Chromosome) %>%
-ggplot(aes(x = Chromosome)) +
-  geom_bar(
-    fill = wes_palette("Zissou1", 1),
+snps_plot <- snps_set %>%
+  mutate(
+    Chromosome = sub("\\:.*", "", locations)
+  ) %>%
+  separate_rows(mappedGenes, sep = ",") %>%
+  mutate(Gene = str_trim(mappedGenes)) %>%
+  mutate(
+    Category = ifelse(Gene %in% target_genes, Gene, "Other SNPs")
+  ) %>%
+  drop_na(Chromosome)
+
+snps_plot <- snps_plot %>%
+  count(Chromosome, Category)
+
+snps_plot <- snps_plot %>%
+  mutate(
+    Chromosome = factor(
+      Chromosome,
+      levels = sort(as.numeric(unique(Chromosome)))
+    ),
+    Category = factor(
+      Category,
+      levels = c("Other SNPs", target_genes)
+    )
+  )
+
+wes_cols <-  wes_palette("Zissou1", 10, type = "continuous")
+
+fill_colors <- c(
+  "Other SNPs" = "grey85",
+  setNames(wes_cols, target_genes)
+)
+
+ggplot(snps_plot, aes(x = Chromosome, y = n, fill = Category)) +
+  geom_col(
+    width = 0.7,
     color = "black",
-    linewidth = 0.3,
-    width = 0.8
+    linewidth = 0.2
   ) +
+  scale_fill_manual(values = fill_colors) +
   labs(
     x = "Chromosome",
-    y = "Number of SNPs"
+    y = "Number of SNPs",
+    fill = "Gene"
   ) +
   theme_classic(base_family = "lato", base_size = 14) +
   theme(
     axis.title = element_text(face = "bold"),
     axis.text = element_text(color = "black"),
-    axis.line = element_line(color = "black", linewidth = 0.4),
-    panel.grid.major.y = element_line(
-      color = "grey85",
-      linewidth = 0.3
-    ),
-    panel.grid.minor = element_blank()
+    panel.grid.major.y = element_line(color = "grey90", linewidth = 0.3),
+    panel.grid.major.x = element_blank(),
+    legend.position = "right"
   )
 ```
 
-# Sequencing coverage
+```{r chr5, echo = FALSE, message = FALSE, warning = FALSE}
+chr5_genes <- snps_set %>%
+  mutate(Chromosome = sub("\\:.*", "", locations)) %>%
+  filter(Chromosome == "5") %>%
+  separate_rows(mappedGenes, sep = ",") %>%
+  mutate(Gene = str_trim(mappedGenes)) %>%
+  filter(Gene != "-", !is.na(Gene))
 
-Sequencing read alignments were processed using samtools. The input BAM file was first indexed, then coordinate-sorted and re-indexed to ensure compatibility with downstream analyses. Read depth was calculated for archaic samples at the specified pigmentation-related SNP panel using samtools depth including sites with zero coverage. 
+chr5_summary <- chr5_genes %>%
+  count(Gene, sort = TRUE)
 
-```{r depth, include = FALSE, message = FALSE, warning = FALSE, echo = FALSE}
-scladina <- read.table("data/Sclad_depth.txt", header = F) 
-denny <- read.table("data/denny_depth.txt", header = F) 
-mez1 <- read.table("data/mez1_depth.txt", header = F) 
-hstadel <- read.table("data/hst_depth.txt", header = F) 
-spy <- read.table("data/spy_depth.txt", header = F) 
-lescottes <- read.table("data/lesCottes_depth.txt", header = F)
-den5 <- read.table("data/den5_depth.txt", header = F)
-mez2 <- read.table("data/mez2_depth.txt", header = F)
-vindija87 <- read.table("data/vindija87_depth.txt", header = F)
-chag8 <- read.table("data/Chagyrskaya8_depth.txt", header = F)
-den25 <- read.table("data/den25_depth.txt", header = F)
+head(chr5_summary, 10)
 
-den3 <- read.table("data/Denisova3_depth.txt", header = F)
+library(ggplot2)
 
-colnames(mez2) <- c("Chromosome", "Position", "Depth")
-colnames(lescottes) <- c("Chromosome", "Position", "Depth")
-colnames(hstadel) <- c("Chromosome", "Position", "Depth")
-colnames(scladina) <- c("Chromosome", "Position", "Depth")
-colnames(denny) <- c("Chromosome", "Position", "Depth")
-colnames(mez1) <- c("Chromosome", "Position", "Depth")
-colnames(spy) <- c("Chromosome", "Position", "Depth")
-colnames(den5) <- c("Chromosome", "Position", "Depth")
-colnames(chag8) <- c("Chromosome", "Position", "Depth")
-colnames(vindija87) <- c("Chromosome", "Position", "Depth")
-colnames(den25) <- c("Chromosome", "Position", "Depth")
-colnames(den3) <- c("Chromosome", "Position", "Depth")
-den3 <- den3 %>%
-  mutate(Chromosome = as.numeric(substr(Chromosome, 3, nchar(Chromosome))))
+top_chr5 <- chr5_summary %>%
+  slice_max(n, n = 10)
 
-scladina$Sample <- "Scladina"
-denny$Sample <- "Denisova 11 (Denny)"
-mez1$Sample <- "Mez1"
-mez2$Sample <- "Mez2"
-hstadel$Sample <- "HST"
-spy$Sample <- "Spy"
-lescottes$Sample <- "les Cottes"
-den5$Sample <- "Denisova 5 (Altai Neanderthal)"
-chag8$Sample <- "Chagyrskaya 8"
-vindija87$Sample <- "Vindija 87"
-den25$Sample <- "Denisova 25"
-den3$Sample <- "Denisova 3"
-
-depth_all <- bind_rows(scladina, denny, mez1, mez2, hstadel, 
-                       spy, lescottes, den5, chag8, vindija87, 
-                       den25, den3)
-
-depth_all <- depth_all %>%
-  mutate(
-    Chromosome = factor(Chromosome, levels = unique(Chromosome)),
-    Sample = factor(Sample, levels = c("Scladina", "Denisova 11 (Denny)", "Mez1", "Mez2", "HST", "Spy", "les Cottes", "Denisova 5 (Altai Neanderthal)", "Chagyrskaya 8", "Vindija 87", "Denisova 25", "Denisova 3"))
-  )
-```
-
-```{r depth_viz, echo = FALSE}
-wes_samples <- wes_palette("Zissou1", 12, type = "continuous")
-
-ggplot(depth_all, aes(x = Position, y = Depth, color = Sample)) +
-  geom_point(size = 2, alpha = 0.6) +
-  scale_color_manual(values = wes_samples) +
+ggplot(top_chr5, aes(x = reorder(Gene, n), y = n)) +
+  geom_col(fill = "grey40", width = 0.7) +
+  coord_flip() +
   labs(
-    title = "Sequencing Depth",
-    subtitle = "EBI pigmentation-related loci",
-    x = "Genomic Position",
-    y = "Sequencing depth",
-    color = "Sample"
+    x = "Gene",
+    y = "Number of SNPs",
+    title = "Top genes on chromosome 5"
   ) +
-  theme_bw(base_size = 14) +
-  theme_minimal(base_family = "lato") +
-  theme(
-    legend.position = "top",
-    legend.background = element_blank(),
-    panel.grid = element_blank(),
-    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(size = 10, hjust = 0.5)
-  )
+  theme_classic(base_family = "lato")
 ```
-
-
-```{r depth_viz_log, echo = FALSE}
-ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
-  geom_point(size = 2, alpha = 0.6) +
-  scale_color_manual(values = wes_samples) +
-  labs(
-    title = "Sequencing Depth (log-transformed)",
-    subtitle = "EBI pigmentation-related loci",
-    x = "Genomic Position",
-    y = "Sequencing depth (log)",
-    color = "Sample"
-  ) +
-  theme_bw(base_size = 14) +
-  theme_minimal(base_family = "lato") +
-  theme(
-    legend.position = "top",
-    legend.background = element_blank(),
-    panel.grid = element_blank(),
-    axis.text.x = element_blank(),
-    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(size = 10, hjust = 0.5)
-  )
-```
-
-
-
-
-
