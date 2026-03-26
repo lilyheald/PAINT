@@ -16,6 +16,7 @@ library(readr)
 library(wesanderson)
 library(dplyr)
 library(stringr)
+library(knitr)
 
 font_add_google("Lato", "lato")
 
@@ -70,7 +71,7 @@ sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 
 # Ancient genome availability
 
-DNA can persist for up to hundreds of thousands of years in skeletal remains, and can even be extracted from sediments. However, extracting such DNA poses a challenge. Ancient DNA is typically present in very small amounts, is highly fragmented, and contaminated with other endogenous organic molecules which inhibit enzymatic DNA manipulations which must be performed prior to sequencing, or exogenous DNA. There are high-quality genomic sequences available for two Denisovans and three Neanderthals. There are also low coverage sequences available from 14 Neanderthals, spanning spatially from Gibraltar to Siberia and temporally from 39 to 120ka. A total of eleven archaic genomic samples will be analysed in this study, including all five high coverage genomes.
+DNA can persist for up to hundreds of thousands of years in skeletal remains, and can even be extracted from sediments. However, extracting such DNA poses a challenge. Ancient DNA is typically present in very small amounts, is highly fragmented, and contaminated with other endogenous organic molecules which inhibit enzymatic DNA manipulations which must be performed prior to sequencing, or exogenous DNA. There are high-quality genomic sequences available for two Denisovans and three Neanderthals. There are also low coverage sequences available spanning spatially from Gibraltar to Siberia and temporally from 39 to 120ka. A total of fourteen archaic genomic samples will be analysed in this study, including all five high coverage genomes.
 
 ```{r plot, echo = FALSE}
 wes_cols <- wes_palette("Zissou1", 100, type = "continuous")
@@ -114,6 +115,21 @@ ggplot() +
   )
 
 ```
+
+High-coverage archaic nuclear genomes remain an exceptionally small record, currently including only five individuals. This narrow archaeological base limits the locus-level inference, as the archaic dataset includes a handful of individuals separated by large gaps in time rather than from a representative archaic sample. 
+
+```{r archaic_table}
+arc_tab_df <- data.frame(
+  Specimen = c("Denisova 5", "Chagyrskaya 8", "Vindija 33.19", "Denisova 25", "Denisova 3"),
+  Species = c(rep("Neanderthal", 3), rep("Denisovan", 2)),
+  Location = c("Denisova cave", "Chagyrskaya cave", "Vindija cave","Denisova cave", "Denisova cave"),
+  Age = c("122 ka", "60 ka", "52 ka", "200 ka", "72 ka")
+)
+
+knitr::kable(arc_tab_df, caption = "Available high-coverage archaic genomes")
+```
+
+
 
 # Modern reference genomes
 
@@ -178,10 +194,14 @@ ggplot() +
 
 In order to allow for comparison of genome-wide ancestry patterns with structure driven by a targeted functional SNP set. For pigmentation-specific analyses, a panel consisting of 395 SNPs previously associated with pigmentation phenotypes published on the NHGRI-EBI Catalog of human genome-wide association studies was used. The by-chromosome distribution of these SNPs is shown below.
 
+The genetic architecture of human pigmentation is highly polygenic, involving many loci that contribute to variation in skin, hair, and eye color (E. Quillen et al., 2018). Genome-wide association studies have identified hundreds of single-nucleotide polymorphisms (SNPs) associated with pigmentation phenotypes. Many of these variants lie in genes involved in melanogenesis, melanosome biogenesis, melanosomal transport, or regulation of melanocyte signaling, including SLC45A2 (chr5), ADAMTS12 (chr5), TYR (chr11), SLC24A5 (chr15), OCA2 (chr15), HERC2 (chr15), and MC1R (chr16) (Sturm, 2009). The distribution of pigmentation associated SNPs across the genome is not uniform. 
+
+
 ```{r snps_dist, echo = FALSE, message = FALSE, warning = FALSE}
 snps_set <- read.csv("data/pigmentation_snps.csv", header = T)
 
-target_genes <- c("SLC24A5", "SLC45A2", "TYR", "OCA2", "HERC2", "MC1R", "ADAMTS12")
+target_genes <- c("SLC24A5", "SLC45A2", "TYR", "OCA2", "HERC2", "MC1R", 
+                  "ASIP", "ADAMTS12")
 
 # Count unique SNPs per chromosome and category
 snps_plot <- snps_set %>%
@@ -201,7 +221,7 @@ snps_plot$Chromosome <- factor(snps_plot$Chromosome, levels = chrom_levels)
 snps_plot$Category <- factor(snps_plot$Category, levels = c("Other SNPs", target_genes))
 
 # Colors
-wes_cols <- wes_palette("Zissou1", 7, type = "continuous")
+wes_cols <- wes_palette("Zissou1", 8, type = "continuous")
 fill_colors <- c(
   setNames(wes_cols, target_genes),
   "Other SNPs" = "grey85"
@@ -225,3 +245,26 @@ ggplot(snps_plot, aes(x = Chromosome, y = n, fill = Category)) +
     legend.position = "right"
   )
 ```
+
+Current research also shows that the architecture of skin pigmentation is broader and more population-specific than earlier Eurocentric models implied (Feng et al., 2021; E. E. Quillen et al., 2019). Studies in African and admixed populations have identified additional loci, including MFSD12 and DDB1, that were not prominent in early European-focused analyses (Crawford et al., 2017; Feng et al., 2021). The number of known pigmentation SNPs is now large, effect sizes vary across populations, and older predictive panels were built on samples that only capture a fraction of the global genetic landscape (E. E. Quillen et al., 2019).
+
+```{r snp_table}
+snp_tab <- data.frame(
+  Locus = c("SLC24A5", "SLC45A2", "TYR", "OCA2/HERC2", "MC1R and ASIP", "ADAMTS12"),
+  `Typical role in pigmentation biology` = c("Melanosome associated ion transport and melanogenesis", 
+                                             "Melanosomal transport and pH related effects on melanogenesis", 
+                                             "Core melanogenic enzyme pathway", 
+                                             "Pigment regulation with strong effects on eye color and broader pigment traits", 
+                                             "Regulation of melanocytic signaling and balance of pigment outputs", 
+                                             "ADAMTS12"),
+  `Evidence in modern human variation` = c("Major contributor to lighter skin in West Eurasia and beyond", 
+                                           "Repeatedly associated with skin color variation, especially in Europeans", 
+                                           "Associated with normal pigment variation and lighter pigmentation in some populations", 
+                                           "Important in pigmentation architecture, especially in Eurasian datasets", 
+                                           "Strong effects on pigment-related traits and sun sensitivity, with marked population specificity", 
+                                           "ADAMTS12")
+)
+knitr::kable(snp_tab, caption = "Pigmentation-associated SNPs")
+```
+
+
