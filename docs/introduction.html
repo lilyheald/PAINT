@@ -373,7 +373,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -384,8 +384,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -398,9 +398,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>~/Documents/GitHub/PAINT/</code>
@@ -423,21 +423,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -528,15 +525,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree814636aa08e903d47e3188da720cdff00d576508targetblank814636aa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree325e8b2bd475849b7c2061f3d7c957827bbe98cbtargetblank325e8b2a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/814636aa08e903d47e3188da720cdff00d576508" target="_blank">814636a</a>
+<a href="https://github.com/lilyheald/PAINT/tree/325e8b2bd475849b7c2061f3d7c957827bbe98cb" target="_blank">325e8b2</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree814636aa08e903d47e3188da720cdff00d576508targetblank814636aa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree325e8b2bd475849b7c2061f3d7c957827bbe98cbtargetblank325e8b2a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -546,7 +543,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/814636aa08e903d47e3188da720cdff00d576508" target="_blank">814636a</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/325e8b2bd475849b7c2061f3d7c957827bbe98cb" target="_blank">325e8b2</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -574,7 +571,6 @@ Ignored files:
 
 Unstaged changes:
     Modified:   analysis/depth.Rmd
-    Modified:   analysis/introduction.Rmd
 
 </code></pre>
 <p>
@@ -619,6 +615,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/325e8b2bd475849b7c2061f3d7c957827bbe98cb/analysis/introduction.Rmd" target="_blank">325e8b2</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+<td>
+wflow_publish("analysis/introduction.Rmd")
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1633,6 +1646,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/a713e79a4ffff3fb3b79da47f82561c6727b1f50/docs/figure/introduction.Rmd/plot-1.png" target="_blank">a713e79</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/790813f560b366876f071fe5cc70eccbe868fadb/docs/figure/introduction.Rmd/plot-1.png" target="_blank">790813f</a>
 </td>
 <td>
@@ -1805,6 +1829,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/a713e79a4ffff3fb3b79da47f82561c6727b1f50/docs/figure/introduction.Rmd/modern_samples-1.png" target="_blank">a713e79</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/441e6fe5899ffa37ccdd18232053e8c46b461067/docs/figure/introduction.Rmd/modern_samples-1.png" target="_blank">441e6fe</a>
 </td>
 <td>
@@ -1871,6 +1906,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/a713e79a4ffff3fb3b79da47f82561c6727b1f50/docs/figure/introduction.Rmd/snps_dist-1.png" target="_blank">a713e79</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/lilyheald/PAINT/blob/814636aa08e903d47e3188da720cdff00d576508/docs/figure/introduction.Rmd/snps_dist-1.png" target="_blank">814636a</a>
