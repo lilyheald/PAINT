@@ -11,13 +11,13 @@ library(readr)
 library(dplyr)
 
 
-eigenvec_wg_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/sgdp.wg.pca.eigenvec"
-eigenval_wg_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/sgdp.wg.pca.eigenval"
+eigenvec_wg_file <- "data/sgdp.wg.pca.eigenvec"
+eigenval_wg_file <- "data/sgdp.wg.pca.eigenval"
 
-eigenvec_pig_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/pigmentation_snps_pca.eigenvec"
-eigenval_pig_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/pigmentation_snps_pca.eigenval"
+eigenvec_pig_file <- "data/pigmentation_snps_pca.eigenvec"
+eigenval_pig_file <- "data/pigmentation_snps_pca.eigenval"
 
-metadata_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/modern_metadata.csv"
+metadata_file <- "data/modern_metadata.csv"
 
 eigvec_wg <- fread(eigenvec_wg_file)
 eigval_wg <- scan(eigenval_wg_file)
