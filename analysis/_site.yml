@@ -5,6 +5,12 @@ navbar:
   left:
   - text: Home
     href: index.html
+  - text: Background
+    href: introduction.html
+  - text: Depth
+    href: depth.html
+  - text: PCA
+    href: pca.html
   - text: About
     href: about.html
   - text: License
