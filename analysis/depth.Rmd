@@ -21,7 +21,7 @@ showtext_auto()
 
 Sequencing read alignments were processed using samtools. The input BAM file was first indexed, then coordinate-sorted and re-indexed to ensure compatibility with downstream analyses. Read depth was calculated for archaic samples at the specified pigmentation-related SNP panel using samtools depth including sites with zero coverage. 
 
-Sequencing depth is an important measure in genotyping.Sequencing depth refers to the number of times a specific nucleotide was sequenced. A higher sequencing depth confers more confidence in the accuracy of the base calls, as it reduces the likelihood of technical errors in sequencing.  
+Sequencing depth is an important measure in genotyping. Sequencing depth refers to the number of times a specific nucleotide was sequenced. A higher sequencing depth confers more confidence in the accuracy of the base calls, as it reduces the likelihood of technical errors in sequencing.  
 
 ```{r depth, include = FALSE, message = FALSE, warning = FALSE, echo = FALSE}
 scladina <- read.table("data/Sclad_depth.txt", header = F) 

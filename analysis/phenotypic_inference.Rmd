@@ -1,0 +1,191 @@
+---
+title: "Phenotype inference"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(showtext)
+library(wesanderson)
+library(patchwork)
+
+# Fonts and colors
+font_add_google("Lato", "lato")
+showtext_auto()
+wes_cols <- wes_palette("Zissou1", 100, type = "continuous")
+
+theme_pub <- function() {
+  theme_minimal(base_family = "lato") +
+    theme(
+      text = element_text(color = "#2c2c2c"),
+      plot.title = element_text(size = 16, face = "bold"),
+      axis.title = element_text(size = 12),
+      panel.grid.minor = element_blank()
+    )
+}
+
+set.seed(42)
+
+N <- 500              # population size
+G <- 20               # generations
+L <- 1000             # genome length (SNPs)
+recomb_rate <- 0.01   # recombination probability per locus
+
+heritability <- 0.5
+noise_sd <- 1
+
+init_population <- function(N, L) {
+  matrix(rbinom(N * L, 2, 0.5), nrow = N, ncol = L)
+}
+
+reproduce <- function(pop) {
+  N <- nrow(pop)
+  L <- ncol(pop)
+  new_pop <- matrix(0, nrow = N, ncol = L)
+  parents <- matrix(0, nrow = N, ncol = 2)
+  
+  for (i in 1:N) {
+    p1 <- sample(1:N, 1)
+    p2 <- sample(1:N, 1)
+    parents[i, ] <- c(p1, p2)
+    
+    mask <- rbinom(L, 1, 0.5)
+    recomb <- rbinom(L, 1, recomb_rate)
+    genome <- ifelse(mask == 1, pop[p1, ], pop[p2, ])
+    genome[recomb == 1] <- ifelse(mask[recomb == 1] == 1, pop[p2, recomb == 1], pop[p1, recomb == 1])
+    new_pop[i, ] <- genome
+  }
+  
+  list(pop = new_pop, parents = parents)
+}
+
+genetic_distance <- function(g1, g2) {
+  mean(abs(g1 - g2))
+}
+
+phenotype_function <- function(G, beta = NULL, epistasis_weight = 0.5) {
+  L <- ncol(G)
+  if (is.null(beta)) {
+    beta <- rnorm(L, 0, 0.05)
+  }
+  
+  idx <- sample(1:L, 50)
+  interaction_term <- rowSums((G[, idx[1:25]] - 1) * (G[, idx[26:50]] - 1))
+  linear <- G %*% beta
+  as.vector(heritability * (linear + epistasis_weight * interaction_term) + rnorm(nrow(G), 0, noise_sd))
+}
+
+generate_archaic <- function(n, L) {
+  base <- matrix(rbinom(n * L, 2, 0.5), nrow = n)
+  # Introduce block LD-like structure
+  for (b in seq(1, L, by = 50)) {
+    block_effect <- rnorm(n, 0, 1)
+    base[, b:(b+49)] <- base[, b:(b+49)] + block_effect
+  }
+  round(pmin(pmax(base, 0), 2))
+}
+
+pop <- init_population(N, L)
+history <- list()
+pedigree <- list()
+
+for (t in 1:G) {
+  res <- reproduce(pop)
+  pop <- res$pop
+  history[[t]] <- pop
+  pedigree[[t]] <- res$parents
+}
+
+final_pop <- history[[G]]
+
+# Modern effect sizes
+beta_modern <- rnorm(L, 0, 0.05)
+phen_modern <- phenotype_function(final_pop, beta_modern)
+
+# Archaic effect sizes shifted
+archaic_pop <- generate_archaic(100, L)
+beta_archaic <- beta_modern + rnorm(L, 0, 0.05)
+phen_archaic <- phenotype_function(archaic_pop, beta_archaic)
+
+train_idx <- sample(1:nrow(final_pop), 300)
+X_train <- final_pop[train_idx, ]
+y_train <- phen_modern[train_idx]
+
+# Linear model (train on modern only)
+df_train <- data.frame(y_train, X_train)
+colnames(df_train) <- c("phen", paste0("SNP", 1:L))
+model <- lm(phen ~ ., data = df_train)
+
+df_modern <- data.frame(final_pop)
+colnames(df_modern) <- paste0("SNP", 1:L)
+pred_modern <- predict(model, newdata = df_modern)
+
+df_archaic <- data.frame(archaic_pop)
+colnames(df_archaic) <- paste0("SNP", 1:L)
+pred_archaic <- predict(model, newdata = df_archaic)
+
+mse_modern <- mean((phen_modern - pred_modern)^2)
+mse_archaic <- mean((phen_archaic - pred_archaic)^2)
+mse_modern
+mse_archaic
+
+sample_pairs <- function(pop, phen, n_pairs = 1000) {
+  N <- nrow(pop)
+  dists <- numeric(n_pairs)
+  phen_diff <- numeric(n_pairs)
+  
+  for (i in 1:n_pairs) {
+    a <- sample(1:N, 1)
+    b <- sample(1:N, 1)
+    dists[i] <- genetic_distance(pop[a, ], pop[b, ])
+    phen_diff[i] <- abs(phen[a] - phen[b])
+  }
+  data.frame(dist = dists, phen_diff = phen_diff)
+}
+
+modern_data <- sample_pairs(final_pop, phen_modern)
+archaic_data <- sample_pairs(rbind(final_pop, archaic_pop),
+                             c(phen_modern, phen_archaic))
+archaic_data$type <- "Modern + Archaic"
+modern_data$type <- "Modern"
+combined <- bind_rows(modern_data, archaic_data)
+```
+
+```{r figures}
+p1 <- ggplot(modern_data, aes(x = dist, y = phen_diff)) +
+  geom_point(alpha = 0.25, color = wes_cols[20]) +
+  geom_smooth(method = "lm", color = wes_cols[80], se = FALSE) +
+  labs(title = "Modern Humans: Genetic Distance vs Phenotype Difference",
+       x = "Genetic Distance", y = "Absolute Phenotype Difference") +
+  theme_pub()
+p1
+p2 <- ggplot(combined, aes(x = dist, y = phen_diff, color = type)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_color_manual(values = c(wes_cols[10], wes_cols[90])) +
+  labs(title = "Out-of-Distribution Phenotype Breakdown",
+       x = "Genetic Distance", y = "Absolute Phenotype Difference") +
+  theme_pub()
+p2
+df_plot <- data.frame(
+  truth = c(phen_modern, phen_archaic),
+  pred = c(pred_modern, pred_archaic),
+  type = rep(c("Modern", "Archaic"), c(length(phen_modern), length(phen_archaic)))
+)
+
+p3 <- ggplot(df_plot, aes(x = truth, y = pred, color = type)) +
+  geom_point(alpha = 0.3) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  labs(title = "Prediction Performance: Modern vs Archaic",
+       x = "True Phenotype", y = "Predicted Phenotype") +
+  scale_color_manual(values = c(wes_cols[20], wes_cols[90])) +
+  theme_pub()
+p3
+```
+
+
+
+
+
+

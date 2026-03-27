@@ -1,3 +1,8 @@
+---
+title: "Introduction"
+output: html_document
+---
+
 ```{r setup, include = FALSE, message = FALSE, warning = FALSE}
 library(ggplot2)
 library(rnaturalearth)
@@ -133,7 +138,7 @@ knitr::kable(arc_tab_df, caption = "Available high-coverage archaic genomes")
 
 # Modern reference genomes
 
-Modern human genomes were obtained from the Simons Genome Diversity Project (SGDP). A panel of 15 individuals representing broad global diversity (Africa, Europe, East Asia, Central Asia, and Oceania) to provide a stable reference frame for principal component analysis (PCA). Variant call files (VCFs) were downloaded as whole-genome SNP datasets aligned to the GRCh37/hg19 reference genome.
+Modern human genomes were obtained from the Simons Genome Diversity Project (SGDP). A panel of 279 individuals representing broad global diversity (Africa, Europe, East Asia, Central Asia, and Oceania) to provide a stable reference frame for principal component analysis (PCA). Variant call files (VCFs) were downloaded as whole-genome SNP datasets aligned to the GRCh37/hg19 reference genome.
 
 ```{r modern_samples, echo = FALSE, message = FALSE, warning = FALSE}
 metadata <- read.table(
