@@ -7,7 +7,6 @@ output:
     toc: true  
     toc_depth: 2 
     code_folding: hide  
-    theme: flatly      
 site: workflowr::wflow_site
 ---
 

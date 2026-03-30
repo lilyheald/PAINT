@@ -46,3 +46,7 @@ po/*~
 rsconnect/
 
 *.csv
+
+# Unfinished analyses
+Untitled.R
+phenotypic_inference.Rmd
