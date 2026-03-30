@@ -22,6 +22,7 @@ showtext_auto()
 
 Sequencing depth is an important measure in genotyping. Sequencing depth refers to the number of times a specific nucleotide was sequenced. A higher sequencing depth confers more confidence in the accuracy of the base calls, as it reduces the likelihood of technical errors in sequencing. 
 
+
 ```{r depth_sim, message = FALSE, warning = FALSE, echo = FALSE}
 max_depth <- 20
 error_rates <- c(0.001, 0.005, 0.01, 0.1)
