@@ -11,6 +11,7 @@ library(sysfonts)
 library(workflowr)
 library(readr)
 library(wesanderson)
+library(shiny)
 
 font_add_google("Lato", "lato")
 
@@ -19,9 +20,59 @@ showtext_auto()
 
 # Sequencing coverage
 
-Sequencing read alignments were processed using samtools. The input BAM file was first indexed, then coordinate-sorted and re-indexed to ensure compatibility with downstream analyses. Read depth was calculated for archaic samples at the specified pigmentation-related SNP panel using samtools depth including sites with zero coverage. 
+Sequencing depth is an important measure in genotyping. Sequencing depth refers to the number of times a specific nucleotide was sequenced. A higher sequencing depth confers more confidence in the accuracy of the base calls, as it reduces the likelihood of technical errors in sequencing. 
 
-Sequencing depth is an important measure in genotyping. Sequencing depth refers to the number of times a specific nucleotide was sequenced. A higher sequencing depth confers more confidence in the accuracy of the base calls, as it reduces the likelihood of technical errors in sequencing.  
+```{r depth_sim, message = FALSE, warning = FALSE, echo = FALSE}
+max_depth <- 20
+error_rates <- c(0.001, 0.005, 0.01, 0.1)
+
+labels <- c(
+  "0.001" = "Modern DNA (0.1%)", #Pfieffer et al, 2018
+  "0.005" = "Modern DNA (0.5%)",
+  "0.01" = "Treated aDNA (1%)", 
+  "0.1" = "Untreated aDNA (10%)"
+)
+
+simulate_confidence <- function(depth, error_rate) {
+  p_correct <- 1 - error_rate
+  k <- floor(depth / 2) + 1
+  1 - pbinom(k - 1, size = depth, prob = p_correct)
+}
+
+df <- expand.grid(depth = 1:max_depth, error_rate = error_rates) %>%
+  as_tibble() %>%
+  mutate(
+    confidence = mapply(simulate_confidence, depth, error_rate),
+    error_rate = factor(
+      as.character(error_rate),
+      levels = names(labels),
+      labels = labels
+    )
+  )
+
+wes_cols <- wes_palette("Zissou1", length(error_rates), type = "continuous")
+names(wes_cols) <- levels(df$error_rate)
+
+ggplot(df, aes(x = depth, y = confidence, color = error_rate)) +
+  geom_line(linewidth = 1) +
+  scale_color_manual(values = wes_cols) +
+  labs(
+    x = "Sequencing Depth",
+    y = "Probability Consensus is Correct",
+    color = "Error profile"
+  ) +
+  coord_cartesian(ylim = c(0.75, 1)) +
+  theme_classic(base_family = "lato", base_size = 14) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    panel.grid.major.y = element_line(color = "grey90", linewidth = 0.3),
+    panel.grid.major.x = element_blank(),
+    legend.position = "right"
+  )
+```
+
+Sequencing read alignments were processed using samtools. The input BAM file was first indexed, then coordinate-sorted and re-indexed to ensure compatibility with downstream analyses. Read depth was calculated for archaic samples at the specified pigmentation-related SNP panel using samtools depth including sites with zero coverage. 
 
 ```{r depth, include = FALSE, message = FALSE, warning = FALSE, echo = FALSE}
 scladina <- read.table("data/Sclad_depth.txt", header = F) 
@@ -141,7 +192,7 @@ ggplot(depth_all, aes(x = Position, y = log(Depth), color = Sample)) +
 
 Several archaic genomes exist at low coverage, including the early Denisova 3 draft genome, the Denisova 11 (“Denny”) admixed individual, and later Neanderthals sequenced at ~1-2.7x coverage (Hajdinjak et al., 2018; Reich et al., 2010; Sawyer et al., 2015; Slon et al., 2018). These genomes are important for population history, but they are less reliable due to high levels of missingness and uncertainty. For that reason, the archaeological availability of high-coverage genomes limits phenotype inference. The high-coverage record includes only five individuals, ranging from 200-50ka, and a narrow geographic range.
 
-Taken together, these genomes make direct archaic pigmentation analyses possible, but only in the manner of descriptions and comparisons. This limited dataset does not provide enough statistical power to make claims about the full pigmentation range of Neanderthals or Denisovans as groups. This motivates the aim of this study to provide a locus-level catalog of pigmentation-associated SNPs in available archaic genomes, and then compare those with variation in diverse modern humans. In order to examine patterns of missingness, I created a heatmap of where sequencing depth = 0. 
+These genomes make direct archaic pigmentation analyses possible, but only in the manner of descriptions and comparisons. This limited dataset does not provide enough statistical power to make claims about the full pigmentation range of Neanderthals or Denisovans as groups. This motivates the aim of this study to provide a locus-level catalog of pigmentation-associated SNPs in available archaic genomes, and then compare those with variation in diverse modern humans. In order to examine patterns of missingness, I created a heatmap of where sequencing depth = 0. 
 
 
 ```{r missing_map, message = FALSE, warning = FALSE, echo = FALSE}
