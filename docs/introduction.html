@@ -374,7 +374,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -385,8 +385,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -395,13 +395,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2026-03-29
+<strong>Last updated:</strong> 2026-04-06
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>~/Documents/GitHub/PAINT/</code>
@@ -424,18 +424,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -526,15 +529,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeaeed08273b06377705d4cf8cfa5c038180b17debtargetblankaeed082a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreea4f7dc59094c72f0e377092070cc0ad80fb8b897targetblanka4f7dc5a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/aeed08273b06377705d4cf8cfa5c038180b17deb" target="_blank">aeed082</a>
+<a href="https://github.com/lilyheald/PAINT/tree/a4f7dc59094c72f0e377092070cc0ad80fb8b897" target="_blank">a4f7dc5</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeaeed08273b06377705d4cf8cfa5c038180b17debtargetblankaeed082a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreea4f7dc59094c72f0e377092070cc0ad80fb8b897targetblanka4f7dc5a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -544,7 +547,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/aeed08273b06377705d4cf8cfa5c038180b17deb" target="_blank">aeed082</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/a4f7dc59094c72f0e377092070cc0ad80fb8b897" target="_blank">a4f7dc5</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -564,11 +567,24 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    analysis/.Rhistory
     Ignored:    analysis/.Rproj.user/
+    Ignored:    data/ancient_depth.csv
+    Ignored:    data/ancient_depth_clean.csv
+    Ignored:    data/ancient_metadata.csv
     Ignored:    data/modern_metadata.csv
     Ignored:    data/neo_uvi.csv
     Ignored:    data/pigmentation_snps.csv
     Ignored:    data/simons_metadata.csv
     Ignored:    data/simons_whole.csv
+
+Untracked files:
+    Untracked:  analysis/depth_spinoff.Rmd
+    Untracked:  analysis/process_links.R
+
+Unstaged changes:
+    Modified:   .gitignore
+    Deleted:    analysis/Untitled.R
+    Modified:   analysis/depth.Rmd
+    Modified:   analysis/introduction.Rmd
 
 </code></pre>
 <p>
@@ -613,6 +629,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/e22ec651fa2ab67f2e8083285eaffbc8395b2db9/docs/introduction.html" target="_blank">e22ec65</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-29
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -2318,11 +2351,6 @@ Eurasian datasets</td>
 pigment outputs</td>
 <td align="left">Strong effects on pigment-related traits and sun
 sensitivity, with marked population specificity</td>
-</tr>
-<tr class="even">
-<td align="left">ADAMTS12</td>
-<td align="left">ADAMTS12</td>
-<td align="left">ADAMTS12</td>
 </tr>
 </tbody>
 </table>

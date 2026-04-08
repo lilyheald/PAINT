@@ -48,5 +48,6 @@ rsconnect/
 *.csv
 
 # Unfinished analyses
-Untitled.R
 phenotypic_inference.Rmd
+depth_spinoff.Rmd
+shiny.R
