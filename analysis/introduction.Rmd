@@ -189,8 +189,6 @@ pop_summary <- metadata %>%
 wes_cols <- wes_palette("Zissou1", 8, type = "continuous")
 
 ggplot(pop_summary, aes(x = Region, y = mean_het, fill = Region)) +
-  
-  # boxplots
   geom_boxplot(
     width = 0.6,
     outlier.shape = NA,
@@ -198,8 +196,6 @@ ggplot(pop_summary, aes(x = Region, y = mean_het, fill = Region)) +
     linewidth = 0.3,
     alpha = 0.85
   ) +
-  
-  # jittered points
   geom_jitter(
     width = 0.12,
     size = 2,
@@ -208,28 +204,19 @@ ggplot(pop_summary, aes(x = Region, y = mean_het, fill = Region)) +
     stroke = 0.2,
     alpha = 0.9
   ) +
-  
   scale_fill_manual(values = wes_cols) +
-  
   labs(
     x = "",
     y = "Mean autosomal heterozygosity",
     fill = "Region"
   ) +
-  
   theme_classic(base_family = "lato", base_size = 14) +
   theme(
     axis.title = element_text(face = "bold"),
     axis.text = element_text(color = "black"),
-    
-    # subtle horizontal guides like your SNP plot
     panel.grid.major.y = element_line(color = "grey90", linewidth = 0.3),
     panel.grid.major.x = element_blank(),
-    
-    # cleaner categorical axis
     axis.text.x = element_text(angle = 45, hjust = 1),
-    
-    # keep legend consistent with your other figures
     legend.position = "right"
   )
 ```
@@ -296,19 +283,17 @@ Current research also shows that the architecture of skin pigmentation is broade
 
 ```{r snp_table, echo = FALSE, message = FALSE, warning = FALSE}
 snp_tab <- data.frame(
-  Locus = c("SLC24A5", "SLC45A2", "TYR", "OCA2/HERC2", "MC1R and ASIP", "ADAMTS12"),
+  Locus = c("SLC24A5", "SLC45A2", "TYR", "OCA2/HERC2", "MC1R and ASIP"),
   Role = c("Melanosome associated ion transport and melanogenesis", 
                                              "Melanosomal transport and pH related effects on melanogenesis", 
                                              "Core melanogenic enzyme pathway", 
                                              "Pigment regulation with strong effects on eye color and broader pigment traits", 
-                                             "Regulation of melanocytic signaling and balance of pigment outputs", 
-                                             "ADAMTS12"),
+                                             "Regulation of melanocytic signaling and balance of pigment outputs"),
   Evidence = c("Major contributor to lighter skin in West Eurasia and beyond", 
                                            "Repeatedly associated with skin color variation, especially in Europeans", 
                                            "Associated with normal pigment variation and lighter pigmentation in some populations", 
                                            "Important in pigmentation architecture, especially in Eurasian datasets", 
-                                           "Strong effects on pigment-related traits and sun sensitivity, with marked population specificity", 
-                                           "ADAMTS12")
+                                           "Strong effects on pigment-related traits and sun sensitivity, with marked population specificity")
 )
 knitr::kable(snp_tab, 
              col.names = c("Locus", "Typical role in pigmentation biology", "Evidence in modern humans"),
