@@ -50,4 +50,21 @@ rsconnect/
 # Unfinished analyses
 phenotypic_inference.Rmd
 depth_spinoff.Rmd
-shiny.R
+
+# PCA stuff
+*.zip 
+test.log
+*.vcf.gz
+*.vcf.gz.csi
+*.afreq
+*.eigenval
+*.allele
+*.eigenvec
+*.pca.log
+*.pruned.log
+*.prune.*
+ancient.bed
+ancient.bim
+ancient.fam
+ancient.log
+ancient.projected.log
