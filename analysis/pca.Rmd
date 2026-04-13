@@ -11,6 +11,7 @@ library(dplyr)
 library(ggplot2)
 library(wesanderson)
 library(showtext)
+library(workflowr)
 
 font_add_google("Lato", "lato")
 showtext_auto()
@@ -70,6 +71,7 @@ df <- bind_rows(modern_clean, ancient_clean)
 ```
 
 ```{r plot}
+wes_cols <- wes_palette("Zissou1", 15, type = "continuous")
 modern_pops <- sort(unique(df$Population[df$Type == "Modern"]))
 modern_colors <- setNames(
   wes_cols[1:length(modern_pops)],

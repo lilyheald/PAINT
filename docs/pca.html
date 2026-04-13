@@ -374,7 +374,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -385,8 +385,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -395,13 +395,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2026-03-29
+<strong>Last updated:</strong> 2026-04-13
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>~/Documents/GitHub/PAINT/</code>
@@ -424,18 +424,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -526,15 +529,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeaeed08273b06377705d4cf8cfa5c038180b17debtargetblankaeed082a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreea72c5d38a5c42d9172318f557d27a8ac2b5adc4dtargetblanka72c5d3a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/aeed08273b06377705d4cf8cfa5c038180b17deb" target="_blank">aeed082</a>
+<a href="https://github.com/lilyheald/PAINT/tree/a72c5d38a5c42d9172318f557d27a8ac2b5adc4d" target="_blank">a72c5d3</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreeaeed08273b06377705d4cf8cfa5c038180b17debtargetblankaeed082a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreea72c5d38a5c42d9172318f557d27a8ac2b5adc4dtargetblanka72c5d3a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -544,7 +547,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/aeed08273b06377705d4cf8cfa5c038180b17deb" target="_blank">aeed082</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/a72c5d38a5c42d9172318f557d27a8ac2b5adc4d" target="_blank">a72c5d3</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -564,11 +567,24 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    analysis/.Rhistory
     Ignored:    analysis/.Rproj.user/
+    Ignored:    analysis/depth_spinoff.Rmd
+    Ignored:    data/ancient_depth.csv
+    Ignored:    data/ancient_depth_clean.csv
+    Ignored:    data/ancient_metadata.csv
     Ignored:    data/modern_metadata.csv
     Ignored:    data/neo_uvi.csv
     Ignored:    data/pigmentation_snps.csv
+    Ignored:    data/sgdp.wg.afreq
+    Ignored:    data/sgdp.wg.fixed.afreq
+    Ignored:    data/sgdp.wg.pca.eigenvec.allele
     Ignored:    data/simons_metadata.csv
     Ignored:    data/simons_whole.csv
+    Ignored:    plink2.log
+    Ignored:    plink2.zip
+    Ignored:    test.log
+
+Unstaged changes:
+    Modified:   analysis/pca.Rmd
 
 </code></pre>
 <p>
@@ -612,6 +628,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/a72c5d38a5c42d9172318f557d27a8ac2b5adc4d/analysis/pca.Rmd" target="_blank">a72c5d3</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+<td>
+Fix paths
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/e86ec8b644de70b49e78710e504d7c37e55e62c0/analysis/pca.Rmd" target="_blank">e86ec8b</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+<td>
+Add modern SGDP PCA
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/e22ec651fa2ab67f2e8083285eaffbc8395b2db9/docs/pca.html" target="_blank">e22ec65</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-03-29
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -721,44 +788,118 @@ stack snp distribution
 </div>
 </div>
 </div>
-<pre class="r"><code># whole genome
-colnames(eigvec_wg)[1:2] &lt;- c(&quot;FID&quot;, &quot;IID&quot;)
+<div id="sgdp-whole-genome-snp-panel" class="section level1">
+<h1>SGDP whole-genome SNP panel</h1>
+<pre class="r"><code>library(data.table)</code></pre>
+<pre><code>Warning: package &#39;data.table&#39; was built under R version 4.4.3</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>Warning: package &#39;dplyr&#39; was built under R version 4.4.3</code></pre>
+<pre><code>
+Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:data.table&#39;:
 
-num_pcs_wg &lt;- length(eigval_wg)
-pc_names_wg &lt;- paste0(&quot;PC&quot;, 1:num_pcs_wg)
-colnames(eigvec_wg)[3:(2 + num_pcs_wg)] &lt;- pc_names_wg
+    between, first, last</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
 
-variance_explained_wg &lt;- eigval_wg / sum(eigval_wg) * 100
+    filter, lag</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
 
-pc1_label_wg &lt;- sprintf(&quot;PC1 (%.2f%%)&quot;, variance_explained_wg[1])
-pc2_label_wg &lt;- sprintf(&quot;PC2 (%.2f%%)&quot;, variance_explained_wg[2])
-pc3_label_wg &lt;- sprintf(&quot;PC3 (%.2f%%)&quot;, variance_explained_wg[3])
-pc4_label_wg &lt;- sprintf(&quot;PC4 (%.2f%%)&quot;, variance_explained_wg[4])
+    intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<pre><code>Warning: package &#39;ggplot2&#39; was built under R version 4.4.3</code></pre>
+<pre class="r"><code>library(wesanderson)
+library(showtext)</code></pre>
+<pre><code>Loading required package: sysfonts</code></pre>
+<pre><code>Loading required package: showtextdb</code></pre>
+<pre class="r"><code>library(workflowr)
 
-# pigmentation
-colnames(eigvec_pig)[1:2] &lt;- c(&quot;FID&quot;, &quot;IID&quot;)
+font_add_google(&quot;Lato&quot;, &quot;lato&quot;)
+showtext_auto()</code></pre>
+<pre class="r"><code>modern_file &lt;- &quot;data/sgdp.wg.pca.eigenvec&quot;
+ancient_file &lt;- &quot;data/ancient.projected.sscore&quot;
+metadata_file &lt;- &quot;data/modern_metadata.csv&quot;</code></pre>
+<pre class="r"><code>modern &lt;- fread(modern_file, header = TRUE)
+colnames(modern) &lt;- c(&quot;IID&quot;, paste0(&quot;PC&quot;, 1:10))
+metadata &lt;- fread(metadata_file)
 
-num_pcs_pig &lt;- length(eigval_pig)
-pc_names_pig &lt;- paste0(&quot;PC&quot;, 1:num_pcs_pig)
-colnames(eigvec_pig)[3:(2 + num_pcs_pig)] &lt;- pc_names_pig
+modern &lt;- modern %&gt;%
+  left_join(metadata, by = c(&quot;IID&quot;=&quot;library_id&quot;)) %&gt;%
+  mutate(Type = &quot;Modern&quot;)
 
-variance_explained_pig &lt;- eigval_pig / sum(eigval_pig) * 100
+# ancient projections
+ancient &lt;- fread(ancient_file)
 
-pc1_label_pig &lt;- sprintf(&quot;PC1 (%.2f%%)&quot;, variance_explained_pig[1])
-pc2_label_pig &lt;- sprintf(&quot;PC2 (%.2f%%)&quot;, variance_explained_pig[2])
-pc3_label_pig &lt;- sprintf(&quot;PC3 (%.2f%%)&quot;, variance_explained_pig[3])
-pc4_label_pig &lt;- sprintf(&quot;PC4 (%.2f%%)&quot;, variance_explained_pig[3])</code></pre>
-<pre class="r"><code>pc_data_wg &lt;- merge(eigvec_wg, metadata, by.x = &quot;FID&quot;, by.y = &quot;library_id&quot;)
+ancient_pcs &lt;- ancient %&gt;%
+  select(IID, starts_with(&quot;PC&quot;)) %&gt;%
+  mutate(Type = &quot;Ancient&quot;)
 
-ggplot(pc_data_wg, aes(x = PC1, y = PC2, color = Region)) +
-  geom_point(size = 3) +
-  geom_text(aes(label = Population_ID), vjust = -0.7, size = 3) +
-  labs(
-    title = &quot;PCA of whole genome SNPs&quot;,
-    x = pc1_label_wg,
-    y = pc2_label_wg
+ancient_pcs &lt;- ancient_pcs %&gt;%
+  mutate(
+    Group = case_when(
+      IID %in% c(&quot;Denisova3&quot;, &quot;Denisova25&quot;) ~ &quot;Denisovan&quot;,
+      IID %in% c(&quot;Denisova11&quot;) ~ &quot;Hybrid&quot;,
+      TRUE ~ &quot;Neanderthal&quot;
+    )
+  )
+
+# bind
+
+modern_clean &lt;- modern %&gt;%
+  select(IID, starts_with(&quot;PC&quot;), Population_ID, Region) %&gt;%
+  mutate(Type = &quot;Modern&quot;,
+         Group = Population_ID)
+
+ancient_clean &lt;- ancient_pcs %&gt;%
+  rename_with(
+    ~ gsub(&quot;_AVG&quot;, &quot;&quot;, .x),
+    starts_with(&quot;PC&quot;)
+  ) %&gt;%
+  select(IID, Group, starts_with(&quot;PC&quot;)) %&gt;%
+  mutate(
+    Population_ID = &quot;Ancient&quot;,
+    Region = &quot;Ancient&quot;,
+    Type = &quot;Ancient&quot;
+  )
+
+df &lt;- bind_rows(modern_clean, ancient_clean)</code></pre>
+<pre class="r"><code>wes_cols &lt;- wes_palette(&quot;Zissou1&quot;, 15, type = &quot;continuous&quot;)
+modern_pops &lt;- sort(unique(df$Population[df$Type == &quot;Modern&quot;]))
+modern_colors &lt;- setNames(
+  wes_cols[1:length(modern_pops)],
+  modern_pops
+)
+
+ancient_colors &lt;- c(
+  &quot;Neanderthal&quot; = &quot;red&quot;,  
+  &quot;Denisovan&quot;   = &quot;green&quot;,
+  &quot;Hybrid&quot;      = &quot;blue&quot;
+)
+
+all_colors &lt;- c(modern_colors, ancient_colors)
+
+ggplot(df, aes(PC1, PC2)) +
+  geom_point(
+    aes(color = Group),
+    size = 1.5,
+    alpha = 0.5
   ) +
-  theme_classic(base_size = 14)</code></pre>
+  geom_point(
+    data = df %&gt;% filter(Type == &quot;Ancient&quot;),
+    aes(color = Group, alpha = 0.5),
+    size = 3
+  ) +
+  scale_color_manual(values = all_colors) +
+  theme_minimal(base_family = &quot;lato&quot;, base_size = 14) +
+  labs(
+    title = &quot;PCA Projection of Ancient and Modern Genomes&quot;,
+    x = &quot;PC1&quot;,
+    y = &quot;PC2&quot;,
+    color = &quot;Population&quot;
+  ) +
+  theme(
+    legend.position = &quot;right&quot;,
+    panel.grid = element_blank()
+  )</code></pre>
 <p><img src="figure/pca.Rmd/plot-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-1">
@@ -797,55 +938,9 @@ Lily Heald
 </table>
 </div>
 </div>
-<pre class="r"><code>pc_data_pig &lt;- merge(eigvec_pig, metadata, by.x = &quot;IID&quot;, by.y = &quot;library_id&quot;)
-
-ggplot(pc_data_pig, aes(x = PC1, y = PC2, color = Region)) +
-  geom_point(size = 3) +
-  geom_text(aes(label = Population_ID), vjust = -0.7, size = 3) +
-  labs(
-    title = &quot;PCA of pigmentation SNPs&quot;,
-    x = pc1_label_pig,
-    y = pc2_label_pig
-  ) +
-  theme_classic(base_size = 14)</code></pre>
-<p><img src="figure/pca.Rmd/plot-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-2">
-Past versions of plot-2.png
-</button>
-</p>
-<div id="fig-plot-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/lilyheald/PAINT/blob/05c4750a7b65c4523cadbcab6f74fdb99c0c598c/docs/figure/pca.Rmd/plot-2.png" target="_blank">05c4750</a>
-</td>
-<td>
-Lily Heald
-</td>
-<td>
-2026-03-26
-</td>
-</tr>
-</tbody>
-</table>
 </div>
-</div>
+<div id="pigmentation-snp-panel" class="section level1">
+<h1>Pigmentation SNP panel</h1>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -873,27 +968,26 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] lubridate_1.9.4     forcats_1.0.1       dplyr_1.2.0        
- [4] purrr_1.2.1         readr_2.1.6         tidyr_1.3.2        
- [7] tibble_3.3.1        ggplot2_4.0.2       tidyverse_2.0.0    
-[10] stringr_1.6.0       data.table_1.18.2.1 workflowr_1.7.2    
+[1] showtext_0.9-7      showtextdb_3.0      sysfonts_0.8.9     
+[4] wesanderson_0.3.7   ggplot2_4.0.2       dplyr_1.2.0        
+[7] data.table_1.18.2.1 workflowr_1.7.2    
 
 loaded via a namespace (and not attached):
- [1] sass_0.4.10        generics_0.1.4     stringi_1.8.7      hms_1.1.4         
- [5] digest_0.6.39      magrittr_2.0.4     timechange_0.4.0   evaluate_1.0.5    
- [9] grid_4.4.2         RColorBrewer_1.1-3 fastmap_1.2.0      rprojroot_2.1.1   
-[13] jsonlite_2.0.0     processx_3.8.6     whisker_0.4.1      ps_1.9.1          
-[17] promises_1.5.0     httr_1.4.7         scales_1.4.0       jquerylib_0.1.4   
-[21] cli_3.6.5          crayon_1.5.3       rlang_1.1.7        bit64_4.6.0-1     
-[25] withr_3.0.2        cachem_1.1.0       yaml_2.3.12        otel_0.2.0        
-[29] parallel_4.4.2     tools_4.4.2        tzdb_0.5.0         httpuv_1.6.16     
-[33] vctrs_0.7.1        R6_2.6.1           lifecycle_1.0.5    git2r_0.36.2      
-[37] bit_4.6.0          fs_1.6.6           vroom_1.7.0        pkgconfig_2.0.3   
-[41] callr_3.7.6        pillar_1.11.1      bslib_0.10.0       later_1.4.5       
-[45] gtable_0.3.6       glue_1.8.0         Rcpp_1.1.1         xfun_0.56         
-[49] tidyselect_1.2.1   rstudioapi_0.18.0  knitr_1.51         farver_2.1.2      
-[53] htmltools_0.5.9    labeling_0.4.3     rmarkdown_2.30     compiler_4.4.2    
-[57] getPass_0.2-4      S7_0.2.1          </code></pre>
+ [1] sass_0.4.10        generics_0.1.4     stringi_1.8.7      digest_0.6.39     
+ [5] magrittr_2.0.4     evaluate_1.0.5     grid_4.4.2         RColorBrewer_1.1-3
+ [9] fastmap_1.2.0      rprojroot_2.1.1    jsonlite_2.0.0     processx_3.8.6    
+[13] whisker_0.4.1      ps_1.9.1           promises_1.5.0     httr_1.4.7        
+[17] scales_1.4.0       jquerylib_0.1.4    cli_3.6.5          rlang_1.1.7       
+[21] withr_3.0.2        cachem_1.1.0       yaml_2.3.12        otel_0.2.0        
+[25] tools_4.4.2        httpuv_1.6.17      curl_7.0.0         vctrs_0.7.1       
+[29] R6_2.6.1           lifecycle_1.0.5    git2r_0.36.2       stringr_1.6.0     
+[33] fs_1.6.6           pkgconfig_2.0.3    callr_3.7.6        pillar_1.11.1     
+[37] bslib_0.10.0       later_1.4.5        gtable_0.3.6       glue_1.8.0        
+[41] Rcpp_1.1.1         xfun_0.56          tibble_3.3.1       tidyselect_1.2.1  
+[45] rstudioapi_0.18.0  knitr_1.51         farver_2.1.2       htmltools_0.5.9   
+[49] labeling_0.4.3     rmarkdown_2.30     compiler_4.4.2     getPass_0.2-4     
+[53] S7_0.2.1          </code></pre>
+</div>
 </div>
 </div>
 </div>
