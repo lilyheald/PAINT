@@ -72,7 +72,12 @@ df <- bind_rows(modern_clean, ancient_clean)
 
 ```{r plot}
 wes_cols <- wes_palette("Zissou1", 15, type = "continuous")
-modern_pops <- sort(unique(df$Population[df$Type == "Modern"]))
+
+df <- df %>%
+  arrange(Region, Group) %>%
+  mutate(Group = factor(Group, levels = unique(Group)))
+
+modern_pops <- df$Population_ID[df$Type == "Modern"]
 modern_colors <- setNames(
   wes_cols[1:length(modern_pops)],
   modern_pops
@@ -90,12 +95,13 @@ ggplot(df, aes(PC1, PC2)) +
   geom_point(
     aes(color = Group),
     size = 1.5,
-    alpha = 0.5
+    alpha = 0.8
   ) +
   geom_point(
     data = df %>% filter(Type == "Ancient"),
-    aes(color = Group, alpha = 0.5),
-    size = 3
+    aes(color = Group),
+    size = 3,
+    alpha = 0.3
   ) +
   scale_color_manual(values = all_colors) +
   theme_minimal(base_family = "lato", base_size = 14) +
@@ -110,6 +116,3 @@ ggplot(df, aes(PC1, PC2)) +
     panel.grid = element_blank()
   )
 ```
-
-
-# Pigmentation SNP panel
