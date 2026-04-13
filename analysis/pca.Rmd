@@ -17,9 +17,9 @@ showtext_auto()
 ```
 
 ```{r paths}
-modern_file <- "~/Documents/GitHub/PAINT/data/sgdp.wg.pca.eigenvec"
-ancient_file <- "~/Documents/GitHub/PAINT/data/ancient.projected.sscore"
-metadata_file <- "~/Documents/GitHub/PAINT/data/modern_metadata.csv"
+modern_file <- "data/sgdp.wg.pca.eigenvec"
+ancient_file <- "data/ancient.projected.sscore"
+metadata_file <- "data/modern_metadata.csv"
 ```
 
 ```{r process}
