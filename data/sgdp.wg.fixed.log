@@ -1,33 +1,24 @@
 PLINK v2.0.0-a.7 M1 (11 Mar 2026)
 Options in effect:
   --freq
-  --max-alleles 2
   --out /Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.fixed
-  --set-all-var-ids @:#
+  --pfile /Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.cleaned
   --threads 6
-  --vcf /Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.vcf.gz
 
 Hostname: MacBook-Pro-1417.local
 Working directory: /Users/lilyheald/Documents/GitHub/PAINT
-Start time: Wed Apr  8 13:59:08 2026
+Start time: Mon Apr 13 13:25:20 2026
 
-Random number seed: 1775671148
+Random number seed: 1776101120
 8192 MiB RAM detected; reserving 4096 MiB for main workspace.
 Using up to 6 compute threads.
---vcf: 9231524 variants scanned.
---vcf:
-/Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.fixed-temporary.pgen +
-/Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.fixed-temporary.pvar.zst +
-/Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.fixed-temporary.psam
-written.
 15 samples (0 females, 0 males, 15 ambiguous; 15 founders) loaded from
-/Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.fixed-temporary.psam.
+/Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.cleaned.psam.
 9231524 variants loaded from
-/Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.fixed-temporary.pvar.zst
-(--max-alleles had no effect).
+/Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.cleaned.pvar.
 Note: No phenotype data present.
 Calculating allele frequencies... done.
 --freq: Allele frequencies (founders only) written to
 /Users/lilyheald/Documents/GitHub/paint/data/sgdp.wg.fixed.afreq .
 
-End time: Wed Apr  8 14:00:51 2026
+End time: Mon Apr 13 13:25:22 2026

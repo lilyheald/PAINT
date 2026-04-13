@@ -59,7 +59,6 @@ test.log
 *.afreq
 *.eigenval
 *.allele
-*.eigenvec
 *.pca.log
 *.pruned.log
 *.prune.*
@@ -69,3 +68,10 @@ ancient.fam
 ancient.log
 ancient.projected.log
 docs/depth_spinoff.html
+plink2.log
+data/sgdp.wg.fixed.log
+data/sgdp.wg.cleaned.pvar
+data/sgdp.wg.cleaned.log
+data/sgdp.wg.cleaned.pgen
+data/sgdp.wg.cleaned.psam
+data/sgdp.wg.fixed.log

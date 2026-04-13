@@ -3,86 +3,111 @@ title: "PCA"
 output: html_document
 ---
 
-```{r setup, include = F}
+# SGDP whole-genome SNP panel
+
+```{r setup}
 library(data.table)
-library(stringr)
-library(tidyverse)
-library(readr)
 library(dplyr)
+library(ggplot2)
+library(wesanderson)
+library(showtext)
 
-
-eigenvec_wg_file <- "data/sgdp.wg.pca.eigenvec"
-eigenval_wg_file <- "data/sgdp.wg.pca.eigenval"
-
-eigenvec_pig_file <- "data/pigmentation_snps_pca.eigenvec"
-eigenval_pig_file <- "data/pigmentation_snps_pca.eigenval"
-
-metadata_file <- "data/modern_metadata.csv"
-
-eigvec_wg <- fread(eigenvec_wg_file)
-eigval_wg <- scan(eigenval_wg_file)
-
-eigvec_pig <- fread(eigenvec_pig_file)
-eigval_pig <- scan(eigenval_pig_file)
-
-metadata <- read_csv(metadata_file, show_col_types = F)
+font_add_google("Lato", "lato")
+showtext_auto()
 ```
 
+```{r paths}
+modern_file <- "~/Documents/GitHub/PAINT/data/sgdp.wg.pca.eigenvec"
+ancient_file <- "~/Documents/GitHub/PAINT/data/ancient.projected.sscore"
+metadata_file <- "~/Documents/GitHub/PAINT/data/modern_metadata.csv"
+```
 
-```{r clean}
-# whole genome
-colnames(eigvec_wg)[1:2] <- c("FID", "IID")
+```{r process}
+modern <- fread(modern_file, header = TRUE)
+colnames(modern) <- c("IID", paste0("PC", 1:10))
+metadata <- fread(metadata_file)
 
-num_pcs_wg <- length(eigval_wg)
-pc_names_wg <- paste0("PC", 1:num_pcs_wg)
-colnames(eigvec_wg)[3:(2 + num_pcs_wg)] <- pc_names_wg
+modern <- modern %>%
+  left_join(metadata, by = c("IID"="library_id")) %>%
+  mutate(Type = "Modern")
 
-variance_explained_wg <- eigval_wg / sum(eigval_wg) * 100
+# ancient projections
+ancient <- fread(ancient_file)
 
-pc1_label_wg <- sprintf("PC1 (%.2f%%)", variance_explained_wg[1])
-pc2_label_wg <- sprintf("PC2 (%.2f%%)", variance_explained_wg[2])
-pc3_label_wg <- sprintf("PC3 (%.2f%%)", variance_explained_wg[3])
-pc4_label_wg <- sprintf("PC4 (%.2f%%)", variance_explained_wg[4])
+ancient_pcs <- ancient %>%
+  select(IID, starts_with("PC")) %>%
+  mutate(Type = "Ancient")
 
-# pigmentation
-colnames(eigvec_pig)[1:2] <- c("FID", "IID")
+ancient_pcs <- ancient_pcs %>%
+  mutate(
+    Group = case_when(
+      IID %in% c("Denisova3", "Denisova25") ~ "Denisovan",
+      IID %in% c("Denisova11") ~ "Hybrid",
+      TRUE ~ "Neanderthal"
+    )
+  )
 
-num_pcs_pig <- length(eigval_pig)
-pc_names_pig <- paste0("PC", 1:num_pcs_pig)
-colnames(eigvec_pig)[3:(2 + num_pcs_pig)] <- pc_names_pig
+# bind
 
-variance_explained_pig <- eigval_pig / sum(eigval_pig) * 100
+modern_clean <- modern %>%
+  select(IID, starts_with("PC"), Population_ID, Region) %>%
+  mutate(Type = "Modern",
+         Group = Population_ID)
 
-pc1_label_pig <- sprintf("PC1 (%.2f%%)", variance_explained_pig[1])
-pc2_label_pig <- sprintf("PC2 (%.2f%%)", variance_explained_pig[2])
-pc3_label_pig <- sprintf("PC3 (%.2f%%)", variance_explained_pig[3])
-pc4_label_pig <- sprintf("PC4 (%.2f%%)", variance_explained_pig[3])
+ancient_clean <- ancient_pcs %>%
+  rename_with(
+    ~ gsub("_AVG", "", .x),
+    starts_with("PC")
+  ) %>%
+  select(IID, Group, starts_with("PC")) %>%
+  mutate(
+    Population_ID = "Ancient",
+    Region = "Ancient",
+    Type = "Ancient"
+  )
+
+df <- bind_rows(modern_clean, ancient_clean)
 ```
 
 ```{r plot}
-pc_data_wg <- merge(eigvec_wg, metadata, by.x = "FID", by.y = "library_id")
+modern_pops <- sort(unique(df$Population[df$Type == "Modern"]))
+modern_colors <- setNames(
+  wes_cols[1:length(modern_pops)],
+  modern_pops
+)
 
-ggplot(pc_data_wg, aes(x = PC1, y = PC2, color = Region)) +
-  geom_point(size = 3) +
-  geom_text(aes(label = Population_ID), vjust = -0.7, size = 3) +
-  labs(
-    title = "PCA of whole genome SNPs",
-    x = pc1_label_wg,
-    y = pc2_label_wg
+ancient_colors <- c(
+  "Neanderthal" = "red",  
+  "Denisovan"   = "green",
+  "Hybrid"      = "blue"
+)
+
+all_colors <- c(modern_colors, ancient_colors)
+
+ggplot(df, aes(PC1, PC2)) +
+  geom_point(
+    aes(color = Group),
+    size = 1.5,
+    alpha = 0.5
   ) +
-  theme_classic(base_size = 14)
-
-pc_data_pig <- merge(eigvec_pig, metadata, by.x = "IID", by.y = "library_id")
-
-ggplot(pc_data_pig, aes(x = PC1, y = PC2, color = Region)) +
-  geom_point(size = 3) +
-  geom_text(aes(label = Population_ID), vjust = -0.7, size = 3) +
-  labs(
-    title = "PCA of pigmentation SNPs",
-    x = pc1_label_pig,
-    y = pc2_label_pig
+  geom_point(
+    data = df %>% filter(Type == "Ancient"),
+    aes(color = Group, alpha = 0.5),
+    size = 3
   ) +
-  theme_classic(base_size = 14)
+  scale_color_manual(values = all_colors) +
+  theme_minimal(base_family = "lato", base_size = 14) +
+  labs(
+    title = "PCA Projection of Ancient and Modern Genomes",
+    x = "PC1",
+    y = "PC2",
+    color = "Population"
+  ) +
+  theme(
+    legend.position = "right",
+    panel.grid = element_blank()
+  )
 ```
 
 
+# Pigmentation SNP panel
