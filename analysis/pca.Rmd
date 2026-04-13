@@ -73,15 +73,15 @@ df <- bind_rows(modern_clean, ancient_clean)
 ```{r plot}
 wes_cols <- wes_palette("Zissou1", 15, type = "continuous")
 
-df <- df %>%
-  arrange(Region, Group) %>%
-  mutate(Group = factor(Group, levels = unique(Group)))
-
-modern_pops <- df$Population_ID[df$Type == "Modern"]
+modern_pops <- df$Region[df$Type == "Modern"]
 modern_colors <- setNames(
   wes_cols[1:length(modern_pops)],
   modern_pops
 )
+
+df <- df %>%
+  arrange(Type, Region, Group) %>%
+  mutate(Group = factor(Group, levels = unique(Group)))
 
 ancient_colors <- c(
   "Neanderthal" = "red",  
@@ -93,7 +93,7 @@ all_colors <- c(modern_colors, ancient_colors)
 
 ggplot(df, aes(PC1, PC2)) +
   geom_point(
-    aes(color = Group),
+    aes(color = Region),
     size = 1.5,
     alpha = 0.8
   ) +
@@ -106,7 +106,7 @@ ggplot(df, aes(PC1, PC2)) +
   scale_color_manual(values = all_colors) +
   theme_minimal(base_family = "lato", base_size = 14) +
   labs(
-    title = "PCA Projection of Ancient and Modern Genomes",
+    title = "PCA of SGDP SNP panel",
     x = "PC1",
     y = "PC2",
     color = "Population"

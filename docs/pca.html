@@ -374,7 +374,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -385,8 +385,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -399,9 +399,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>~/Documents/GitHub/PAINT/</code>
@@ -424,18 +424,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -526,15 +529,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree36c80e1de3c6f77a30bb89496018e34ce825d120targetblank36c80e1a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree35015c544179226478a3d918b9774dd4a7b135b8targetblank35015c5a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/36c80e1de3c6f77a30bb89496018e34ce825d120" target="_blank">36c80e1</a>
+<a href="https://github.com/lilyheald/PAINT/tree/35015c544179226478a3d918b9774dd4a7b135b8" target="_blank">35015c5</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree36c80e1de3c6f77a30bb89496018e34ce825d120targetblank36c80e1a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree35015c544179226478a3d918b9774dd4a7b135b8targetblank35015c5a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -544,7 +547,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/36c80e1de3c6f77a30bb89496018e34ce825d120" target="_blank">36c80e1</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/35015c544179226478a3d918b9774dd4a7b135b8" target="_blank">35015c5</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -579,6 +582,9 @@ Ignored files:
     Ignored:    plink2.log
     Ignored:    plink2.zip
     Ignored:    test.log
+
+Unstaged changes:
+    Modified:   analysis/pca.Rmd
 
 </code></pre>
 <p>
@@ -622,6 +628,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/35015c544179226478a3d918b9774dd4a7b135b8/analysis/pca.Rmd" target="_blank">35015c5</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+<td>
+Update pca.Rmd
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/862b87ef5afe972c26c3adc66583dca2f7db69ef/docs/pca.html" target="_blank">862b87e</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -925,11 +965,16 @@ ancient_clean &lt;- ancient_pcs %&gt;%
 
 df &lt;- bind_rows(modern_clean, ancient_clean)</code></pre>
 <pre class="r"><code>wes_cols &lt;- wes_palette(&quot;Zissou1&quot;, 15, type = &quot;continuous&quot;)
-modern_pops &lt;- sort(unique(df$Population[df$Type == &quot;Modern&quot;]))
+
+modern_pops &lt;- df$Region[df$Type == &quot;Modern&quot;]
 modern_colors &lt;- setNames(
   wes_cols[1:length(modern_pops)],
   modern_pops
 )
+
+df &lt;- df %&gt;%
+  arrange(Type, Region, Group) %&gt;%
+  mutate(Group = factor(Group, levels = unique(Group)))
 
 ancient_colors &lt;- c(
   &quot;Neanderthal&quot; = &quot;red&quot;,  
@@ -941,19 +986,20 @@ all_colors &lt;- c(modern_colors, ancient_colors)
 
 ggplot(df, aes(PC1, PC2)) +
   geom_point(
-    aes(color = Group),
+    aes(color = Region),
     size = 1.5,
-    alpha = 0.5
+    alpha = 0.8
   ) +
   geom_point(
     data = df %&gt;% filter(Type == &quot;Ancient&quot;),
-    aes(color = Group, alpha = 0.5),
-    size = 3
+    aes(color = Group),
+    size = 3,
+    alpha = 0.3
   ) +
   scale_color_manual(values = all_colors) +
   theme_minimal(base_family = &quot;lato&quot;, base_size = 14) +
   labs(
-    title = &quot;PCA Projection of Ancient and Modern Genomes&quot;,
+    title = &quot;PCA of SGDP SNP panel&quot;,
     x = &quot;PC1&quot;,
     y = &quot;PC2&quot;,
     color = &quot;Population&quot;
@@ -987,6 +1033,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/862b87ef5afe972c26c3adc66583dca2f7db69ef/docs/figure/pca.Rmd/plot-1.png" target="_blank">862b87e</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/9e0b1138e9f892eca21d02b0e6691e0172fe7436/docs/figure/pca.Rmd/plot-1.png" target="_blank">9e0b113</a>
 </td>
 <td>
@@ -1011,9 +1068,6 @@ Lily Heald
 </table>
 </div>
 </div>
-</div>
-<div id="pigmentation-snp-panel" class="section level1">
-<h1>Pigmentation SNP panel</h1>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
