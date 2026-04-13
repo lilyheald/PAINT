@@ -50,6 +50,7 @@ rsconnect/
 # Unfinished analyses
 phenotypic_inference.Rmd
 depth_spinoff.Rmd
+depth_spinoff.html
 
 # PCA stuff
 *.zip 

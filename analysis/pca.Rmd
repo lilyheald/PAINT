@@ -80,8 +80,8 @@ modern_colors <- setNames(
 
 ancient_colors <- c(
   "Neanderthal" = "red",  
-  "Denisovan"   = "green",
-  "Hybrid"      = "blue"
+  "Denisovan"   = "blue",
+  "Hybrid"      = "purple"
 )
 
 all_colors <- c(modern_colors, ancient_colors)
