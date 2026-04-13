@@ -5,7 +5,7 @@ output: html_document
 
 # SGDP whole-genome SNP panel
 
-```{r setup}
+```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
 library(data.table)
 library(dplyr)
 library(ggplot2)
@@ -15,15 +15,26 @@ library(workflowr)
 
 font_add_google("Lato", "lato")
 showtext_auto()
+
+pca_pal <- c(
+  "Neanderthal" = "#E6A0C4",  
+  "Denisovan"   =  "#7294D4",
+  "Hybrid"      = "#CEC1EA",
+  "CentralAsiaSiberia" =  "#5BBCD6",
+  "EastAsia" = "#00A08A",
+  "Africa" = "#FF0000",
+  "Oceania" = "#F2AD00",
+  "WestEurasia" = "#F98400"   
+)
 ```
 
-```{r paths}
-modern_file <- "data/sgdp.wg.pca.eigenvec"
-ancient_file <- "data/ancient.projected.sscore"
-metadata_file <- "data/modern_metadata.csv"
+```{r paths, echo = FALSE, message = FALSE, warning = FALSE}
+modern_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/sgdp.wg.pca.eigenvec"
+ancient_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/ancient.projected.sgdp.sscore"
+metadata_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/modern_metadata.csv"
 ```
 
-```{r process}
+```{r process, echo = FALSE, message = FALSE, warning = FALSE}
 modern <- fread(modern_file, header = TRUE)
 colnames(modern) <- c("IID", paste0("PC", 1:10))
 metadata <- fread(metadata_file)
@@ -48,8 +59,6 @@ ancient_pcs <- ancient_pcs %>%
     )
   )
 
-# bind
-
 modern_clean <- modern %>%
   select(IID, starts_with("PC"), Population_ID, Region) %>%
   mutate(Type = "Modern",
@@ -70,30 +79,10 @@ ancient_clean <- ancient_pcs %>%
 df <- bind_rows(modern_clean, ancient_clean)
 ```
 
-```{r plot}
-wes_cols <- wes_palette("Zissou1", 15, type = "continuous")
-
-modern_pops <- df$Region[df$Type == "Modern"]
-modern_colors <- setNames(
-  wes_cols[1:length(modern_pops)],
-  modern_pops
-)
-
-df <- df %>%
-  arrange(Type, Region, Group) %>%
-  mutate(Group = factor(Group, levels = unique(Group)))
-
-ancient_colors <- c(
-  "Neanderthal" = "red",  
-  "Denisovan"   = "blue",
-  "Hybrid"      = "purple"
-)
-
-all_colors <- c(modern_colors, ancient_colors)
-
+```{r plot, echo = FALSE, message = FALSE, warning = FALSE}
 ggplot(df, aes(PC1, PC2)) +
   geom_point(
-    aes(color = Region),
+    aes(color = Region, shape = Type),
     size = 1.5,
     alpha = 0.8
   ) +
@@ -101,9 +90,9 @@ ggplot(df, aes(PC1, PC2)) +
     data = df %>% filter(Type == "Ancient"),
     aes(color = Group),
     size = 3,
-    alpha = 0.3
+    alpha = 0.8
   ) +
-  scale_color_manual(values = all_colors) +
+  scale_color_manual(values = pca_pal) +
   theme_minimal(base_family = "lato", base_size = 14) +
   labs(
     title = "PCA of SGDP SNP panel",
@@ -116,3 +105,82 @@ ggplot(df, aes(PC1, PC2)) +
     panel.grid = element_blank()
   )
 ```
+
+
+Ensembl allele frequencies 
+
+# Pigmentation subset
+
+```{r processing2, echo = FALSE, message = FALSE, warning = FALSE}
+modern_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/pigmentation.pca.eigenvec"
+ancient_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/ancient.projected.pig.sscore"
+metadata_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/modern_metadata.csv"
+
+modern <- fread(modern_file, header = TRUE)
+colnames(modern) <- c("IID", paste0("PC", 1:10))
+
+metadata <- fread(metadata_file)
+
+modern <- modern %>%
+  left_join(metadata, by = c("IID" = "library_id")) %>%
+  mutate(
+    Type = "Modern",
+    Group = Population_ID
+  )
+
+ancient <- fread(ancient_file)
+
+ancient_pcs <- ancient %>%
+  select(IID, starts_with("PC")) %>%
+  rename_with(~ gsub("_AVG", "", .x), starts_with("PC")) %>%
+  mutate(Type = "Ancient")
+
+ancient_pcs <- ancient_pcs %>%
+  mutate(
+    Group = case_when(
+      IID %in% c("Denisova3", "Denisova25") ~ "Denisovan",
+      IID %in% c("Denisova11") ~ "Hybrid",
+      TRUE ~ "Neanderthal"
+    ),
+    Region = "Ancient"
+  )
+
+modern_clean <- modern %>%
+  select(IID, starts_with("PC"), Population_ID, Region, Group, Type)
+
+ancient_clean <- ancient_pcs %>%
+  select(IID, starts_with("PC"), Group, Region, Type) %>%
+  mutate(Population_ID = "Ancient")
+
+df <- bind_rows(modern_clean, ancient_clean)
+```
+
+```{r plot2, echo = FALSE, message = FALSE, warning = FALSE}
+ggplot(df, aes(PC1, PC2)) +
+  geom_point(
+    aes(color = Region, shape = Type),
+    size = 1.5,
+    alpha = 0.8,
+  ) +
+  geom_point(
+    data = df %>% filter(Type == "Ancient"),
+    aes(color = Group),
+    size = 3,
+    alpha = 0.3
+  ) +
+  scale_color_manual(values = pca_pal) +
+  theme_minimal(base_family = "lato", base_size = 14) +
+  labs(
+    title = "PCA of pigment SNP panel",
+    x = "PC1",
+    y = "PC2",
+    color = "Population"
+  ) +
+  theme(
+    legend.position = "right",
+    panel.grid = element_blank()
+  )
+```
+
+
+

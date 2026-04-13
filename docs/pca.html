@@ -374,7 +374,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -385,8 +385,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -399,9 +399,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>~/Documents/GitHub/PAINT/</code>
@@ -424,18 +424,21 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
@@ -526,15 +529,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree0cedec7812662f373226d13021b1ec7fcef42200targetblank0cedec7a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreed9ec58fd07c5272e127ac75a220bc6b3b47b9a32targetblankd9ec58fa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/0cedec7812662f373226d13021b1ec7fcef42200" target="_blank">0cedec7</a>
+<a href="https://github.com/lilyheald/PAINT/tree/d9ec58fd07c5272e127ac75a220bc6b3b47b9a32" target="_blank">d9ec58f</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree0cedec7812662f373226d13021b1ec7fcef42200targetblank0cedec7a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreed9ec58fd07c5272e127ac75a220bc6b3b47b9a32targetblankd9ec58fa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -544,7 +547,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/0cedec7812662f373226d13021b1ec7fcef42200" target="_blank">0cedec7</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/d9ec58fd07c5272e127ac75a220bc6b3b47b9a32" target="_blank">d9ec58f</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -565,12 +568,21 @@ Ignored files:
     Ignored:    analysis/.Rhistory
     Ignored:    analysis/.Rproj.user/
     Ignored:    analysis/depth_spinoff.Rmd
+    Ignored:    data/ancient.projected.log
     Ignored:    data/ancient_depth.csv
     Ignored:    data/ancient_depth_clean.csv
     Ignored:    data/ancient_metadata.csv
+    Ignored:    data/ancient_pigmentation.vcf.gz
     Ignored:    data/modern_metadata.csv
     Ignored:    data/neo_uvi.csv
+    Ignored:    data/pigmentation.freq.afreq
+    Ignored:    data/pigmentation.pca.eigenval
+    Ignored:    data/pigmentation.pca.eigenvec.allele
+    Ignored:    data/pigmentation.pca.log
     Ignored:    data/pigmentation_snps.csv
+    Ignored:    data/pigmentation_snps.vcf.gz
+    Ignored:    data/pigmentation_snps_freq.afreq
+    Ignored:    data/pigmentation_snps_pca.eigenval
     Ignored:    data/sgdp.wg.afreq
     Ignored:    data/sgdp.wg.fixed.afreq
     Ignored:    data/sgdp.wg.pca.eigenvec.allele
@@ -579,6 +591,73 @@ Ignored files:
     Ignored:    plink2.log
     Ignored:    plink2.zip
     Ignored:    test.log
+
+Untracked files:
+    Untracked:  analysis/pig_pca_proj.py
+    Untracked:  data/allele_ref.txt
+    Untracked:  data/ancient.projected.sscore.vars
+    Untracked:  data/ancient_aligned.bed
+    Untracked:  data/ancient_aligned.bim
+    Untracked:  data/ancient_aligned.fam
+    Untracked:  data/ancient_aligned.log
+    Untracked:  data/ancient_matched.bed
+    Untracked:  data/ancient_matched.bim
+    Untracked:  data/ancient_matched.fam
+    Untracked:  data/ancient_matched.log
+    Untracked:  data/ancient_pigment.bed
+    Untracked:  data/ancient_pigment.bim
+    Untracked:  data/ancient_pigment.fam
+    Untracked:  data/ancient_pigment.log
+    Untracked:  data/ancient_pigmentation.bed
+    Untracked:  data/ancient_pigmentation.bim
+    Untracked:  data/ancient_pigmentation.fam
+    Untracked:  data/ancient_pigmentation.log
+    Untracked:  data/ancient_pigmentation.projected.log
+    Untracked:  data/ancient_pigmentation.projected.sscore.tmp
+    Untracked:  data/ancient_pigmentation.vcf.gz.tbi
+    Untracked:  data/ancient_temp.bed
+    Untracked:  data/ancient_temp.bim
+    Untracked:  data/ancient_temp.fam
+    Untracked:  data/ancient_temp.log
+    Untracked:  data/ancient_temp.pgen
+    Untracked:  data/ancient_temp.psam
+    Untracked:  data/ancient_temp.pvar
+    Untracked:  data/modern_matched.bed
+    Untracked:  data/modern_matched.bim
+    Untracked:  data/modern_matched.fam
+    Untracked:  data/modern_matched.log
+    Untracked:  data/modern_matched.pgen
+    Untracked:  data/modern_matched.psam
+    Untracked:  data/modern_matched.pvar
+    Untracked:  data/pigmentation.cleaned.log
+    Untracked:  data/pigmentation.cleaned.pgen
+    Untracked:  data/pigmentation.cleaned.psam
+    Untracked:  data/pigmentation.cleaned.pvar
+    Untracked:  data/pigmentation.freq.log
+    Untracked:  data/pigmentation.pca.eigenvec
+    Untracked:  data/pigmentation_freq.log
+    Untracked:  data/pigmentation_merged-merge.psam
+    Untracked:  data/pigmentation_merged-merge.pvar
+    Untracked:  data/pigmentation_merged.log
+    Untracked:  data/pigmentation_snps.bed
+    Untracked:  data/pigmentation_snps.bim
+    Untracked:  data/pigmentation_snps.fam
+    Untracked:  data/pigmentation_snps.fixed.bed
+    Untracked:  data/pigmentation_snps.fixed.bim
+    Untracked:  data/pigmentation_snps.fixed.fam
+    Untracked:  data/pigmentation_snps.fixed.log
+    Untracked:  data/pigmentation_snps.fixed.pgen
+    Untracked:  data/pigmentation_snps.fixed.psam
+    Untracked:  data/pigmentation_snps.fixed.pvar
+    Untracked:  data/pigmentation_snps.vcf.gz.tbi
+    Untracked:  data/pigmentation_snps_pca.eigenvec
+    Untracked:  data/pigmentation_snps_pca.eigenvec.var
+    Untracked:  data/snps.txt
+
+Unstaged changes:
+    Modified:   analysis/pca.Rmd
+    Modified:   analysis/pca_proj.py
+    Modified:   data/ancient.projected.sscore
 
 </code></pre>
 <p>
@@ -622,6 +701,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/d9ec58fd07c5272e127ac75a220bc6b3b47b9a32/docs/pca.html" target="_blank">d9ec58f</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -920,122 +1016,6 @@ stack snp distribution
 </div>
 <div id="sgdp-whole-genome-snp-panel" class="section level1">
 <h1>SGDP whole-genome SNP panel</h1>
-<pre class="r"><code>library(data.table)</code></pre>
-<pre><code>Warning: package &#39;data.table&#39; was built under R version 4.4.3</code></pre>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>Warning: package &#39;dplyr&#39; was built under R version 4.4.3</code></pre>
-<pre><code>
-Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:data.table&#39;:
-
-    between, first, last</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    filter, lag</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(ggplot2)</code></pre>
-<pre><code>Warning: package &#39;ggplot2&#39; was built under R version 4.4.3</code></pre>
-<pre class="r"><code>library(wesanderson)
-library(showtext)</code></pre>
-<pre><code>Loading required package: sysfonts</code></pre>
-<pre><code>Loading required package: showtextdb</code></pre>
-<pre class="r"><code>library(workflowr)
-
-font_add_google(&quot;Lato&quot;, &quot;lato&quot;)
-showtext_auto()</code></pre>
-<pre class="r"><code>modern_file &lt;- &quot;data/sgdp.wg.pca.eigenvec&quot;
-ancient_file &lt;- &quot;data/ancient.projected.sscore&quot;
-metadata_file &lt;- &quot;data/modern_metadata.csv&quot;</code></pre>
-<pre class="r"><code>modern &lt;- fread(modern_file, header = TRUE)
-colnames(modern) &lt;- c(&quot;IID&quot;, paste0(&quot;PC&quot;, 1:10))
-metadata &lt;- fread(metadata_file)
-
-modern &lt;- modern %&gt;%
-  left_join(metadata, by = c(&quot;IID&quot;=&quot;library_id&quot;)) %&gt;%
-  mutate(Type = &quot;Modern&quot;)
-
-# ancient projections
-ancient &lt;- fread(ancient_file)
-
-ancient_pcs &lt;- ancient %&gt;%
-  select(IID, starts_with(&quot;PC&quot;)) %&gt;%
-  mutate(Type = &quot;Ancient&quot;)
-
-ancient_pcs &lt;- ancient_pcs %&gt;%
-  mutate(
-    Group = case_when(
-      IID %in% c(&quot;Denisova3&quot;, &quot;Denisova25&quot;) ~ &quot;Denisovan&quot;,
-      IID %in% c(&quot;Denisova11&quot;) ~ &quot;Hybrid&quot;,
-      TRUE ~ &quot;Neanderthal&quot;
-    )
-  )
-
-# bind
-
-modern_clean &lt;- modern %&gt;%
-  select(IID, starts_with(&quot;PC&quot;), Population_ID, Region) %&gt;%
-  mutate(Type = &quot;Modern&quot;,
-         Group = Population_ID)
-
-ancient_clean &lt;- ancient_pcs %&gt;%
-  rename_with(
-    ~ gsub(&quot;_AVG&quot;, &quot;&quot;, .x),
-    starts_with(&quot;PC&quot;)
-  ) %&gt;%
-  select(IID, Group, starts_with(&quot;PC&quot;)) %&gt;%
-  mutate(
-    Population_ID = &quot;Ancient&quot;,
-    Region = &quot;Ancient&quot;,
-    Type = &quot;Ancient&quot;
-  )
-
-df &lt;- bind_rows(modern_clean, ancient_clean)</code></pre>
-<pre class="r"><code>wes_cols &lt;- wes_palette(&quot;Zissou1&quot;, 15, type = &quot;continuous&quot;)
-
-modern_pops &lt;- df$Region[df$Type == &quot;Modern&quot;]
-modern_colors &lt;- setNames(
-  wes_cols[1:length(modern_pops)],
-  modern_pops
-)
-
-df &lt;- df %&gt;%
-  arrange(Type, Region, Group) %&gt;%
-  mutate(Group = factor(Group, levels = unique(Group)))
-
-ancient_colors &lt;- c(
-  &quot;Neanderthal&quot; = &quot;red&quot;,  
-  &quot;Denisovan&quot;   = &quot;blue&quot;,
-  &quot;Hybrid&quot;      = &quot;purple&quot;
-)
-
-all_colors &lt;- c(modern_colors, ancient_colors)
-
-ggplot(df, aes(PC1, PC2)) +
-  geom_point(
-    aes(color = Region),
-    size = 1.5,
-    alpha = 0.8
-  ) +
-  geom_point(
-    data = df %&gt;% filter(Type == &quot;Ancient&quot;),
-    aes(color = Group),
-    size = 3,
-    alpha = 0.3
-  ) +
-  scale_color_manual(values = all_colors) +
-  theme_minimal(base_family = &quot;lato&quot;, base_size = 14) +
-  labs(
-    title = &quot;PCA of SGDP SNP panel&quot;,
-    x = &quot;PC1&quot;,
-    y = &quot;PC2&quot;,
-    color = &quot;Population&quot;
-  ) +
-  theme(
-    legend.position = &quot;right&quot;,
-    panel.grid = element_blank()
-  )</code></pre>
 <p><img src="figure/pca.Rmd/plot-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-1">
@@ -1107,6 +1087,11 @@ Lily Heald
 </table>
 </div>
 </div>
+<p>Ensembl allele frequencies</p>
+</div>
+<div id="pigmentation-subset" class="section level1">
+<h1>Pigmentation subset</h1>
+<p><img src="figure/pca.Rmd/plot2-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

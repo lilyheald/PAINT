@@ -7,12 +7,10 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 modern_vcf = os.path.join(DATA_DIR, "pigmentation_snps.vcf.gz")
 ancient_vcf = os.path.join(DATA_DIR, "ancient_pigmentation.vcf.gz")
 
-modern_prefix = os.path.join(DATA_DIR, "pigmentation.cleaned")
-freq_prefix = os.path.join(DATA_DIR, "pigmentation.freq")
-pca_prefix = os.path.join(DATA_DIR, "pigmentation.pca")
-
-ancient_prefix = os.path.join(DATA_DIR, "ancient_pigment")
-projection_prefix = os.path.join(DATA_DIR, "ancient.projected")
+freq_prefix = os.path.join(DATA_DIR, "pigmentation_freq")
+pca_prefix = os.path.join(DATA_DIR, "pigmentation_pca")
+ancient_prefix = os.path.join(DATA_DIR, "ancient")
+projection_prefix = os.path.join(DATA_DIR, "ancient_projected")
 
 threads = 6
 plink = "plink2"
@@ -21,75 +19,72 @@ plink = "plink2"
 def run_cmd(cmd):
     print(f"\nRunning:\n{cmd}\n")
     result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+
     print(result.stdout)
     print(result.stderr)
+
     if result.returncode != 0:
         raise RuntimeError("Command failed")
+
     print("Done.\n")
 
 
-# clean modern from vcf
+# ======================
+# STEP 1: FREQUENCIES (MODERN)
+# ======================
 
 run_cmd(f"""
 {plink} \
 --vcf "{modern_vcf}" \
 --set-all-var-ids @:#:$r:$a \
---rm-dup force-first \
 --max-alleles 2 \
---make-pgen \
---threads {threads} \
---out "{modern_prefix}"
-""")
-
-
-# freqs
-
-run_cmd(f"""
-{plink} \
---pfile "{modern_prefix}" \
 --freq \
---threads {threads} \
 --out "{freq_prefix}"
 """)
 
 
-# pca
+# ======================
+# STEP 2: PCA WITH ALLELE WEIGHTS
+# ======================
 
 run_cmd(f"""
 {plink} \
---pfile "{modern_prefix}" \
+--vcf "{modern_vcf}" \
+--set-all-var-ids @:#:$r:$a \
+--max-alleles 2 \
 --read-freq "{freq_prefix}.afreq" \
 --pca 10 allele-wts \
---threads {threads} \
 --out "{pca_prefix}"
 """)
 
 
-# prep ancient
+# ======================
+# STEP 3: PREP ANCIENT
+# ======================
 
 run_cmd(f"""
 {plink} \
 --vcf "{ancient_vcf}" \
 --set-all-var-ids @:#:$r:$a \
---rm-dup force-first \
 --max-alleles 2 \
 --make-bed \
---threads {threads} \
 --out "{ancient_prefix}"
 """)
 
 
-# project
+# ======================
+# STEP 4: PROJECT
+# ======================
 
 run_cmd(f"""
 {plink} \
 --bfile "{ancient_prefix}" \
 --read-freq "{freq_prefix}.afreq" \
---score "{pca_prefix}.eigenvec.allele" 2 5 header-read ignore-dup-ids list-variants \
+--score "{pca_prefix}.eigenvec.allele" 2 5 header-read \
 --score-col-nums 6-15 \
---variance-standardize \
---threads {threads} \
 --out "{projection_prefix}"
 """)
 
+
+print("🎉 DONE!")
 print(f"Projected PCs: {projection_prefix}.sscore")
