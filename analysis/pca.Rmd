@@ -29,9 +29,9 @@ pca_pal <- c(
 ```
 
 ```{r paths, echo = FALSE, message = FALSE, warning = FALSE}
-modern_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/sgdp.wg.pca.eigenvec"
-ancient_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/ancient.projected.sgdp.sscore"
-metadata_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/modern_metadata.csv"
+modern_file <- "data/sgdp.wg.pca.eigenvec"
+ancient_file <- "data/ancient.projected.sgdp.sscore"
+metadata_file <- "data/modern_metadata.csv"
 ```
 
 ```{r process, echo = FALSE, message = FALSE, warning = FALSE}
@@ -106,9 +106,9 @@ Ensembl allele frequencies
 # Pigmentation subset
 
 ```{r processing2, echo = FALSE, message = FALSE, warning = FALSE}
-modern_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/pigmentation.pca.eigenvec"
-ancient_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/ancient.projected.pig.sscore"
-metadata_file <- "/Users/lilyheald/Documents/GitHub/PAINT/data/modern_metadata.csv"
+modern_file <- "data/pigmentation.pca.eigenvec"
+ancient_file <- "data/ancient.projected.pig.sscore"
+metadata_file <- "data/modern_metadata.csv"
 
 modern <- fread(modern_file, header = TRUE)
 colnames(modern) <- c("IID", paste0("PC", 1:10))
