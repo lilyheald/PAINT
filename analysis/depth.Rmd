@@ -273,6 +273,14 @@ ggplot(depth_all, aes(x = Position, y = Sample)) +
     axis.text.y = element_text(size = 8),
     panel.spacing = unit(0.5, "lines")
   ) 
+
+depth_all <- depth_all %>%
+  group_by(Position) %>%
+  mutate(n_missing = sum(Missing))
+
+nmissing_sum <- capture.output(summary(depth_all$n_missing))
+df_summary <- data.frame(nmissing_sum)
+knitr::kable(df_summary, caption = "Summary of missingness")
 ```
 
 
