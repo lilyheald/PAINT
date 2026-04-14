@@ -399,9 +399,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 2
 </p>
 <p>
 <strong>Knit directory:</strong> <code>~/Documents/GitHub/PAINT/</code>
@@ -514,30 +514,88 @@ run.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
 </p>
 </div>
-<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr
-project makes it easier to run your code on other machines.</p>
+<p>
+Using absolute paths to the files within your workflowr project makes it
+difficult for you and others to run your code on a different machine.
+Change the absolute path(s) below to the suggested relative path(s) to
+make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+/Users/lilyheald/Documents/GitHub/PAINT/data/sgdp.wg.pca.eigenvec
+</td>
+<td style="text-align:left;">
+data/sgdp.wg.pca.eigenvec
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/Users/lilyheald/Documents/GitHub/PAINT/data/ancient.projected.sgdp.sscore
+</td>
+<td style="text-align:left;">
+data/ancient.projected.sgdp.sscore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/Users/lilyheald/Documents/GitHub/PAINT/data/modern_metadata.csv
+</td>
+<td style="text-align:left;">
+data/modern_metadata.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/Users/lilyheald/Documents/GitHub/PAINT/data/pigmentation.pca.eigenvec
+</td>
+<td style="text-align:left;">
+data/pigmentation.pca.eigenvec
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+/Users/lilyheald/Documents/GitHub/PAINT/data/ancient.projected.pig.sscore
+</td>
+<td style="text-align:left;">
+data/ancient.projected.pig.sscore
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreed9ec58fd07c5272e127ac75a220bc6b3b47b9a32targetblankd9ec58fa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree4bed3e5f4d72fe43d4281a58f4606c6b062e162atargetblank4bed3e5a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/d9ec58fd07c5272e127ac75a220bc6b3b47b9a32" target="_blank">d9ec58f</a>
+<a href="https://github.com/lilyheald/PAINT/tree/4bed3e5f4d72fe43d4281a58f4606c6b062e162a" target="_blank">4bed3e5</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreed9ec58fd07c5272e127ac75a220bc6b3b47b9a32targetblankd9ec58fa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree4bed3e5f4d72fe43d4281a58f4606c6b062e162atargetblank4bed3e5a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -547,7 +605,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/d9ec58fd07c5272e127ac75a220bc6b3b47b9a32" target="_blank">d9ec58f</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/4bed3e5f4d72fe43d4281a58f4606c6b062e162a" target="_blank">4bed3e5</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -568,19 +626,72 @@ Ignored files:
     Ignored:    analysis/.Rhistory
     Ignored:    analysis/.Rproj.user/
     Ignored:    analysis/depth_spinoff.Rmd
+    Ignored:    data/allele_ref.txt
     Ignored:    data/ancient.projected.log
+    Ignored:    data/ancient_aligned.bed
+    Ignored:    data/ancient_aligned.bim
+    Ignored:    data/ancient_aligned.fam
+    Ignored:    data/ancient_aligned.log
     Ignored:    data/ancient_depth.csv
     Ignored:    data/ancient_depth_clean.csv
+    Ignored:    data/ancient_matched.bed
+    Ignored:    data/ancient_matched.bim
+    Ignored:    data/ancient_matched.fam
+    Ignored:    data/ancient_matched.log
     Ignored:    data/ancient_metadata.csv
+    Ignored:    data/ancient_pigment.bed
+    Ignored:    data/ancient_pigment.bim
+    Ignored:    data/ancient_pigment.fam
+    Ignored:    data/ancient_pigment.log
+    Ignored:    data/ancient_pigmentation.bed
+    Ignored:    data/ancient_pigmentation.bim
+    Ignored:    data/ancient_pigmentation.fam
+    Ignored:    data/ancient_pigmentation.log
+    Ignored:    data/ancient_pigmentation.projected.log
     Ignored:    data/ancient_pigmentation.vcf.gz
+    Ignored:    data/ancient_pigmentation.vcf.gz.tbi
+    Ignored:    data/ancient_temp.bed
+    Ignored:    data/ancient_temp.bim
+    Ignored:    data/ancient_temp.fam
+    Ignored:    data/ancient_temp.log
+    Ignored:    data/ancient_temp.pgen
+    Ignored:    data/ancient_temp.psam
+    Ignored:    data/ancient_temp.pvar
+    Ignored:    data/modern_matched.bed
+    Ignored:    data/modern_matched.bim
+    Ignored:    data/modern_matched.fam
+    Ignored:    data/modern_matched.log
+    Ignored:    data/modern_matched.pgen
+    Ignored:    data/modern_matched.psam
+    Ignored:    data/modern_matched.pvar
     Ignored:    data/modern_metadata.csv
     Ignored:    data/neo_uvi.csv
+    Ignored:    data/pigmentation.cleaned.log
+    Ignored:    data/pigmentation.cleaned.pgen
+    Ignored:    data/pigmentation.cleaned.psam
+    Ignored:    data/pigmentation.cleaned.pvar
     Ignored:    data/pigmentation.freq.afreq
+    Ignored:    data/pigmentation.freq.log
     Ignored:    data/pigmentation.pca.eigenval
     Ignored:    data/pigmentation.pca.eigenvec.allele
     Ignored:    data/pigmentation.pca.log
+    Ignored:    data/pigmentation_freq.log
+    Ignored:    data/pigmentation_merged-merge.psam
+    Ignored:    data/pigmentation_merged-merge.pvar
+    Ignored:    data/pigmentation_merged.log
+    Ignored:    data/pigmentation_snps.bed
+    Ignored:    data/pigmentation_snps.bim
     Ignored:    data/pigmentation_snps.csv
+    Ignored:    data/pigmentation_snps.fam
+    Ignored:    data/pigmentation_snps.fixed.bed
+    Ignored:    data/pigmentation_snps.fixed.bim
+    Ignored:    data/pigmentation_snps.fixed.fam
+    Ignored:    data/pigmentation_snps.fixed.log
+    Ignored:    data/pigmentation_snps.fixed.pgen
+    Ignored:    data/pigmentation_snps.fixed.psam
+    Ignored:    data/pigmentation_snps.fixed.pvar
     Ignored:    data/pigmentation_snps.vcf.gz
+    Ignored:    data/pigmentation_snps.vcf.gz.tbi
     Ignored:    data/pigmentation_snps_freq.afreq
     Ignored:    data/pigmentation_snps_pca.eigenval
     Ignored:    data/sgdp.wg.afreq
@@ -592,72 +703,8 @@ Ignored files:
     Ignored:    plink2.zip
     Ignored:    test.log
 
-Untracked files:
-    Untracked:  analysis/pig_pca_proj.py
-    Untracked:  data/allele_ref.txt
-    Untracked:  data/ancient.projected.sscore.vars
-    Untracked:  data/ancient_aligned.bed
-    Untracked:  data/ancient_aligned.bim
-    Untracked:  data/ancient_aligned.fam
-    Untracked:  data/ancient_aligned.log
-    Untracked:  data/ancient_matched.bed
-    Untracked:  data/ancient_matched.bim
-    Untracked:  data/ancient_matched.fam
-    Untracked:  data/ancient_matched.log
-    Untracked:  data/ancient_pigment.bed
-    Untracked:  data/ancient_pigment.bim
-    Untracked:  data/ancient_pigment.fam
-    Untracked:  data/ancient_pigment.log
-    Untracked:  data/ancient_pigmentation.bed
-    Untracked:  data/ancient_pigmentation.bim
-    Untracked:  data/ancient_pigmentation.fam
-    Untracked:  data/ancient_pigmentation.log
-    Untracked:  data/ancient_pigmentation.projected.log
-    Untracked:  data/ancient_pigmentation.projected.sscore.tmp
-    Untracked:  data/ancient_pigmentation.vcf.gz.tbi
-    Untracked:  data/ancient_temp.bed
-    Untracked:  data/ancient_temp.bim
-    Untracked:  data/ancient_temp.fam
-    Untracked:  data/ancient_temp.log
-    Untracked:  data/ancient_temp.pgen
-    Untracked:  data/ancient_temp.psam
-    Untracked:  data/ancient_temp.pvar
-    Untracked:  data/modern_matched.bed
-    Untracked:  data/modern_matched.bim
-    Untracked:  data/modern_matched.fam
-    Untracked:  data/modern_matched.log
-    Untracked:  data/modern_matched.pgen
-    Untracked:  data/modern_matched.psam
-    Untracked:  data/modern_matched.pvar
-    Untracked:  data/pigmentation.cleaned.log
-    Untracked:  data/pigmentation.cleaned.pgen
-    Untracked:  data/pigmentation.cleaned.psam
-    Untracked:  data/pigmentation.cleaned.pvar
-    Untracked:  data/pigmentation.freq.log
-    Untracked:  data/pigmentation.pca.eigenvec
-    Untracked:  data/pigmentation_freq.log
-    Untracked:  data/pigmentation_merged-merge.psam
-    Untracked:  data/pigmentation_merged-merge.pvar
-    Untracked:  data/pigmentation_merged.log
-    Untracked:  data/pigmentation_snps.bed
-    Untracked:  data/pigmentation_snps.bim
-    Untracked:  data/pigmentation_snps.fam
-    Untracked:  data/pigmentation_snps.fixed.bed
-    Untracked:  data/pigmentation_snps.fixed.bim
-    Untracked:  data/pigmentation_snps.fixed.fam
-    Untracked:  data/pigmentation_snps.fixed.log
-    Untracked:  data/pigmentation_snps.fixed.pgen
-    Untracked:  data/pigmentation_snps.fixed.psam
-    Untracked:  data/pigmentation_snps.fixed.pvar
-    Untracked:  data/pigmentation_snps.vcf.gz.tbi
-    Untracked:  data/pigmentation_snps_pca.eigenvec
-    Untracked:  data/pigmentation_snps_pca.eigenvec.var
-    Untracked:  data/snps.txt
-
 Unstaged changes:
     Modified:   analysis/pca.Rmd
-    Modified:   analysis/pca_proj.py
-    Modified:   data/ancient.projected.sscore
 
 </code></pre>
 <p>
@@ -701,6 +748,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/4bed3e5f4d72fe43d4281a58f4606c6b062e162a/analysis/pca.Rmd" target="_blank">4bed3e5</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+<td>
+Add pigmentation PCA
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/4bed3e5f4d72fe43d4281a58f4606c6b062e162a/docs/pca.html" target="_blank">4bed3e5</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+<td>
+Add pigmentation PCA
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1041,6 +1122,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/lilyheald/PAINT/blob/4bed3e5f4d72fe43d4281a58f4606c6b062e162a/docs/figure/pca.Rmd/plot-1.png" target="_blank">4bed3e5</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/lilyheald/PAINT/blob/0cedec7812662f373226d13021b1ec7fcef42200/docs/figure/pca.Rmd/plot-1.png" target="_blank">0cedec7</a>
 </td>
 <td>
@@ -1092,6 +1184,43 @@ Lily Heald
 <div id="pigmentation-subset" class="section level1">
 <h1>Pigmentation subset</h1>
 <p><img src="figure/pca.Rmd/plot2-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot2-1">
+Past versions of plot2-1.png
+</button>
+</p>
+<div id="fig-plot2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/4bed3e5f4d72fe43d4281a58f4606c6b062e162a/docs/figure/pca.Rmd/plot2-1.png" target="_blank">4bed3e5</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">

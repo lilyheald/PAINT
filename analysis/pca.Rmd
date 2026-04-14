@@ -72,7 +72,7 @@ ancient_clean <- ancient_pcs %>%
   select(IID, Group, starts_with("PC")) %>%
   mutate(
     Population_ID = "Ancient",
-    Region = "Ancient",
+    Region = Group,
     Type = "Ancient"
   )
 
@@ -83,12 +83,6 @@ df <- bind_rows(modern_clean, ancient_clean)
 ggplot(df, aes(PC1, PC2)) +
   geom_point(
     aes(color = Region, shape = Type),
-    size = 1.5,
-    alpha = 0.8
-  ) +
-  geom_point(
-    data = df %>% filter(Type == "Ancient"),
-    aes(color = Group),
     size = 3,
     alpha = 0.8
   ) +
@@ -150,28 +144,24 @@ modern_clean <- modern %>%
 
 ancient_clean <- ancient_pcs %>%
   select(IID, starts_with("PC"), Group, Region, Type) %>%
-  mutate(Population_ID = "Ancient")
+  mutate(Population_ID = "Ancient",
+         Region = Group)
 
 df <- bind_rows(modern_clean, ancient_clean)
 ```
 
 ```{r plot2, echo = FALSE, message = FALSE, warning = FALSE}
-ggplot(df, aes(PC1, PC2)) +
+ggplot(df, aes(PC1, PC2))+
   geom_point(
     aes(color = Region, shape = Type),
-    size = 1.5,
-    alpha = 0.8,
-  ) +
-  geom_point(
-    data = df %>% filter(Type == "Ancient"),
-    aes(color = Group),
     size = 3,
-    alpha = 0.3
+    alpha = 0.8,
+    position = "jitter"
   ) +
   scale_color_manual(values = pca_pal) +
   theme_minimal(base_family = "lato", base_size = 14) +
   labs(
-    title = "PCA of pigment SNP panel",
+    title = "PCA of pigmentation SNP panel",
     x = "PC1",
     y = "PC2",
     color = "Population"
