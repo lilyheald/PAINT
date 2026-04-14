@@ -48,9 +48,9 @@ rsconnect/
 *.csv
 
 # Unfinished analyses
-phenotypic_inference.Rmd
-depth_spinoff.Rmd
-depth_spinoff.html
+analysis/phenotypic_inference.Rmd
+analysis/depth_spinoff.Rmd
+docs/depth_spinoff.html
 
 # PCA stuff
 *.afreq
@@ -69,4 +69,3 @@ depth_spinoff.html
 *.bed
 data/allele_ref.txt
 *.tbi
-
