@@ -264,7 +264,7 @@ ggplot(depth_all, aes(x = Position, y = Sample)) +
   geom_raster(aes(fill = Depth_NA)) +
   scale_fill_gradientn(
     colors = wes_palette("Zissou1", 100, type = "continuous"),
-    na.value = "grey70",
+    na.value = "black",
     name = "log(Depth)"
   ) +
   theme_minimal(base_family = "lato") +
