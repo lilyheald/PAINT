@@ -22,13 +22,14 @@ showtext_auto()
 # Sequencing coverage
 
 Sequencing depth is an important measure in genotyping. Sequencing depth refers to the number of times a specific nucleotide was sequenced. A higher sequencing depth confers more confidence in the accuracy of the base calls, as it reduces the likelihood of technical errors in sequencing. 
+
 ```{r depth_sim, message = FALSE, warning = FALSE, echo = FALSE}
 max_depth <- 20
 error_rates <- c(0.001, 0.005, 0.01, 0.1)
 
 labels <- c(
-  "0.001" = "Modern DNA (0.1%)", #Pfieffer et al, 2018
-  "0.005" = "Modern DNA (0.5%)",
+  "0.001" = "Modern DNA, Illumina short-read (0.1%)", 
+  "0.005" = "Modern DNA, Nanopore long-read (0.5%)",
   "0.01" = "Treated aDNA (1%)", 
   "0.1" = "Untreated aDNA (10%)"
 )
@@ -60,6 +61,113 @@ ggplot(df, aes(x = depth, y = confidence, color = error_rate)) +
     x = "Sequencing Depth",
     y = "Probability Consensus is Correct",
     color = "Error profile"
+  ) +
+  coord_cartesian(ylim = c(0.75, 1)) +
+  theme_classic(base_family = "lato", base_size = 14) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    panel.grid.major.y = element_line(color = "grey90", linewidth = 0.3),
+    panel.grid.major.x = element_blank(),
+    legend.position = "right"
+  )
+```
+
+```{r positional_mod}
+# params
+max_depth <- 20
+profiles <- c("illumina", "nanopore", "udg", "untreated")
+labels <- c(
+  "illumina"  = "Modern DNA, Illumina short-read (0.1%)",
+  "nanopore"  = "Modern DNA, Nanopore Q20+ (0.5%)",
+  "udg"       = "UDG-treated aDNA (1% interior, 2% ends)",
+  "untreated" = "Untreated aDNA (5% interior, 20% ends)"
+)
+
+# IID model
+simulate_confidence_constant <- function(depth, error_rate) {
+  p_correct <- 1 - error_rate
+  k <- floor(depth / 2) + 1
+  1 - pbinom(k - 1, size = depth, prob = p_correct)
+}
+
+# position-dependent model
+simulate_confidence_positional <- function(depth, read_length,
+                                           p_interior,
+                                           p_end,
+                                           lambda = 0.3,
+                                           n_sim = 1000) {
+  p_error_pos <- function(pos) {
+    dist_to_end <- pmin(pos - 1, read_length - pos)
+    p_interior + (p_end - p_interior) * exp(-lambda * dist_to_end)
+  }
+  successes <- replicate(n_sim, {
+    # Each read gets its own position
+    positions <- sample(1:read_length, depth, replace = TRUE)
+    p_errors <- p_error_pos(positions)
+    
+    calls <- rbinom(depth, size = 1, prob = 1 - p_errors)
+    
+    sum(calls) >= (floor(depth / 2) + 1)
+  })
+  
+  mean(successes)
+}
+
+# simulation
+df <- expand.grid(
+  depth = 1:max_depth,
+  profile = profiles,
+  model = c("Constant error", "Position-dependent error")
+) %>%
+  as_tibble() %>%
+  mutate(
+    confidence = pmap_dbl(list(depth, profile, model), function(d, prof, mod) {
+      # CONSTANT MODEL
+      if (mod == "Constant error") {
+        err <- switch(prof,
+                      "illumina"  = 0.001,
+                      "nanopore"  = 0.005,
+                      "udg"       = 0.01,
+                      "untreated" = 0.10)
+        
+        return(simulate_confidence_constant(d, err))
+      }
+      
+      # POSITION-DEPENDENT MODEL
+      if (prof == "illumina") {
+        simulate_confidence_positional(d, 50, 0.001, 0.001)
+      } else if (prof == "nanopore") {
+        simulate_confidence_positional(d, 50, 0.005, 0.005)
+      } else if (prof == "udg") {
+        simulate_confidence_positional(d, 50,
+                                       p_interior = 0.01,
+                                       p_end = 0.02,
+                                       lambda = 0.5)
+      } else if (prof == "untreated") {
+        simulate_confidence_positional(d, 50,
+                                       p_interior = 0.05,
+                                       p_end = 0.20,
+                                       lambda = 0.3)
+      }
+    }),
+    
+    profile = factor(profile, levels = profiles, labels = labels),
+    model = factor(model, levels = c("Constant error", "Position-dependent error"))
+  )
+
+# plot
+wes_cols <- wes_palette("Zissou1", length(profiles), type = "continuous")
+names(wes_cols) <- levels(df$profile)
+
+ggplot(df, aes(x = depth, y = confidence, color = profile, linetype = model)) +
+  geom_line(linewidth = 1) +
+  scale_color_manual(values = wes_cols) +
+  labs(
+    x = "Sequencing Depth",
+    y = "Probability Consensus is Correct",
+    color = "Error profile",
+    linetype = "Model"
   ) +
   coord_cartesian(ylim = c(0.75, 1)) +
   theme_classic(base_family = "lato", base_size = 14) +
