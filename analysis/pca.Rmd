@@ -80,7 +80,7 @@ ancient_clean <- ancient_pcs %>%
 df <- bind_rows(modern_clean, ancient_clean)
 ```
 
-```{r plot, echo = FALSE, message = FALSE, warning = FALSE}
+```{r plot, echo = FALSE, message = FALSE, warning = FALSE, fig.width=9, fig.height=3}
 x1 <- ggplot(df, aes(PC1, PC2)) +
   geom_point(
     aes(color = Region, shape = Type),
@@ -172,7 +172,7 @@ ancient_clean <- ancient_pcs %>%
 df <- bind_rows(modern_clean, ancient_clean)
 ```
 
-```{r plot2, echo = FALSE, message = FALSE, warning = FALSE}
+```{r plot2, echo = FALSE, message = FALSE, warning = FALSE, fig.width=9, fig.height=3}
 x2 <- ggplot(df, aes(PC1, PC2))+
   geom_point(
     aes(color = Region, shape = Type),
