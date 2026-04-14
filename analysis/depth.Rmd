@@ -23,7 +23,7 @@ showtext_auto()
 
 Sequencing depth is an important measure in genotyping. Sequencing depth refers to the number of times a specific nucleotide was sequenced. A higher sequencing depth confers more confidence in the accuracy of the base calls, as it reduces the likelihood of technical errors in sequencing. 
 
-```{r depth_sim, message = FALSE, warning = FALSE, echo = FALSE}
+```{r depth_sim, message = FALSE, warning = FALSE, echo = FALSE, include = FALSE}
 max_depth <- 20
 error_rates <- c(0.001, 0.005, 0.01, 0.1)
 
@@ -73,7 +73,7 @@ ggplot(df, aes(x = depth, y = confidence, color = error_rate)) +
   )
 ```
 
-```{r positional_mod}
+```{r positional_mod, message = FALSE, warning = FALSE, echo = FALSE}
 # params
 max_depth <- 20
 profiles <- c("illumina", "nanopore", "udg", "untreated")
