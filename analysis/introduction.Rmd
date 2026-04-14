@@ -134,8 +134,6 @@ arc_tab_df <- data.frame(
 knitr::kable(arc_tab_df, caption = "Available high-coverage archaic genomes")
 ```
 
-
-
 # Modern reference genomes
 
 Modern human genomes were obtained from the Simons Genome Diversity Project (SGDP). A panel of 279 individuals representing broad global diversity (Africa, Europe, East Asia, Central Asia, and Oceania) to provide a stable reference frame for principal component analysis (PCA). Variant call files (VCFs) were downloaded as whole-genome SNP datasets aligned to the GRCh37/hg19 reference genome.
@@ -298,6 +296,16 @@ snp_tab <- data.frame(
 knitr::kable(snp_tab, 
              col.names = c("Locus", "Typical role in pigmentation biology", "Evidence in modern humans"),
              caption = "Pigmentation-associated SNPs")
+```
+
+# Definitions
+
+```{r vocab_table, echo = FALSE, message = FALSE, warning = FALSE}
+vocab_tab <- data.frame(
+  Term = c("Loci", "Allele", "Haplotype", "Genotype"),
+  Definition = c("Position of a gene or DNA sequence on a chromosome", "One form of a gene", "A set of closely linked genetic markers on a single chromosome that are inherited together from a single parent", "Two alleles present in an individual at a specific locus of the genome")
+)
+knitr::kable(vocab_tab, caption = "Vocabulary")
 ```
 
 

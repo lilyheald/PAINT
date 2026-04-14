@@ -12,6 +12,7 @@ library(ggplot2)
 library(wesanderson)
 library(showtext)
 library(workflowr)
+library(patchwork)
 
 font_add_google("Lato", "lato")
 showtext_auto()
@@ -80,7 +81,7 @@ df <- bind_rows(modern_clean, ancient_clean)
 ```
 
 ```{r plot, echo = FALSE, message = FALSE, warning = FALSE}
-ggplot(df, aes(PC1, PC2)) +
+x1 <- ggplot(df, aes(PC1, PC2)) +
   geom_point(
     aes(color = Region, shape = Type),
     size = 3,
@@ -89,7 +90,6 @@ ggplot(df, aes(PC1, PC2)) +
   scale_color_manual(values = pca_pal) +
   theme_minimal(base_family = "lato", base_size = 14) +
   labs(
-    title = "PCA of SGDP SNP panel",
     x = "PC1",
     y = "PC2",
     color = "Population"
@@ -98,10 +98,32 @@ ggplot(df, aes(PC1, PC2)) +
     legend.position = "right",
     panel.grid = element_blank()
   )
+
+y1 <- ggplot(df, aes(PC3, PC4)) +
+  geom_point(
+    aes(color = Region, shape = Type),
+    size = 3,
+    alpha = 0.8
+  ) +
+  scale_color_manual(values = pca_pal) +
+  theme_minimal(base_family = "lato", base_size = 14) +
+  labs(
+    x = "PC3",
+    y = "PC4",
+    color = "Population"
+  ) +
+  theme(
+    legend.position = "right",
+    panel.grid = element_blank()
+  )
+
+combined_plot <- (x1 | y1) + 
+  plot_layout(guides = 'collect') + 
+  plot_annotation(title = 'PCA of SGDP SNP panel', theme = theme(plot.title = element_text(hjust = 0.5)))
+
+combined_plot
 ```
 
-
-Ensembl allele frequencies 
 
 # Pigmentation subset
 
@@ -151,7 +173,7 @@ df <- bind_rows(modern_clean, ancient_clean)
 ```
 
 ```{r plot2, echo = FALSE, message = FALSE, warning = FALSE}
-ggplot(df, aes(PC1, PC2))+
+x2 <- ggplot(df, aes(PC1, PC2))+
   geom_point(
     aes(color = Region, shape = Type),
     size = 3,
@@ -161,7 +183,6 @@ ggplot(df, aes(PC1, PC2))+
   scale_color_manual(values = pca_pal) +
   theme_minimal(base_family = "lato", base_size = 14) +
   labs(
-    title = "PCA of pigmentation SNP panel",
     x = "PC1",
     y = "PC2",
     color = "Population"
@@ -170,6 +191,29 @@ ggplot(df, aes(PC1, PC2))+
     legend.position = "right",
     panel.grid = element_blank()
   )
+y2 <- ggplot(df, aes(PC3, PC4))+
+  geom_point(
+    aes(color = Region, shape = Type),
+    size = 3,
+    alpha = 0.8,
+    position = "jitter"
+  ) +
+  scale_color_manual(values = pca_pal) +
+  theme_minimal(base_family = "lato", base_size = 14) +
+  labs(
+    x = "PC3",
+    y = "PC4",
+    color = "Population"
+  ) +
+  theme(
+    legend.position = "right",
+    panel.grid = element_blank()
+  )
+combined_plot <- (x2 | y2) + 
+  plot_layout(guides = 'collect') + 
+  plot_annotation(title = 'PCA of pigmentation SNP panel', theme = theme(plot.title = element_text(hjust = 0.5)))
+
+combined_plot
 ```
 
 
