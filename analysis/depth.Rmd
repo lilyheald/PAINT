@@ -298,7 +298,7 @@ What factors explain why a SNP is missing in ancient samples, after accounting f
 ancient_depth <- ancient_depth %>%
   mutate(log_depth = log(Depth),
          age_scaled = scale(Age_ka))
-mod1 <- glmer(Missing ~ Chromosome + age_scaled + (1 | Coverage) + (1 | Sample), data = ancient_depth, family = binomial)
+mod1 <- glmer(Missing ~ factor(Chromosome) + age_scaled + (1 | Coverage) + (1 | Sample), data = ancient_depth, family = binomial)
 summary(mod1)
 ```
 
