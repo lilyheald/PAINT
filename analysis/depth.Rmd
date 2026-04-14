@@ -304,6 +304,6 @@ summary(mod1)
 
 Technical factors such as sample and overall coverage were accounted for as random effects. Coverage is included as a random effect, allowing the baseline probability of missingness to differ based on overall sequence quality. Sample was also included as a random effect, allowing for individual differences in preservation to vary.
 
-A mixed effects logistic model shows that the probability of missingness is strongly influenced by age (= 1.34, p<0.001), indicating that older samples exhibit increased missing data. Chromosome has a small but significant effect (=-0.02, p= 0.03), suggesting minor structural or genomic influences.
+A mixed effects logistic model shows that the probability of missingness is strongly influenced by age $(\beta= 1.34, p<0.001)$, indicating that older samples exhibit increased missing data. Chromosome has a small but significant effect $(\beta=-0.02, p= 0.03)$, suggesting minor structural or genomic influences.
 
 
