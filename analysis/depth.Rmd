@@ -73,9 +73,9 @@ ggplot(df, aes(x = depth, y = confidence, color = error_rate)) +
   )
 ```
 
-```{r positional_mod, message = FALSE, warning = FALSE, echo = FALSE}
+```{r positional_mod, message = FALSE, warning = FALSE, echo = FALSE, fig.width = 10, fig.height=5}
 # params
-max_depth <- 20
+max_depth <- 15
 profiles <- c("illumina", "nanopore", "udg", "untreated")
 labels <- c(
   "illumina"  = "Modern DNA, Illumina short-read (0.1%)",
