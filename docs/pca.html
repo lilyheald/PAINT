@@ -374,7 +374,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -385,8 +385,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -399,9 +399,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>~/Documents/GitHub/PAINT/</code>
@@ -511,88 +511,30 @@ run.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
-<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>
-Using absolute paths to the files within your workflowr project makes it
-difficult for you and others to run your code on a different machine.
-Change the absolute path(s) below to the suggested relative path(s) to
-make your code more reproducible.
-</p>
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th style="text-align:left;">
-absolute
-</th>
-<th style="text-align:left;">
-relative
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-/Users/lilyheald/Documents/GitHub/PAINT/data/sgdp.wg.pca.eigenvec
-</td>
-<td style="text-align:left;">
-data/sgdp.wg.pca.eigenvec
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-/Users/lilyheald/Documents/GitHub/PAINT/data/ancient.projected.sgdp.sscore
-</td>
-<td style="text-align:left;">
-data/ancient.projected.sgdp.sscore
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-/Users/lilyheald/Documents/GitHub/PAINT/data/modern_metadata.csv
-</td>
-<td style="text-align:left;">
-data/modern_metadata.csv
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-/Users/lilyheald/Documents/GitHub/PAINT/data/pigmentation.pca.eigenvec
-</td>
-<td style="text-align:left;">
-data/pigmentation.pca.eigenvec
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-/Users/lilyheald/Documents/GitHub/PAINT/data/ancient.projected.pig.sscore
-</td>
-<td style="text-align:left;">
-data/ancient.projected.pig.sscore
-</td>
-</tr>
-</tbody>
-</table>
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree8068c221700e76e4c6da55bedcf2eaf2a9a0cd03targetblank8068c22a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreee7f75ef015a4bd92ad06816bdb923b2aa55116f7targetblanke7f75efa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/lilyheald/PAINT/tree/8068c221700e76e4c6da55bedcf2eaf2a9a0cd03" target="_blank">8068c22</a>
+<a href="https://github.com/lilyheald/PAINT/tree/e7f75ef015a4bd92ad06816bdb923b2aa55116f7" target="_blank">e7f75ef</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtree8068c221700e76e4c6da55bedcf2eaf2a9a0cd03targetblank8068c22a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomlilyhealdPAINTtreee7f75ef015a4bd92ad06816bdb923b2aa55116f7targetblanke7f75efa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -602,7 +544,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/lilyheald/PAINT/tree/8068c221700e76e4c6da55bedcf2eaf2a9a0cd03" target="_blank">8068c22</a>.
+<a href="https://github.com/lilyheald/PAINT/tree/e7f75ef015a4bd92ad06816bdb923b2aa55116f7" target="_blank">e7f75ef</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -740,6 +682,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/lilyheald/PAINT/blob/e7f75ef015a4bd92ad06816bdb923b2aa55116f7/analysis/pca.Rmd" target="_blank">e7f75ef</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+<td>
+Update pca.Rmd
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/lilyheald/PAINT/82e06c1aca1dba017f9fbdae6900ad2e016cb340/docs/pca.html" target="_blank">82e06c1</a>
+</td>
+<td>
+Lily Heald
+</td>
+<td>
+2026-04-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
