@@ -23,12 +23,13 @@ genetic_sites <- data.frame(
 
 # ---- Adaptive introgression loci ----
 adaptive_sites <- data.frame(
-  name = c("EPAS1 (Tibet)", "OAS1 (Eurasia)"),
-  lon = c(91, 60),
-  lat = c(30, 50),
+  name = c("EPAS1 (Tibet)", "OAS1 (Indonesia)", "BNC2 (Europe)"),
+  lon = c(91, 113.9, 25),
+  lat = c(30, -0.8, 54),
   description = c(
-    "Denisovan-derived high-altitude adaptation",
-    "Immune response (Neanderthal introgression)"
+    "High-altitude adaptation (Denisovan introgression) (Zhang et al., 2021)",
+    "Immune response (Neanderthal introgression) (Mendez et al., 2012)",
+    "Skin pigmentation and freckling (Neanderthal introgression) (Sankararaman et al., 2014)"
   )
 )
 
