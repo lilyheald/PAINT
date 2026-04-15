@@ -13,6 +13,7 @@ library(wesanderson)
 library(showtext)
 library(workflowr)
 library(patchwork)
+library(ggrepel)
 
 font_add_google("Lato", "lato")
 showtext_auto()
@@ -91,10 +92,12 @@ x1 <- ggplot(df, aes(PC1, PC2)) +
     size = 3,
     alpha = 0.8
   ) +
-  geom_text(aes(label = labels), 
-            position = position_jitter(width = 0.05, height = 0.05), 
-            size = 2.5) + 
+  geom_text_repel(
+    aes(label = labels),
+    size = 2.5,
+    max.overlaps = Inf) + 
   scale_color_manual(values = pca_pal) +
+  scale_shape_manual(values = c(Modern = 16, Ancient = 4)) +
   theme_minimal(base_family = "lato", base_size = 14) +
   labs(
     x = "PC1",
@@ -112,10 +115,12 @@ y1 <- ggplot(df, aes(PC3, PC4)) +
     size = 3,
     alpha = 0.8
   ) +
-  geom_text(aes(label = labels), 
-            position = position_jitter(width = 0.05, height = 0.05), 
-            size = 2.5) +  
+  geom_text_repel(
+    aes(label = labels),
+    size = 2.5,
+    max.overlaps = Inf) + 
   scale_color_manual(values = pca_pal) +
+  scale_shape_manual(values = c(Modern = 16, Ancient = 4)) +
   theme_minimal(base_family = "lato", base_size = 14) +
   labs(
     x = "PC3",
@@ -133,6 +138,11 @@ combined_plot <- (x1 | y1) +
 
 combined_plot
 ```
+
+
+The PCA of whole-genome SNPs shows clear population structure. In PC1-PC2, there is a strong separation between African and non-African populations along PC1. Within non-Africans, Europeans (WestEurasia), East Asians, and Oceanians form distinct clusters along PC2. Archaic individuals cluster near non-Africans on PC1 and form a distinct cluster on PC2. PC3 and PC4 show that Africans separate along PC4, with Yoruba and Bantu clustering together and Khomani San falling on the opposite end of the axis. Oceanians are clearly distinct along PC3. East Asians cluster tightly, distinct from both Oceanians and Europeans. Again, archaic individuals cluster near non-African populations.
+
+Whole-genome SNP data captures population history and demographic structure, producing clear clustering by continental ancestry and reflecting introgression.
 
 
 # Pigmentation subset
@@ -193,10 +203,12 @@ x2 <- ggplot(df, aes(PC1, PC2))+
     size = 3,
     alpha = 0.8
   ) +
-  geom_text(aes(label = labels), 
-            position = position_jitter(width = 0.05, height = 0.05), 
-            size = 2.5) +  
+  geom_text_repel(
+    aes(label = labels),
+    size = 2.5,
+    max.overlaps = Inf) + 
   scale_color_manual(values = pca_pal) +
+  scale_shape_manual(values = c(Modern = 16, Ancient = 4)) +
   theme_minimal(base_family = "lato", base_size = 14) +
   labs(
     x = "PC1",
@@ -213,10 +225,12 @@ y2 <- ggplot(df, aes(PC3, PC4))+
     size = 3,
     alpha = 0.8
   ) +
-  geom_text(aes(label = labels), 
-            position = position_jitter(width = 0.05, height = 0.05), 
-            size = 2.5) + 
+  geom_text_repel(
+    aes(label = labels),
+    size = 2.5,
+    max.overlaps = Inf) + 
   scale_color_manual(values = pca_pal) +
+  scale_shape_manual(values = c(Modern = 16, Ancient = 4)) +
   theme_minimal(base_family = "lato", base_size = 14) +
   labs(
     x = "PC3",
@@ -234,5 +248,5 @@ combined_plot <- (x2 | y2) +
 combined_plot
 ```
 
-
+The PCA of pigmentation-associated SNPs shows weaker geographic structuring and greater overlap among populations compared to the genome-wide panel. In PCs 1 and 2. Most populations cluster closely near the origin, indicating limited differentiation captured by pigmentation loci alone. PC1 differentiates Bantu and Yoruba from the remaining samples. In PC3 and 4. There is some separation of Oceanians and East Asians. Archaic individuals fall with the African populations.
 
