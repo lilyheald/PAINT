@@ -178,7 +178,7 @@ ggplot() +
   )
 ```
 
-```{r sgdp_subset_map, echo = FALSE, message = FALSE, warning = FALSE}
+```{r sgdp20_map, echo = FALSE, message = FALSE, warning = FALSE}
 modern_samples <- data.frame(
   population = c("Yoruba", "Bantu_Hetero", "Khomani_San", "Mongola", "Tlingit",
                  "Eskimo_Sireniki", "Dai", "Cambodian", "Han", "Papuan", "Maori",
