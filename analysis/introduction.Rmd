@@ -59,23 +59,15 @@ uv_land_df <- uv_land_df[!is.na(uv_land_df$UVIndex), ]
 ```{r sites, echo = FALSE}
 sites <- data.frame(
   name = c("Denisova","Chagyrskaya","Vindija", "Mezmaiskaya", 
-           "El Sidron", "Les Cottés", "Goyet", "Scladina", "HST"),
+           "Spy", "Les Cottés", "Goyet", "Scladina", "Hohlenstein‑Stadel"),
   samples = c("Denisova 3 (Denisovan)\nDenisova 11 (F1 Hybrid)\n Denisova 5 (Neanderthal)\n Denisova 25 (Denisovan)",
-              
     "Chagyrskaya 8 (Neanderthal)",
-    
     "Vindija 33.19 (Neanderthal)\n Vindija 87 (Neanderthal)",
-    
     "Mezmaiskaya 1 (Neanderthal)\n Mezmaiskaya 2 (Neanderthal)", 
-    
     "Spy 94-a (Neanderthal)",
-    
     "Les Cottés Z4-1415 (Neanderthal)", 
-    
     "Goyet Q56-1 (Neanderthal)",
-    
     "Scladina (Neanderthal)",
-    
     "Hohlenstein‑Stadel (Neanderthal)"),
   
   lon  = c(84.4, 83.1, 16.1, 40, 4.4, 
@@ -91,7 +83,7 @@ sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 
 DNA can persist for up to hundreds of thousands of years in skeletal remains, and can even be extracted from sediments. However, extracting such DNA poses a challenge. Ancient DNA is typically present in very small amounts, is highly fragmented, and contaminated with other endogenous organic molecules which inhibit enzymatic DNA manipulations which must be performed prior to sequencing, or exogenous DNA. There are high-quality genomic sequences available for two Denisovans and three Neanderthals. There are also low coverage sequences available spanning spatially from Gibraltar to Siberia and temporally from 39 to 120ka. A total of fourteen archaic genomic samples will be analysed in this study, including all five high coverage genomes.
 
-```{r plot, echo = FALSE, warning=FALSE}
+```{r plot, echo = FALSE, warning = FALSE}
 wes_cols <- wes_palette("Zissou1", 100, type = "continuous")
 
 ggplot() +
@@ -113,7 +105,8 @@ ggplot() +
     size = 3.5,
     label.size = 0.2,
     family = "lato",
-    min.segment.length = 0
+    min.segment.length = 0,
+    max.overlaps = Inf
   ) +
   coord_sf(expand = FALSE, xlim = c(-20, 150), ylim = c(20, 70)) +
   theme_minimal(base_family = "lato") +
