@@ -68,7 +68,7 @@ sites <- data.frame(
     "Les Cottés Z4-1415 (Neanderthal)", 
     "Goyet Q56-1 (Neanderthal)",
     "Scladina (Neanderthal)",
-    "Hohlenstein‑Stadel (Neanderthal)"),
+    "Hohlenstein Stadel (Neanderthal)"),
   
   lon  = c(84.4, 83.1, 16.1, 40, 4.4, 
            0.3, 5.0, 5.1, 10.1), #E (+) W (-)
