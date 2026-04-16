@@ -108,7 +108,7 @@ ggplot() +
     min.segment.length = 0,
     max.overlaps = Inf
   ) +
-  coord_sf(expand = FALSE, xlim = c(-20, 150), ylim = c(20, 70)) +
+  coord_sf(expand = FALSE, xlim = c(-20, 150), ylim = c(10, 75)) +
   theme_minimal(base_family = "lato") +
   theme(
     legend.position = c(0.9, 0.3),
@@ -143,7 +143,7 @@ knitr::kable(arc_tab_df, caption = "Available high-coverage archaic genomes")
 
 Modern human genomes were obtained from the Simons Genome Diversity Project (SGDP). A panel of 279 individuals representing broad global diversity (Africa, Europe, East Asia, Central Asia, and Oceania) to provide a stable reference frame for principal component analysis (PCA). Variant call files (VCFs) were downloaded as whole-genome SNP datasets aligned to the GRCh37/hg19 reference genome.
 
-```{r modern_samples, echo = FALSE, message = FALSE, warning = FALSE}
+```{r modern_samples, echo = FALSE, message = FALSE, warning = FALSE, include = FALSE}
 metadata <- read.table(
   "https://sf-web-assets-prod.s3.amazonaws.com/wp-content/uploads/2023/05/05_02_2023_SGDP_metainformation_update.txt",
   header = TRUE,
@@ -160,6 +160,58 @@ ggplot() +
   geom_sf(data = world, fill = NA, color = "grey60", size = 0.2) +
   geom_point(data = metadata, aes(x = Longitude, y = Latitude), 
              color = "#00008B", fill = "#00008B", shape = 21, size = 3, stroke = 1) +
+  coord_sf(expand = FALSE, xlim = c(-20, 200), ylim = c(-50, 80)) +
+  theme_minimal(base_family = "lato") +
+  theme(
+    legend.position = c(0.9, 0.3),
+    legend.background = element_blank(),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_blank(),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5)
+  ) +
+  labs(
+    title = "Modern Samples and UV Radiation",
+    subtitle = "UV Index climatology (NASA AURA, 2010)"
+  )
+```
+
+```{r sgdp_subset_map, echo = FALSE, message = FALSE, warning = FALSE}
+modern_samples <- data.frame(
+  population = c("Yoruba", "Bantu_Hetero", "Khomani_San", "Mongola", "Tlingit",
+                 "Eskimo_Sireniki", "Dai", "Cambodian", "Han", "Papuan", "Maori",
+                 "Australian", "French", "Hungarian", "Greek"),
+  lon  = c(3.9, 19.0, 20.8, 111.0, 158.65, 173.9, 100.0, 105.0, 114.0, 143.0, 
+           174.5, 143.0, 2.0, 9.1, 23.7), #E (+) W (-)
+  lat  = c(7.4, -22.0, -27.0, 45.0, 53, 64.4, 21.0, 12.0, 32.3, -4.0, -41.3,
+           -13.0, 46.0, 47.5, 38.0) #N (+) S (-)
+)
+
+modern_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
+
+ggplot() +
+  geom_raster(data = uv_land_df, aes(x = lon, y = lat, fill = UVIndex)) +
+  scale_fill_gradientn(colours = wes_cols, name = "UV Index", na.value = "white") +
+  geom_sf(data = world, fill = NA, color = "grey60", size = 0.2) +
+  geom_point(data = modern_samples, aes(x = lon, y = lat), 
+             color = "#00008B", fill = "#00008B", shape = 21, size = 3, stroke = 1) +
+  geom_label_repel(
+    data = modern_samples,
+    aes(x = lon, y = lat, label = population),
+    box.padding = 0.7,
+    point.padding = 0.3,
+    segment.color = "#00008B",
+    segment.size = 0.4,
+    fill = alpha("white", 0.8),
+    label.r = unit(0.2, "lines"),
+    color = "black",
+    size = 3,
+    label.size = 0.3,
+    family = "lato",
+    min.segment.length = 0
+  ) +
   coord_sf(expand = FALSE, xlim = c(-20, 200), ylim = c(-50, 80)) +
   theme_minimal(base_family = "lato") +
   theme(
