@@ -18,7 +18,10 @@ The question of what our archaic hominin ancestors may have looked like has capt
 Background on the samples analyzed is available on the **Introduction** analysis page:
 - [View UV map and aDNA sites](introduction.html)
 
-Population genetics analyses are available on the **Analysis** page:
+Analysis of depth and missingness in archaic samples is available on the **depth** page:
+- [View analysis of depth and missingness](depth.html)
+
+Population genetics analyses are available on the **PCA** page:
 - [View genetic PCAs](analysis.html)
 
 # Data Sources
