@@ -140,9 +140,7 @@ combined_plot
 ```
 
 
-The PCA of whole-genome SNPs shows clear population structure. In PC1-PC2, there is a strong separation between African and non-African populations along PC1. Within non-Africans, Europeans (WestEurasia), East Asians, and Oceanians form distinct clusters along PC2. Archaic individuals cluster near non-Africans on PC1 and form a distinct cluster on PC2. PC3 and PC4 show that Africans separate along PC4, with Yoruba and Bantu clustering together and Khomani San falling on the opposite end of the axis. Oceanians are clearly distinct along PC3. East Asians cluster tightly, distinct from both Oceanians and Europeans. Again, archaic individuals cluster near non-African populations.
-
-Whole-genome SNP data captures population history and demographic structure, producing clear clustering by continental ancestry and reflecting introgression.
+The PCA of whole-genome SNPs shows clear population structure. In PC1-PC2, there is a strong separation between African and non-African populations along PC1. Within non-Africans, Europeans (WestEurasia), East Asians, and Oceanians form distinct clusters along PC2. Archaic individuals cluster near non-Africans on PC1 and form a distinct cluster on PC2. PC3 and PC4 show that Africans separate along PC4, with Yoruba and Bantu clustering together and Khomani San falling on the opposite end of the axis. Oceanians are clearly distinct along PC3. East Asians cluster tightly, distinct from both Oceanians and Europeans. Again, archaic individuals cluster near non-African populations. Whole-genome SNP data captures population history and demographic structure, producing clear clustering by continental ancestry and possibly reflecting introgression.
 
 
 # Pigmentation subset
@@ -248,5 +246,8 @@ combined_plot <- (x2 | y2) +
 combined_plot
 ```
 
-The PCA of pigmentation-associated SNPs shows weaker geographic structuring and greater overlap among populations compared to the genome-wide panel. In PCs 1 and 2. Most populations cluster closely near the origin, indicating limited differentiation captured by pigmentation loci alone. PC1 differentiates Bantu and Yoruba from the remaining samples. In PC3 and 4. There is some separation of Oceanians and East Asians. Archaic individuals fall with the African populations.
+The PCA of pigmentation-associated SNPs shows minimal geographic structuring and greater overlap among populations compared to the genome-wide panel. In PCs 1 and 2, most populations fall closely near the origin, indicating limited differentiation captured by pigmentation loci alone. PC1 differentiates Bantu and Yoruba from the remaining samples. 
+
+In PC3 and PC4, there is some separation of Oceanians and East Asians; however, these groups do not form discrete clusters. Archaic individuals fall near the African populations. Additionally, the Khomani San sample is not clustering with other African populations. 
+
 
