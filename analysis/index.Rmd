@@ -1,5 +1,5 @@
 ---
-title: "Distribution of Variation in Pigmentation-Related SNPs in the Hominin Lineage"
+title: "Pigmentation Genetics in Archaic Hominins: Evaluating DNA phenotyping in Neanderthal and Denisovan genomes"
 author: "Lily Heald"
 date: "`r Sys.Date()`"
 output:
