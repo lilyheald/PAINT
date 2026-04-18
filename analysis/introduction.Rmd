@@ -81,7 +81,7 @@ sites_sf <- st_as_sf(sites, coords = c("lon","lat"), crs = 4326)
 
 # Ancient genome availability
 
-DNA can persist for up to hundreds of thousands of years in skeletal remains, and can even be extracted from sediments. However, extracting such DNA poses a challenge. Ancient DNA is typically present in very small amounts, is highly fragmented, and contaminated with other endogenous organic molecules which inhibit enzymatic DNA manipulations which must be performed prior to sequencing, or exogenous DNA. There are high-quality genomic sequences available for two Denisovans and three Neanderthals. There are also low coverage sequences available spanning spatially from Gibraltar to Siberia and temporally from 39 to 120ka. A total of fourteen archaic genomic samples will be analysed in this study, including all five high coverage genomes.
+DNA can persist for up to hundreds of thousands of years in skeletal remains, and can even be extracted from sediments. However, extracting such DNA poses a challenge. Ancient DNA is typically present in very small amounts, is highly fragmented, and contaminated with other endogenous organic molecules which inhibit enzymatic DNA manipulations which must be performed prior to sequencing, or exogenous DNA. There are high-quality genomic sequences available for two Denisovans and three Neanderthals. There are also low coverage sequences available spanning spatially from Gibraltar to Siberia and temporally from 39 to 120ka. A total of fourteen archaic genomic samples will be analysed in this study, including four high coverage genomes.
 
 ```{r plot, echo = FALSE, warning = FALSE}
 wes_cols <- wes_palette("Zissou1", 100, type = "continuous")
@@ -141,7 +141,7 @@ knitr::kable(arc_tab_df, caption = "Available high-coverage archaic genomes")
 
 # Modern reference genomes
 
-Modern human genomes were obtained from the Simons Genome Diversity Project (SGDP). A panel of 279 individuals representing broad global diversity (Africa, Europe, East Asia, Central Asia, and Oceania) to provide a stable reference frame for principal component analysis (PCA). Variant call files (VCFs) were downloaded as whole-genome SNP datasets aligned to the GRCh37/hg19 reference genome.
+Modern human genomes were obtained from the Simons Genome Diversity Project (SGDP). A panel of 15 individuals representing broad global diversity (Africa, Europe, East Asia, Central Asia, and Oceania) to provide a stable reference frame for principal component analysis (PCA). Variant call files (VCFs) were downloaded as whole-genome SNP datasets aligned to the GRCh37/hg19 reference genome.
 
 ```{r modern_samples, echo = FALSE, message = FALSE, warning = FALSE, include = FALSE}
 metadata <- read.table(
